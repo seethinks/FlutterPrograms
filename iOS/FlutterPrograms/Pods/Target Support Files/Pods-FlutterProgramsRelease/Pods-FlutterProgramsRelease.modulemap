@@ -1,0 +1,6 @@
+framework module Pods_FlutterProgramsRelease {
+  umbrella header "Pods-FlutterProgramsRelease-umbrella.h"
+
+  export *
+  module * { export * }
+}

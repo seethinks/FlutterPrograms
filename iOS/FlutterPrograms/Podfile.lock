@@ -1,0 +1,86 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - Flutter (1.0.0)
+  - FlutterPluginRegistrant (0.0.1):
+    - Flutter
+    - share
+    - shared_preferences
+    - url_launcher
+  - HJMacros (0.6.0):
+    - HJMacros/Bases (= 0.6.0)
+  - HJMacros/Bases (0.6.0)
+  - Masonry (1.1.0)
+  - MJRefresh (3.1.15.7)
+  - share (0.5.2):
+    - Flutter
+  - shared_preferences (0.0.1):
+    - Flutter
+  - SSZipArchive (2.1.4)
+  - SVProgressHUD (2.2.5)
+  - url_launcher (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - AFNetworking
+  - Flutter (from `../../flutter_module/.ios/Flutter/engine`)
+  - FlutterPluginRegistrant (from `../../flutter_module/.ios/Flutter/FlutterPluginRegistrant`)
+  - HJMacros (= 0.6.0)
+  - Masonry (= 1.1.0)
+  - MJRefresh
+  - share (from `../../flutter_module/.ios/Flutter/.symlinks/share/ios`)
+  - shared_preferences (from `../../flutter_module/.ios/Flutter/.symlinks/shared_preferences/ios`)
+  - SSZipArchive
+  - SVProgressHUD
+  - url_launcher (from `../../flutter_module/.ios/Flutter/.symlinks/url_launcher/ios`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - HJMacros
+    - Masonry
+    - MJRefresh
+    - SSZipArchive
+    - SVProgressHUD
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: "../../flutter_module/.ios/Flutter/engine"
+  FlutterPluginRegistrant:
+    :path: "../../flutter_module/.ios/Flutter/FlutterPluginRegistrant"
+  share:
+    :path: "../../flutter_module/.ios/Flutter/.symlinks/share/ios"
+  shared_preferences:
+    :path: "../../flutter_module/.ios/Flutter/.symlinks/shared_preferences/ios"
+  url_launcher:
+    :path: "../../flutter_module/.ios/Flutter/.symlinks/url_launcher/ios"
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
+  FlutterPluginRegistrant: e1b1a3a72185d0df33a6a448ea4ee15e578eff08
+  HJMacros: 49759546fd8dd284a58caea4fd61dcc57ec8a4f8
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
+  share: 222b5dcc8031238af9d7de91149df65bad1aef75
+  shared_preferences: 5a1d487c427ee18fcd3ea1f2a131569481834b53
+  SSZipArchive: 41455d4b8d2b6ab93990820b50dc697c2554a322
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  url_launcher: 92b89c1029a0373879933c21642958c874539095
+
+PODFILE CHECKSUM: a545cfce43601f0cfda6563d47af19315eda0d01
+
+COCOAPODS: 1.5.3
