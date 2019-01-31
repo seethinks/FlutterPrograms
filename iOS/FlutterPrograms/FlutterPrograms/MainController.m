@@ -154,12 +154,12 @@
 }
 
 - (IBAction)flutter:(id)sender {
-    NSString *assets = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/flutter_assets"];
-    NSLog(@"assets:%@", assets);
-    NSURL *assetsURL = [NSURL fileURLWithPath:assets];
-    FlutterDartProject *dartPro = [[FlutterDartProject alloc] initWithFlutterAssetsURL:assetsURL];
-    FlutterProgramController *vc = [[FlutterProgramController alloc] initWithProject:dartPro nibName:nil bundle:nil];
-    [self presentViewController:vc animated:true completion:nil];
+//    NSString *assets = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/flutter_assets"];
+//    NSLog(@"assets:%@", assets);
+//    NSURL *assetsURL = [NSURL fileURLWithPath:assets];
+////    FlutterDartProject *dartPro = [[FlutterDartProject alloc] initWithFlutterAssetsURL:assetsURL];
+//    FlutterProgramController *vc = [[FlutterProgramController alloc] initWithProject:dartPro nibName:nil bundle:nil];
+//    [self presentViewController:vc animated:true completion:nil];
 }
 
 /*
