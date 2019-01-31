@@ -31,13 +31,14 @@
     
     self.flutterEngine = [[FlutterEngine alloc] initWithName:@"io.flutter" project:nil];
     [self.flutterEngine runWithEntrypoint:nil];
-    [GeneratedPluginRegistrant registerWithRegistry:self.flutterEngine];
     
-    UIViewController *vc = [FlutterMainController new];
+    UIViewController *vc = [[FlutterViewController alloc] initWithEngine:self.flutterEngine nibName:nil bundle:nil];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = vc;
     [self.window makeKeyAndVisible];
+    
+    [GeneratedPluginRegistrant registerWithRegistry:self.flutterEngine];
     
     // Override point for customization after application launch.
     return [super application:application didFinishLaunchingWithOptions:launchOptions];
