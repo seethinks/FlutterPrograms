@@ -7,6 +7,24 @@
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/.ios/Flutter/.symlinks/share/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/.ios/Flutter/.symlinks/share/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/.ios/Flutter/.symlinks/share/build" />
+      <excludeFolder url="file://$MODULE_DIR$/.ios/Flutter/.symlinks/share/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/.ios/Flutter/.symlinks/share/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/.ios/Flutter/.symlinks/share/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/.ios/Flutter/.symlinks/shared_preferences/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/.ios/Flutter/.symlinks/shared_preferences/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/.ios/Flutter/.symlinks/shared_preferences/build" />
+      <excludeFolder url="file://$MODULE_DIR$/.ios/Flutter/.symlinks/shared_preferences/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/.ios/Flutter/.symlinks/shared_preferences/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/.ios/Flutter/.symlinks/shared_preferences/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/.ios/Flutter/.symlinks/url_launcher/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/.ios/Flutter/.symlinks/url_launcher/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/.ios/Flutter/.symlinks/url_launcher/build" />
+      <excludeFolder url="file://$MODULE_DIR$/.ios/Flutter/.symlinks/url_launcher/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/.ios/Flutter/.symlinks/url_launcher/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/.ios/Flutter/.symlinks/url_launcher/example/build" />
       <excludeFolder url="file://$MODULE_DIR$/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
     </content>
