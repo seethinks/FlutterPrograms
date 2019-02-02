@@ -8,6 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'home.dart';
 import 'find/find.dart';
+import 'common/themes.dart';
 
 class ProgramsApp extends StatelessWidget {
   @override
@@ -15,9 +16,7 @@ class ProgramsApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: kLightGalleryTheme.data,
       home: Main(title: 'Flutter Demo Home Page'),
     );
   }

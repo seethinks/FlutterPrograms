@@ -17,6 +17,7 @@ PODS:
   - Flutter (1.0.0)
   - FlutterPluginRegistrant (0.0.1):
     - Flutter
+    - path_provider
     - share
     - shared_preferences
     - url_launcher
@@ -25,6 +26,8 @@ PODS:
   - HJMacros/Bases (0.6.0)
   - Masonry (1.1.0)
   - MJRefresh (3.1.15.7)
+  - path_provider (0.0.1):
+    - Flutter
   - share (0.5.2):
     - Flutter
   - shared_preferences (0.0.1):
@@ -41,6 +44,7 @@ DEPENDENCIES:
   - HJMacros (= 0.6.0)
   - Masonry (= 1.1.0)
   - MJRefresh
+  - path_provider (from `../../flutter_module/.ios/Flutter/.symlinks/path_provider/ios`)
   - share (from `../../flutter_module/.ios/Flutter/.symlinks/share/ios`)
   - shared_preferences (from `../../flutter_module/.ios/Flutter/.symlinks/shared_preferences/ios`)
   - SSZipArchive
@@ -61,6 +65,8 @@ EXTERNAL SOURCES:
     :path: "../../flutter_module/.ios/Flutter/engine"
   FlutterPluginRegistrant:
     :path: "../../flutter_module/.ios/Flutter/FlutterPluginRegistrant"
+  path_provider:
+    :path: "../../flutter_module/.ios/Flutter/.symlinks/path_provider/ios"
   share:
     :path: "../../flutter_module/.ios/Flutter/.symlinks/share/ios"
   shared_preferences:
@@ -71,16 +77,17 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
-  FlutterPluginRegistrant: e1b1a3a72185d0df33a6a448ea4ee15e578eff08
+  FlutterPluginRegistrant: 6094589172d427a2653ab2b3e4fcf004023891b2
   HJMacros: 49759546fd8dd284a58caea4fd61dcc57ec8a4f8
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
+  path_provider: 09407919825bfe3c2deae39453b7a5b44f467873
   share: 222b5dcc8031238af9d7de91149df65bad1aef75
   shared_preferences: 5a1d487c427ee18fcd3ea1f2a131569481834b53
   SSZipArchive: 41455d4b8d2b6ab93990820b50dc697c2554a322
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   url_launcher: 92b89c1029a0373879933c21642958c874539095
 
-PODFILE CHECKSUM: a545cfce43601f0cfda6563d47af19315eda0d01
+PODFILE CHECKSUM: f61d95f1f07b8b7b6cd925355ef239cd204f0af3
 
 COCOAPODS: 1.5.3
