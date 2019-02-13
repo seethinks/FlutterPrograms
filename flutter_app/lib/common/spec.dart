@@ -1,26 +1,37 @@
+import 'package:json_annotation/json_annotation.dart';
 
-class ProgramSpec {
-  const ProgramSpec({
+part 'spec.g.dart';
+
+@JsonSerializable()
+
+class Spec {
+  Spec(
     this.name,
+    this.id,
     this.version,
     this.author,
     this.description,
     this.iconUrl,
-    this.images = const [""],
+    this.images,
     this.flutterAssertUrl,
     this.github,
-    this.feature = "",
-    this.versionRecord = const [""],
-  });
+    this.feature,
+    this.versionRecord,
+    );
 
-  final String name;
-  final String version;
-  final String author;
-  final String description;
-  final String iconUrl;
-  final List<String> images;
-  final String flutterAssertUrl;
-  final String github;
-  final String feature;
-  final List<String> versionRecord;
+  String name;
+  String id;
+  String version;
+  String author;
+  String description;
+  String iconUrl;
+  dynamic images;
+  String flutterAssertUrl;
+  String github;
+  String feature;
+  dynamic versionRecord;
+
+  factory Spec.fromJson(Map<String, dynamic> json) => _$SpecFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SpecToJson(this);
 }

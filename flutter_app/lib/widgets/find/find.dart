@@ -5,88 +5,32 @@ import '../../common/spec.dart';
 import '../../common/common.dart';
 import 'package:dio/dio.dart';
 import 'dart:io';
+import '../../tools/network.dart';
 
 class Find extends StatefulWidget {
   String title = "发现";
   static const String routeName = '/Find';
 
-  List<ProgramSpec> specs = <ProgramSpec>[
-    ProgramSpec(
-      name: "test0",
-      author: "author_test0",
-      description:
-          "description, description, description, description, description, description, description, description, description, description, description, description, description",
-      iconUrl:
-          "http://img.zcool.cn/community/01de4b58009420a84a0d304fc9998c.jpg@1280w_1l_2o_100sh.jpg",
-      images: [
-        "http://img.smzy.com/imges/2017/0522/20170522112924470.jpg",
-        "http://img.smzy.com/imges/2017/0522/20170522112924470.jpg",
-        "http://img.smzy.com/imges/2017/0522/20170522112924470.jpg",
-        "http://img.smzy.com/imges/2017/0522/20170522112924470.jpg",
-        "http://img.smzy.com/imges/2017/0522/20170522112924470.jpg"
-      ],
-      flutterAssertUrl: "",
-    ),
-    ProgramSpec(
-      name: "test0",
-      author: "author_test0",
-      description: "description",
-      iconUrl:
-          "http://img.zcool.cn/community/01de4b58009420a84a0d304fc9998c.jpg@1280w_1l_2o_100sh.jpg",
-      images: ["http://img.smzy.com/imges/2017/0522/20170522112924470.jpg"],
-      flutterAssertUrl: "",
-    ),
-    ProgramSpec(
-      name: "test0",
-      author: "author_test0",
-      description: "description",
-      iconUrl:
-          "http://img.zcool.cn/community/01de4b58009420a84a0d304fc9998c.jpg@1280w_1l_2o_100sh.jpg",
-      images: ["http://img.smzy.com/imges/2017/0522/20170522112924470.jpg"],
-      flutterAssertUrl: "",
-    ),
-    ProgramSpec(
-      name: "test0",
-      author: "author_test0",
-      description: "description",
-      iconUrl:
-          "http://img.zcool.cn/community/01de4b58009420a84a0d304fc9998c.jpg@1280w_1l_2o_100sh.jpg",
-      images: ["http://img.smzy.com/imges/2017/0522/20170522112924470.jpg"],
-      flutterAssertUrl: "",
-    ),
-    ProgramSpec(
-      name: "test0",
-      author: "author_test0",
-      description: "description",
-      iconUrl:
-          "http://img.zcool.cn/community/01de4b58009420a84a0d304fc9998c.jpg@1280w_1l_2o_100sh.jpg",
-      images: ["http://img.smzy.com/imges/2017/0522/20170522112924470.jpg"],
-      flutterAssertUrl: "",
-    ),
-    ProgramSpec(
-      name: "test0",
-      author: "author_test0",
-      description: "description",
-      iconUrl:
-          "http://img.zcool.cn/community/01de4b58009420a84a0d304fc9998c.jpg@1280w_1l_2o_100sh.jpg",
-      images: ["http://img.smzy.com/imges/2017/0522/20170522112924470.jpg"],
-      flutterAssertUrl: "",
-    ),
-    ProgramSpec(
-      name: "test0",
-      author: "author_test0",
-      description: "description",
-      iconUrl:
-          "http://img.zcool.cn/community/01de4b58009420a84a0d304fc9998c.jpg@1280w_1l_2o_100sh.jpg",
-      images: ["http://img.smzy.com/imges/2017/0522/20170522112924470.jpg"],
-      flutterAssertUrl: "",
-    )
-  ];
+  // https://raw.githubusercontent.com/FlutterPrograms/Specs/master/specs/specs.json
+
 
   _FindState createState() => _FindState();
 }
 
 class _FindState extends State<Find> {
+
+  
+
+  List<Spec> specs = <Spec>[];
+  var version = "0.0.0";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetchSpecs();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,13 +42,29 @@ class _FindState extends State<Find> {
                   SliverChildBuilderDelegate((BuildContext context, int index) {
                 return FindItem(
                   index: index,
-                  lastItem: index == widget.specs.length - 1,
-                  spec: widget.specs[index],
+                  lastItem: index == specs.length - 1,
+                  spec: specs[index],
                 );
-              }, childCount: widget.specs.length),
+              }, childCount: specs.length),
             )
           ],
         ));
+  }
+
+  void fetchSpecs() {
+    Network.fetchSpecsList().then((respData) {
+      specs.clear();
+      setState(() {
+        version = respData["version"];
+        var specsJson = respData["specs"] as List;
+        specsJson.forEach((s){
+          var spec = Spec.fromJson(s);
+          specs.add(spec);
+        });
+      });
+    }).catchError((e) {
+
+    });
   }
 }
 
@@ -113,7 +73,7 @@ class FindItem extends StatefulWidget {
 
   final int index;
   final bool lastItem;
-  final ProgramSpec spec;
+  final Spec spec;
 
   String _process = "";
 
@@ -190,10 +150,11 @@ class _FindItemState extends State<FindItem> {
                     ),
                   ),
                   onPressed: () {
-
-                    debugPrint("test");
+                    
+                    // debugPrint("test");
                     // showFindPage(context, spec);
-                    downFlutterAsserts();
+                    // downFlutterAsserts();
+                   fetchSpecs();
                   },
                 ),
                 Padding(
@@ -219,8 +180,11 @@ class _FindItemState extends State<FindItem> {
     );
   }
 
+  void fetchSpecs() {
+    
+  }
 
-  void showFindPage(BuildContext context, ProgramSpec spec) {
+  void showFindPage(BuildContext context, Spec spec) {
     // Navigator.push(
     //     context,
     //     MaterialPageRoute<void>(

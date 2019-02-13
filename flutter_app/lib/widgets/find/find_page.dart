@@ -3,16 +3,16 @@ import 'package:flutter/cupertino.dart';
 import '../../common/spec.dart';
 import '../../common/common.dart';
 
+// Program 详情页面
 class FindPage extends StatefulWidget {
+  
   const FindPage({this.spec});
   static const String routeName = '/find/page';
-  final ProgramSpec spec;
+  final Spec spec;
 
   @override
   State<StatefulWidget> createState() => FindPageState();
 }
-
-
 
 class FindPageState extends State<FindPage> {
   @override
@@ -37,12 +37,12 @@ class FindPageState extends State<FindPage> {
   }
 }
 
-
+// Program 详情页 Header
 class FindPageHeader extends StatefulWidget {
   FindPageHeader(
     this.spec,
   );
-  final ProgramSpec spec;
+  final Spec spec;
   _FindPageHeaderState createState() => _FindPageHeaderState();
 }
 
@@ -122,11 +122,12 @@ class _FindPageHeaderState extends State<FindPageHeader> {
   }
 }
 
+// Program 详情页 图片预览
 class FindPagePreview extends StatefulWidget {
   FindPagePreview(
     this.spec,
   );
-  final ProgramSpec spec;
+  final Spec spec;
   _FindPagePreviewState createState() => _FindPagePreviewState();
 }
 
@@ -157,11 +158,12 @@ class _FindPagePreviewState extends State<FindPagePreview> {
   }
 }
 
+// Program 详情页 介绍
 class FindPageIntroduce extends StatefulWidget {
   FindPageIntroduce(
     this.spec,
   );
-  final ProgramSpec spec;
+  final Spec spec;
   _FindPageIntroduceState createState() => _FindPageIntroduceState();
 }
 
@@ -178,6 +180,7 @@ class _FindPageIntroduceState extends State<FindPageIntroduce> {
   }
 }
 
+// Program 详情页 Item
 class FindPageItem extends StatelessWidget {
   FindPageItem({Key key, this.title, this.child}) : super(key: key);
   final String title;
