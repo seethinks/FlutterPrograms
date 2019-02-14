@@ -7,68 +7,104 @@ import 'dart:async';
 import '../../bean/spec.dart';
 import '../../common/separator.dart';
 import '../../tools/network.dart';
+import '../../common/loading_page.dart';
+import '../../common/empty_page.dart';
+
+enum FindPageIndex { loading, error, list }
 
 class Find extends StatefulWidget {
   String title = "发现";
   static const String routeName = '/Find';
-  
+
   _FindState createState() => _FindState();
 }
 
 class _FindState extends State<Find> {
-
+  FindPageIndex _indexPage = FindPageIndex.loading;
   List<Spec> _specs = <Spec>[];
   var _version = "0.0.0";
 
   @override
   void initState() {
     super.initState();
+    _indexPage =
+        _specs.length == 0 ? FindPageIndex.loading : FindPageIndex.list;
     _fetchSpecs();
   }
 
   @override
   Widget build(BuildContext context) {
+    var index = _indexPage.index;
     return Scaffold(
-        appBar: AppBar(title: Text(widget.title)),
-        body: RefreshIndicator(
-          onRefresh: _handleRefresh,
-          child: CustomScrollView(
-            slivers: <Widget>[
-              SliverList(
-                delegate:
-                    SliverChildBuilderDelegate((BuildContext context, int index) {
-                  return FindItem(
-                    index: index,
-                    lastItem: index == _specs.length - 1,
-                    spec: _specs[index],
-                  );
-                }, childCount: _specs.length),
-              )
-            ],
+      appBar: AppBar(title: Text(widget.title)),
+      body: IndexedStack(
+        index: index,
+        children: <Widget>[
+          LoadingPage(),
+          EmptyPage(
+            Icons.error,
+            "数据获取失败，点击重试~",
+            _handleEmpytRefresh,
           ),
-        ),
-      ); 
+          RefreshIndicator(
+            onRefresh: _handlePullRefresh,
+            child: CustomScrollView(
+              slivers: <Widget>[
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                      (BuildContext context, int index) {
+                    return FindItem(
+                      index: index,
+                      lastItem: index == _specs.length - 1,
+                      spec: _specs[index],
+                    );
+                  }, childCount: _specs.length),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Future<void> _fetchSpecs() async {
     var completer = new Completer();
     Network.fetchSpecsList().then((respData) {
       var version = respData["version"];
-      var specs = (respData["specs"] as List)?.map((s) => Spec.fromJson(s))?.toList();
+      var specs =
+          (respData["specs"] as List)?.map((s) => Spec.fromJson(s))?.toList();
       setState(() {
         _version = version;
         _specs.clear();
         _specs = specs;
+        _indexPage =
+            _specs.length == 0 ? FindPageIndex.error : FindPageIndex.list;
       });
       completer.complete();
     }).catchError((e) {
+      setState(() {
+        _indexPage =
+            _specs.length == 0 ? FindPageIndex.error : FindPageIndex.list;
+      });
       completer.complete();
     });
     return completer.future;
   }
 
-  Future<void> _handleRefresh() async {
+  Future<void> _handlePullRefresh() async {
     return _fetchSpecs();
+  }
+
+  Future<void> _handleEmpytRefresh() async {
+    var completer = new Completer();
+    setState(() {
+      _indexPage = FindPageIndex.loading;
+    });
+    _fetchSpecs().then((v) {
+      completer.complete();
+    });
+    return completer.future;
   }
 }
 
@@ -85,7 +121,6 @@ class FindItem extends StatefulWidget {
 }
 
 class _FindItemState extends State<FindItem> {
-
   @override
   Widget build(BuildContext context) {
     final Widget row = GestureDetector(
@@ -105,6 +140,15 @@ class _FindItemState extends State<FindItem> {
                 // icon 图片
                 Container(
                   width: 80,
+                  height: 80,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 0.5,
+                    ),
+                  ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Image(
@@ -164,8 +208,7 @@ class _FindItemState extends State<FindItem> {
                     ),
                   ),
                   onPressed: () {
-                    
-                   downFlutterAsserts();
+                    downFlutterAsserts();
                   },
                 ),
                 Padding(
@@ -224,10 +267,10 @@ class _FindItemState extends State<FindItem> {
           if (total != -1) {
             debugPrint((received / total * 100).toStringAsFixed(0) + "%");
             setState(() {
-              widget._process = (received / total * 100).toStringAsFixed(0) + "%";
+              widget._process =
+                  (received / total * 100).toStringAsFixed(0) + "%";
             });
           }
-          
         },
         cancelToken: CancelToken(),
         options: Options(
