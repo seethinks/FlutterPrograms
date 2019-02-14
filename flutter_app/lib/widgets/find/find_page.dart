@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import '../../common/spec.dart';
-import '../../common/common.dart';
+import '../../bean/spec.dart';
+import '../../common/separator.dart';
 
 // Program 详情页面
 class FindPage extends StatefulWidget {

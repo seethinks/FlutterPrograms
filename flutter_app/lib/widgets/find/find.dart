@@ -1,32 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'find_page.dart';
-import '../../common/spec.dart';
-import '../../common/common.dart';
 import 'package:dio/dio.dart';
 import 'dart:io';
+import '../../bean/spec.dart';
+import '../../common/separator.dart';
 import '../../tools/network.dart';
 
 class Find extends StatefulWidget {
   String title = "发现";
   static const String routeName = '/Find';
-
-  // https://raw.githubusercontent.com/FlutterPrograms/Specs/master/specs/specs.json
-
-
+  
   _FindState createState() => _FindState();
 }
 
 class _FindState extends State<Find> {
 
-  
-
-  List<Spec> specs = <Spec>[];
-  var version = "0.0.0";
+  List<Spec> _specs = <Spec>[];
+  var _version = "0.0.0";
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     fetchSpecs();
   }
@@ -42,10 +36,10 @@ class _FindState extends State<Find> {
                   SliverChildBuilderDelegate((BuildContext context, int index) {
                 return FindItem(
                   index: index,
-                  lastItem: index == specs.length - 1,
-                  spec: specs[index],
+                  lastItem: index == _specs.length - 1,
+                  spec: _specs[index],
                 );
-              }, childCount: specs.length),
+              }, childCount: _specs.length),
             )
           ],
         ));
@@ -53,14 +47,12 @@ class _FindState extends State<Find> {
 
   void fetchSpecs() {
     Network.fetchSpecsList().then((respData) {
-      specs.clear();
+      var version = respData["version"];
+      var specs = (respData["specs"] as List)?.map((s) => Spec.fromJson(s))?.toList();
       setState(() {
-        version = respData["version"];
-        var specsJson = respData["specs"] as List;
-        specsJson.forEach((s){
-          var spec = Spec.fromJson(s);
-          specs.add(spec);
-        });
+        _version = version;
+        _specs.clear();
+        _specs = specs;
       });
     }).catchError((e) {
 
@@ -139,6 +131,7 @@ class _FindItemState extends State<FindItem> {
                 Padding(
                   padding: EdgeInsets.only(right: 12),
                 ),
+                // 按钮
                 RaisedButton(
                   shape: StadiumBorder(),
                   child: Text(
@@ -151,9 +144,6 @@ class _FindItemState extends State<FindItem> {
                   ),
                   onPressed: () {
                     
-                    // debugPrint("test");
-                    // showFindPage(context, spec);
-                    // downFlutterAsserts();
                    fetchSpecs();
                   },
                 ),

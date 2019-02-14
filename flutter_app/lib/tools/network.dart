@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:convert';
-import '../common/spec.dart';
 import './api.dart';
 
 class Network {
