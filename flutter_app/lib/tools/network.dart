@@ -1,6 +1,9 @@
 import 'dart:io';
 import 'dart:convert';
+import 'package:logging/logging.dart';
 import './api.dart';
+
+final Logger log = new Logger('Network');
 
 class Network {
 
@@ -12,6 +15,7 @@ class Network {
       var responseData;
       if (response.statusCode == 200) {
         responseData = await response.transform(utf8.decoder).join();
+        log.info(responseData);
         responseData = json.decode(responseData);
         return responseData;
       }
