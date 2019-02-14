@@ -3,6 +3,7 @@ import 'package:path_provider/path_provider.dart';
 import 'find_page.dart';
 import 'package:dio/dio.dart';
 import 'dart:io';
+import 'dart:async';
 import '../../bean/spec.dart';
 import '../../common/separator.dart';
 import '../../tools/network.dart';
@@ -22,30 +23,35 @@ class _FindState extends State<Find> {
   @override
   void initState() {
     super.initState();
-    fetchSpecs();
+    _fetchSpecs();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text(widget.title)),
-        body: CustomScrollView(
-          slivers: <Widget>[
-            SliverList(
-              delegate:
-                  SliverChildBuilderDelegate((BuildContext context, int index) {
-                return FindItem(
-                  index: index,
-                  lastItem: index == _specs.length - 1,
-                  spec: _specs[index],
-                );
-              }, childCount: _specs.length),
-            )
-          ],
-        ));
+        body: RefreshIndicator(
+          onRefresh: _handleRefresh,
+          child: CustomScrollView(
+            slivers: <Widget>[
+              SliverList(
+                delegate:
+                    SliverChildBuilderDelegate((BuildContext context, int index) {
+                  return FindItem(
+                    index: index,
+                    lastItem: index == _specs.length - 1,
+                    spec: _specs[index],
+                  );
+                }, childCount: _specs.length),
+              )
+            ],
+          ),
+        ),
+      ); 
   }
 
-  void fetchSpecs() {
+  Future<void> _fetchSpecs() async {
+    var completer = new Completer();
     Network.fetchSpecsList().then((respData) {
       var version = respData["version"];
       var specs = (respData["specs"] as List)?.map((s) => Spec.fromJson(s))?.toList();
@@ -54,9 +60,15 @@ class _FindState extends State<Find> {
         _specs.clear();
         _specs = specs;
       });
+      completer.complete();
     }).catchError((e) {
-
+      completer.complete();
     });
+    return completer.future;
+  }
+
+  Future<void> _handleRefresh() async {
+    return _fetchSpecs();
   }
 }
 
@@ -109,22 +121,31 @@ class _FindItemState extends State<FindItem> {
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      Padding(padding: EdgeInsets.only(top: 12.0)),
+                      // 应用名称
+                      Text(
+                        widget.spec.name,
+                        style: TextStyle(
+                          color: Color(0xFF3333333),
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                       Padding(padding: EdgeInsets.only(top: 8.0)),
-                      Text(widget.spec.name),
-                      Padding(padding: EdgeInsets.only(top: 8.0)),
+                      // 描述
                       Expanded(
                         child: Text(
                           widget.spec.description,
-                          maxLines: 3,
+                          maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: Color(0xFF8E8E93),
-                            fontSize: 13.0,
+                            fontSize: 16.0,
                             fontWeight: FontWeight.w300,
                           ),
                         ),
                       ),
-                      Padding(padding: EdgeInsets.only(top: 8.0)),
+                      Padding(padding: EdgeInsets.only(top: 12.0)),
                     ],
                   ),
                 ),
@@ -144,7 +165,7 @@ class _FindItemState extends State<FindItem> {
                   ),
                   onPressed: () {
                     
-                   fetchSpecs();
+                   downFlutterAsserts();
                   },
                 ),
                 Padding(
@@ -168,10 +189,6 @@ class _FindItemState extends State<FindItem> {
         ),
       ],
     );
-  }
-
-  void fetchSpecs() {
-    
   }
 
   void showFindPage(BuildContext context, Spec spec) {
