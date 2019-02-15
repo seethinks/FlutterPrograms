@@ -7,10 +7,9 @@ import 'dart:async';
 import '../../bean/spec.dart';
 import '../../common/separator.dart';
 import '../../tools/network.dart';
-import '../../common/loading_page.dart';
-import '../../common/empty_page.dart';
+import '../../common/empty_widget.dart';
 
-enum FindPageIndex { loading, error, list }
+enum FindPageIndex { empty, list }
 
 class Find extends StatefulWidget {
   String title = "发现";
@@ -20,32 +19,37 @@ class Find extends StatefulWidget {
 }
 
 class _FindState extends State<Find> {
-  FindPageIndex _indexPage = FindPageIndex.loading;
+  final GlobalKey<EmptyWidgetState> _emptyWidgetKey =
+      GlobalKey<EmptyWidgetState>();
   List<Spec> _specs = <Spec>[];
-  var _version = "0.0.0";
+  String _version = "0.0.0";
+  FindPageIndex get _widgetIndex =>
+      (_specs.length == 0) ? FindPageIndex.empty : FindPageIndex.list;
 
   @override
   void initState() {
     super.initState();
-    _indexPage =
-        _specs.length == 0 ? FindPageIndex.loading : FindPageIndex.list;
-    _fetchSpecs();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _emptyWidgetKey.currentState.loading();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    var index = _indexPage.index;
+    var index = _widgetIndex.index;
     return Scaffold(
       appBar: AppBar(title: Text(widget.title)),
       body: IndexedStack(
         index: index,
         children: <Widget>[
-          LoadingPage(),
-          EmptyPage(
-            Icons.error,
-            "数据获取失败，点击重试~",
-            _handleEmpytRefresh,
+          // 空白页
+          EmptyWidget(
+            key: _emptyWidgetKey,
+            icon: Icons.error,
+            message: "数据获取失败，点击重试~",
+            onRefresh: _handlePullRefresh,
           ),
+          // 列表页
           RefreshIndicator(
             onRefresh: _handlePullRefresh,
             child: CustomScrollView(
@@ -78,15 +82,10 @@ class _FindState extends State<Find> {
         _version = version;
         _specs.clear();
         _specs = specs;
-        _indexPage =
-            _specs.length == 0 ? FindPageIndex.error : FindPageIndex.list;
       });
       completer.complete();
     }).catchError((e) {
-      setState(() {
-        _indexPage =
-            _specs.length == 0 ? FindPageIndex.error : FindPageIndex.list;
-      });
+      setState(() {});
       completer.complete();
     });
     return completer.future;
@@ -94,17 +93,6 @@ class _FindState extends State<Find> {
 
   Future<void> _handlePullRefresh() async {
     return _fetchSpecs();
-  }
-
-  Future<void> _handleEmpytRefresh() async {
-    var completer = new Completer();
-    setState(() {
-      _indexPage = FindPageIndex.loading;
-    });
-    _fetchSpecs().then((v) {
-      completer.complete();
-    });
-    return completer.future;
   }
 }
 
