@@ -6,7 +6,7 @@ import 'dart:io';
 import 'dart:async';
 import '../../bean/spec.dart';
 import '../../common/separator.dart';
-import '../../tools/network.dart';
+import '../../network/network.dart';
 import '../../common/empty_widget.dart';
 
 enum FindPageIndex { empty, list }
