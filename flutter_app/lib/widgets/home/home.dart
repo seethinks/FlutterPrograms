@@ -142,6 +142,7 @@ class _HomeItemState extends State<HomeItem> with UpdateStateMixin<HomeItem> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image(
+                  fit: BoxFit.cover,
                   image: NetworkImage(widget.spec.iconUrl),
                 ),
               ),

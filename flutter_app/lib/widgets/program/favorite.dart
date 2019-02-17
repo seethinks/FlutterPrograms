@@ -9,10 +9,12 @@ import '../../common/download_button.dart';
 import '../../tools/logging.dart';
 import '../base/base_page.dart';
 import '../base/update_state_mixin.dart';
+import '../../tools/event_bus.dart';
 
 enum FavoritePageIndex { empty, list }
 
 class Favorite extends BasePage {
+  Favorite({Key key}) : super(key: key);
   String title = "收藏";
   static const String routeName = '/Find';
   List<Spec> specs = <Spec>[];
@@ -20,7 +22,8 @@ class Favorite extends BasePage {
   _FavoriteState createState() => _FavoriteState();
 }
 
-class _FavoriteState extends State<Favorite> {
+class _FavoriteState extends State<Favorite>
+    with AutomaticKeepAliveClientMixin {
   final GlobalKey<EmptyWidgetState> _emptyWidgetKey =
       GlobalKey<EmptyWidgetState>();
   FavoritePageIndex get _widgetIndex => (widget.specs.length == 0)
@@ -34,7 +37,13 @@ class _FavoriteState extends State<Favorite> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _emptyWidgetKey.currentState.loading();
     });
+    bus.on(EventTypes.localProgramChanged, (f) {
+      _fetchSpecs();
+    });
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +106,14 @@ class _FavoriteState extends State<Favorite> {
   }
 
   Future<void> _handleProgramDownloadComplate() async {
+    bus.emit(EventTypes.localProgramChanged);
     return _fetchSpecs(fromRemote: false);
+  }
+
+  @override
+  void dispose() {
+    bus.off(EventTypes.localProgramChanged);
+    super.dispose();
   }
 }
 
@@ -112,7 +128,8 @@ class FavoriteItem extends StatefulWidget {
   _FavoriteItemState createState() => _FavoriteItemState();
 }
 
-class _FavoriteItemState extends State<FavoriteItem> with UpdateStateMixin<FavoriteItem> {
+class _FavoriteItemState extends State<FavoriteItem>
+    with UpdateStateMixin<FavoriteItem> {
   double _downloadProcess = 0.0;
 
   @override

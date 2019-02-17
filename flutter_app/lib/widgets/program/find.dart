@@ -21,7 +21,7 @@ class Find extends BasePage {
   _FindState createState() => _FindState();
 }
 
-class _FindState extends State<Find> {
+class _FindState extends State<Find> with AutomaticKeepAliveClientMixin {
   final GlobalKey<EmptyWidgetState> _emptyWidgetKey =
       GlobalKey<EmptyWidgetState>();
   FindPageIndex get _widgetIndex =>
@@ -34,7 +34,13 @@ class _FindState extends State<Find> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _emptyWidgetKey.currentState.loading();
     });
+    bus.on(EventTypes.localProgramChanged, (f) {
+      _fetchSpecs();
+    });
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {
@@ -101,6 +107,12 @@ class _FindState extends State<Find> {
   Future<void> _handleProgramDownloadComplate() async {
     bus.emit(EventTypes.localProgramChanged);
     return _fetchSpecs(fromRemote: false);
+  }
+
+  @override
+  void dispose() {
+    bus.off(EventTypes.localProgramChanged);
+    super.dispose();
   }
 }
 
