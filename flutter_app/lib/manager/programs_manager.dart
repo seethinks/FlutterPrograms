@@ -26,7 +26,7 @@ class ProgramsManager {
 
   // 获取 program spec 列表
   Future<List<Spec>> fetchSpecList() async {
-    var respData = await Network.fetchSpecsList();
+    var respData = await Network.fetchSpecList();
     _specVersion = respData["version"];
     _specList =
         (respData["specs"] as List)?.map((s) => Spec.fromJson(s))?.toList();
@@ -41,58 +41,113 @@ class ProgramsManager {
       var specFilePath = r.sepcLocalPath;
       try {
         File file = File(specFilePath);
-        var specString = await file.readAsString();
-        var specJson = (json.decode(specString) as Map);
-        var spec = Spec.fromJson(specJson);
-        specsList.add(spec);
-      } catch (e) {}
+        if (await file.exists()) {
+          var specString = await file.readAsString();
+          var specJson = (json.decode(specString) as Map);
+          var spec = Spec.fromJson(specJson);
+          specsList.add(spec);
+        }
+      } catch (e) {
+        throw (e);
+      }
     }
     _localSpecList = specsList;
     return _localSpecList;
   }
 
-  // 删除本地 program
-  Future<FileSystemEntity> deleteProgram(Spec spec) async {
-    // 删除 program
-    var assertPath = await spec.localProgramPath;
-    Directory assertDir = Directory(assertPath);
-    var entity = assertDir.delete(recursive: true);
-    // 删除本地记录
-    SpecRecord specRecord = SpecRecord(spec.id, await spec.localSpecPath);
-    _deleteSpecRecord(specRecord);
-    return entity;
+  // 获取发现页 program spec 类表
+  Future<List<Spec>> fetchFindList({bool fromRemote}) async {
+    var remoteSpecList = <Spec>[];
+    if (fromRemote) {
+      remoteSpecList = await fetchSpecList();
+    } else {
+      remoteSpecList = _specList;
+    }
+    var localSpecList = await loadLocalSpecList();
+
+    var remoteSpecMap = <String, Spec>{};
+    remoteSpecList.forEach((f) => remoteSpecMap[f.id] = f);
+
+    localSpecList.forEach((f) => remoteSpecMap.remove(f.id));
+    var fetchFindList = remoteSpecMap.values.toList();
+
+    return fetchFindList;
+  }
+
+  // 获取收藏页 program spec 类表
+  Future<List<Spec>> fetchFavoriteList({bool fromRemote}) async {
+    var remoteSpecList = <Spec>[];
+    if (fromRemote) {
+      remoteSpecList = await fetchSpecList();
+    } else {
+      remoteSpecList = _specList;
+    }
+    var localSpecList = await loadLocalSpecList();
+
+    var localSpecMap = <String, Spec>{};
+    localSpecList.forEach((f) => localSpecMap[f.id] = f);
+
+    remoteSpecList.forEach((f) {
+      if (localSpecMap.containsKey(f.id)) {
+        if (f.version.compareTo(localSpecMap[f.id].version) > 0) {
+          localSpecMap[f.id] = f;
+          localSpecMap[f.id].canUpdate = true;
+        }
+      }
+    });
+
+    var fetchFavoriteList = localSpecMap.values.toList();
+
+    return fetchFavoriteList;
   }
 
   // 下载 program
-  Future<void> downloadProgram(Spec spec, {OnProgress progress}) async {
+  Future<void> downloadProgram(Spec spec, {OnProgress onProgress}) async {
     try {
+      // 下载新版 program assert
       var tempAssertFilePath =
-          await Network.downloadProgramAssert(spec, progress: progress);
+          await Network.downloadProgramAssert(spec, onProgress: onProgress);
 
       // 删除旧版 program assert
       await deleteProgram(spec);
-      var assertPath = await spec.localProgramPath;
-      await Directory(assertPath).create();
 
       // 拷贝新版 program assert
+      var assertPath = await spec.localProgramVersionDirectory;
+      await assertPath.create(recursive: true);
       var tempAssertFile = File(tempAssertFilePath);
-      await tempAssertFile.copy(assertPath);
-      // 删除新版 program assert 缓存
-      await tempAssertFile.parent.delete(recursive: true);
+      await tempAssertFile.copy(await spec.localAssertFilePath);
 
       // 保存新版 program assert sepc 到本地
-      var specString = spec.toString();
-      var specFilePath = path.join(assertPath, 'spec.json');
+      var specString = json.encode(spec.toJson());
+      var specFilePath = await spec.localSpecFilePath;
       var specFile = File(specFilePath);
       await specFile.writeAsString(specString);
 
       // 更新本地 spec record
-      var specProgramId = spec.id;
-      SpecRecord specRecord = SpecRecord(specProgramId, specFilePath);
-      _addSpecRecord(specRecord);
+      SpecRecord specRecord = SpecRecord(spec.id, specFilePath);
+      await _addSpecRecord(specRecord);
+
+      // 删除新版 program assert 缓存
+      Directory tempAssertFileDirectory = tempAssertFile.parent;
+      if (await tempAssertFileDirectory.exists()) {
+        await tempAssertFile.parent.delete(recursive: true);
+      }
     } catch (e) {
       throw (e);
     }
+  }
+
+  // 删除本地 program
+  Future<void> deleteProgram(Spec spec) async {
+    // 删除 program
+    var assertDirectory = await spec.localProgramIdDirectory;
+    if (await assertDirectory.exists()) {
+      await assertDirectory.delete(recursive: true);
+    }
+    // 删除本地记录
+    SpecRecord specRecord = SpecRecord(spec.id, await spec.localSpecFilePath);
+    _deleteSpecRecord(specRecord);
+    return;
   }
 
 // {
@@ -140,17 +195,20 @@ class ProgramsManager {
 
 // 加载本地已经下载的 spec 记录文件
   Future<List<SpecRecord>> _loadLocalSpecRecord() async {
+    var specRecordList = <SpecRecord>[];
     try {
       String path = await Utils.getLocalSpecRecordFilePath();
       File file = File(path);
-      String contents = await file.readAsString();
-      var specRecord = json.decode(contents);
-      var specRecordList = (specRecord["specRecord"] as List)
-          ?.map((s) => SpecRecord.fromJson(s))
-          ?.toList();
+      if (await file.exists()) {
+        String contents = await file.readAsString();
+        var specRecord = json.decode(contents);
+        specRecordList = (specRecord["specRecord"] as List)
+            ?.map((s) => SpecRecord.fromJson(s))
+            ?.toList();
+      }
       return specRecordList;
     } catch (e) {
-      return List();
+      return specRecordList;
     }
   }
 
@@ -160,7 +218,6 @@ class ProgramsManager {
       var specRecord = Map();
       specRecord['specRecord'] = specRecordList;
       String contents = json.encode(specRecord);
-
       // 保存文件
       String path = await Utils.getLocalSpecRecordFilePath();
       File file = File(path);
