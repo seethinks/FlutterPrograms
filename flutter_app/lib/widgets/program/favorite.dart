@@ -6,10 +6,9 @@ import '../../common/separator.dart';
 import '../../manager/programs_manager.dart';
 import '../../common/empty_widget.dart';
 import '../../common/download_button.dart';
+import '../../tools/logging.dart';
 import '../base/base_page.dart';
 import '../base/update_state_mixin.dart';
-
-final Logger log = new Logger('Network');
 
 enum FavoritePageIndex { empty, list }
 
@@ -31,6 +30,7 @@ class _FavoriteState extends State<Favorite> {
   @override
   void initState() {
     super.initState();
+    log.info('Favorite initState');
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _emptyWidgetKey.currentState.loading();
     });

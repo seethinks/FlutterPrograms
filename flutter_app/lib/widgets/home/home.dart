@@ -3,12 +3,11 @@ import 'package:logging/logging.dart';
 import 'dart:async';
 import '../base/base_page.dart';
 import '../base/update_state_mixin.dart';
+import '../../tools/logging.dart';
 import '../../bean/spec.dart';
 import '../../manager/programs_manager.dart';
 import '../../common/empty_widget.dart';
 import '../../tools/event_bus.dart';
-
-final Logger log = new Logger('Home');
 
 enum HomePageIndex { empty, list }
 

@@ -4,11 +4,10 @@ import 'package:logging/logging.dart';
 import 'package:dio/dio.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
+import '../tools/logging.dart';
 import './api.dart';
 import '../bean/spec.dart';
 import '../tools/utils.dart';
-
-final Logger log = new Logger('Network');
 
 final String assertPath = "Programs";
 

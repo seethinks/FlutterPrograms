@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'tools/utils.dart';
+import 'tools/logging.dart';
 import 'dart:async';
 
 import 'package:flutter/foundation.dart' show defaultTargetPlatform;
@@ -10,8 +11,6 @@ import 'widgets/home/home.dart';
 import 'widgets/program/program.dart';
 import 'widgets/mine/mine.dart';
 
-
-final Logger log = new Logger('Favorite');
 
 
 class Main extends StatefulWidget {

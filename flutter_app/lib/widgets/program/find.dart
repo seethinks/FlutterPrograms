@@ -9,8 +9,7 @@ import '../../manager/programs_manager.dart';
 import '../../common/empty_widget.dart';
 import '../../common/download_button.dart';
 import '../../tools/event_bus.dart';
-
-final Logger log = new Logger('Find');
+import '../../tools/logging.dart';
 
 enum FindPageIndex { empty, list }
 
@@ -31,6 +30,7 @@ class _FindState extends State<Find> {
   @override
   void initState() {
     super.initState();
+    log.info('Find initState');
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _emptyWidgetKey.currentState.loading();
     });
@@ -55,6 +55,7 @@ class _FindState extends State<Find> {
           RefreshIndicator(
             onRefresh: _handlePullRefresh,
             child: CustomScrollView(
+              key: PageStorageKey('value'),
               slivers: <Widget>[
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
