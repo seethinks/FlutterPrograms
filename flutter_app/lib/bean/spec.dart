@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:path/path.dart' as path;
 import '../tools/utils.dart';
@@ -38,27 +39,31 @@ class Spec {
   String github;
   String feature;
   dynamic versionRecord;
+  bool canUpdate = false;
 
   factory Spec.fromJson(Map<String, dynamic> json) => _$SpecFromJson(json);
 
   Map<String, dynamic> toJson() => _$SpecToJson(this);
 
-  Future<String> get localProgramPath async {
+  Future<Directory> get localProgramIdDirectory async {
     String localProgramRootPath = await Utils.getProgramRootPath();
     String pathString = path.join(localProgramRootPath, this.id);
+    return Directory(pathString);
+  }
+
+  Future<Directory> get localProgramVersionDirectory async {
+    String pathString = path.join((await this.localProgramIdDirectory).path, this.version);
+    return Directory(pathString);
+  }
+
+  Future<String> get localSpecFilePath async {
+    String pathString = path.join((await this.localProgramVersionDirectory).path, 'spec.json');
     return pathString;
   }
 
-  Future<String> get localSpecPath async {
-    String localProgramPath = await this.localProgramPath;
-    String pathString = path.join(localProgramPath, this.version, 'spec.json');
-    return pathString;
-  }
-
-  Future<String> get localAssertPath async {
-    String localProgramPath = await this.localProgramPath;
+  Future<String> get localAssertFilePath async {
     String pathString =
-        path.join(localProgramPath, this.version, 'flutter_assets.zip');
+        path.join((await this.localProgramVersionDirectory).path, 'flutter_assets.zip');
     return pathString;
   }
 

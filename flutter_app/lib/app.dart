@@ -1,14 +1,17 @@
+import 'package:flutter/material.dart';
+import 'package:logging/logging.dart';
+import 'tools/utils.dart';
 import 'dart:async';
 
 import 'package:flutter/foundation.dart' show defaultTargetPlatform;
-import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart' show timeDilation;
-
 import 'package:url_launcher/url_launcher.dart';
 
 import 'widgets/home/home.dart';
-import 'widgets/find/find.dart';
+import 'widgets/program/program.dart';
 import 'widgets/mine/mine.dart';
+
+
+final Logger log = new Logger('Favorite');
 
 
 class Main extends StatefulWidget {
@@ -24,14 +27,16 @@ class _MainState extends State<Main> {
 
   int _selectedIndex = 0;
   var _home = Home();
-  var _find = Find();
+  var _program = Program();
   var _mine = Mine();
   List<Widget> _pages;
 
   @override
   void initState() {
-    _pages = [_home, _find, _mine];
     super.initState();
+    _pages = [_home, _program, _mine];
+    var rootPath = 
+    Utils.getProgramRootPath().then((p) => log.info('Programs Path: ' + p));
   }
 
   @override
@@ -40,7 +45,7 @@ class _MainState extends State<Main> {
       bottomNavigationBar: BottomNavigationBar( // 底部导航
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), title: Text(_home.title)),
-          BottomNavigationBarItem(icon: Icon(Icons.list), title: Text(_find.title)),
+          BottomNavigationBarItem(icon: Icon(Icons.camera), title: Text(_program.title)),
           BottomNavigationBarItem(icon: Icon(Icons.person), title: Text(_mine.title)),
         ],
         currentIndex: _selectedIndex,

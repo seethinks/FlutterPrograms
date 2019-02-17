@@ -18,7 +18,8 @@ Spec _$SpecFromJson(Map<String, dynamic> json) {
       json['flutterAssertUrl'] as String,
       json['github'] as String,
       json['feature'] as String,
-      json['versionRecord']);
+      json['versionRecord'])
+    ..canUpdate = json['canUpdate'] as bool;
 }
 
 Map<String, dynamic> _$SpecToJson(Spec instance) => <String, dynamic>{
@@ -32,5 +33,6 @@ Map<String, dynamic> _$SpecToJson(Spec instance) => <String, dynamic>{
       'flutterAssertUrl': instance.flutterAssertUrl,
       'github': instance.github,
       'feature': instance.feature,
-      'versionRecord': instance.versionRecord
+      'versionRecord': instance.versionRecord,
+      'canUpdate': instance.canUpdate
     };
