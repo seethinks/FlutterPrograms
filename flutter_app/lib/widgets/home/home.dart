@@ -31,7 +31,7 @@ class _HomeState extends State<Home> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _emptyWidgetKey.currentState.loading();
     });
-    bus.on(EventTypes.localProgramChanged, (f){
+    bus.on(EventTypes.localProgramChanged, (f) {
       _fetchSpecs();
     });
   }
@@ -51,21 +51,23 @@ class _HomeState extends State<Home> {
             message: "还没有收藏应用，去发现中添加吧~",
             onRefresh: _handlePullRefresh,
           ),
-          // 列表页
-          GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4, childAspectRatio: 0.8),
-              itemCount: widget.specs.length,
-              itemBuilder: (context, index) {
-                return HomeItem(
-                  index: index,
-                  lastItem: index == widget.specs.length - 1,
-                  spec: widget.specs[index],
-                  onPressed: () {
-                    _handleItemPressed();
-                  },
-                );
-              }),
+          Container(
+            padding: EdgeInsets.only(top: 18, left: 18, right: 18),
+            child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4, childAspectRatio: 0.8),
+                itemCount: widget.specs.length,
+                itemBuilder: (context, index) {
+                  return HomeItem(
+                    index: index,
+                    lastItem: index == widget.specs.length - 1,
+                    spec: widget.specs[index],
+                    onPressed: () {
+                      _handleItemPressed();
+                    },
+                  );
+                }),
+          ),
         ],
       ),
     );
@@ -129,8 +131,8 @@ class _HomeItemState extends State<HomeItem> with UpdateStateMixin<HomeItem> {
               padding: EdgeInsets.only(top: 12),
             ),
             Container(
-              width: 80,
-              height: 80,
+              width: 65,
+              height: 65,
               decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.circular(20),
