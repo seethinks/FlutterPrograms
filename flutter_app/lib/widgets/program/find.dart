@@ -8,6 +8,7 @@ import '../../common/separator.dart';
 import '../../manager/programs_manager.dart';
 import '../../common/empty_widget.dart';
 import '../../common/download_button.dart';
+import '../../tools/event_bus.dart';
 
 final Logger log = new Logger('Find');
 
@@ -97,6 +98,7 @@ class _FindState extends State<Find> {
   }
 
   Future<void> _handleProgramDownloadComplate() async {
+    bus.emit(EventTypes.localProgramChanged);
     return _fetchSpecs(fromRemote: false);
   }
 }
