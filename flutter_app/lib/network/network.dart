@@ -15,7 +15,7 @@ final String assertPath = "Programs";
 typedef void OnProgress(int received, int total);
 
 class Network {
-  static Future<Map> fetchSpecsList() async {
+  static Future<Map> fetchSpecList() async {
     try {
       var httpClient = HttpClient();
       var req = await httpClient.getUrl(api.specsList);
@@ -34,8 +34,8 @@ class Network {
     }
   }
 
-  static Future<String> downloadProgramAssert(
-      Spec spec, {OnProgress progress}) async {
+  static Future<String> downloadProgramAssert(Spec spec,
+      {OnProgress onProgress}) async {
     var dio = new Dio();
 
     (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
@@ -43,14 +43,25 @@ class Network {
       client.idleTimeout = new Duration(seconds: 0);
     };
 
-    var url = spec.flutterAssertUrl;
-    String dir = await spec.localTempAssertPath;
-    String assertFile = path.join(dir, 'flutter_assets.zip');
     try {
+      var assertUrl = spec.flutterAssertUrl;
+      var assertDir = await Directory(await spec.localTempAssertPath);
+      if (!(await assertDir.exists())) {
+        await assertDir.create(recursive: true);
+      }
+      String assertFile = path.join(assertDir.path, 'flutter_assets.zip');
+
+      log.info('assertUrl:' + assertUrl);
+      log.info('assertFile:' + assertFile);
+
       var respData = await dio.download(
-        url,
+        "https://flutter.io/assets/flutter-lockup-4cb0ee072ab312e59784d9fbf4fb7ad42688a7fdaea1270ccf6bbf4f34b7e03f.svg",
         assertFile,
-        onProgress: progress,
+        onProgress: (received, total){
+          var process = (received / total * 100).toStringAsFixed(0) + "%";
+          log.info('downloading:' + ' ' + spec.id + ' ' + '/--$process--/');
+          onProgress(received, total);
+        },
         cancelToken: CancelToken(),
         options: Options(
           headers: {HttpHeaders.acceptEncodingHeader: "*"},
@@ -58,12 +69,11 @@ class Network {
       );
       if (respData.statusCode == 200) {
         return assertFile;
-      }
-      else {
-        throw HttpException("下载失败");
+      } else {
+        throw HttpException('$respData.statusCode', uri: Uri.parse(assertUrl));
       }
     } catch (e) {
-        throw HttpException("下载失败");
+      throw e;
     }
   }
 }
