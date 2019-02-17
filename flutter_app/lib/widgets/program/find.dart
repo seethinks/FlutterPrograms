@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
-import 'find_page.dart';
-import 'package:dio/dio.dart';
-import 'dart:io';
+import 'package:logging/logging.dart';
 import 'dart:async';
+import '../base/base_page.dart';
+import '../base/update_state_mixin.dart';
 import '../../bean/spec.dart';
 import '../../common/separator.dart';
-import '../../network/network.dart';
+import '../../manager/programs_manager.dart';
 import '../../common/empty_widget.dart';
+import '../../common/download_button.dart';
+
+final Logger log = new Logger('Find');
 
 enum FindPageIndex { empty, list }
 
-class Find extends StatefulWidget {
+class Find extends BasePage {
   String title = "发现";
   static const String routeName = '/Find';
+  List<Spec> specs = <Spec>[];
 
   _FindState createState() => _FindState();
 }
@@ -21,10 +24,8 @@ class Find extends StatefulWidget {
 class _FindState extends State<Find> {
   final GlobalKey<EmptyWidgetState> _emptyWidgetKey =
       GlobalKey<EmptyWidgetState>();
-  List<Spec> _specs = <Spec>[];
-  String _version = "0.0.0";
   FindPageIndex get _widgetIndex =>
-      (_specs.length == 0) ? FindPageIndex.empty : FindPageIndex.list;
+      (widget.specs.length == 0) ? FindPageIndex.empty : FindPageIndex.list;
 
   @override
   void initState() {
@@ -38,15 +39,15 @@ class _FindState extends State<Find> {
   Widget build(BuildContext context) {
     var index = _widgetIndex.index;
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
+      // appBar: AppBar(title: Text(widget.title)),
       body: IndexedStack(
         index: index,
         children: <Widget>[
           // 空白页
           EmptyWidget(
             key: _emptyWidgetKey,
-            icon: Icons.error,
-            message: "数据获取失败，点击重试~",
+            icon: Icons.camera,
+            message: "没有可添加应用，试试点击刷新~",
             onRefresh: _handlePullRefresh,
           ),
           // 列表页
@@ -59,10 +60,13 @@ class _FindState extends State<Find> {
                       (BuildContext context, int index) {
                     return FindItem(
                       index: index,
-                      lastItem: index == _specs.length - 1,
-                      spec: _specs[index],
+                      lastItem: index == widget.specs.length - 1,
+                      spec: widget.specs[index],
+                      onComplate: (bool isComplate) {
+                        _handleProgramDownloadComplate();
+                      },
                     );
-                  }, childCount: _specs.length),
+                  }, childCount: widget.specs.length),
                 )
               ],
             ),
@@ -72,19 +76,16 @@ class _FindState extends State<Find> {
     );
   }
 
-  Future<void> _fetchSpecs() async {
+  Future<void> _fetchSpecs({bool fromRemote = true}) async {
     var completer = new Completer();
-    Network.fetchSpecsList().then((respData) {
-      var version = respData["version"];
-      var specs =
-          (respData["specs"] as List)?.map((s) => Spec.fromJson(s))?.toList();
+    ProgramsManager().fetchFindList(fromRemote: fromRemote).then((specs) {
       setState(() {
-        _version = version;
-        _specs.clear();
-        _specs = specs;
+        widget.specs.clear();
+        widget.specs = specs;
       });
       completer.complete();
     }).catchError((e) {
+      // log.info(e);
       setState(() {});
       completer.complete();
     });
@@ -94,21 +95,27 @@ class _FindState extends State<Find> {
   Future<void> _handlePullRefresh() async {
     return _fetchSpecs();
   }
+
+  Future<void> _handleProgramDownloadComplate() async {
+    return _fetchSpecs(fromRemote: false);
+  }
 }
 
 class FindItem extends StatefulWidget {
-  FindItem({this.index, this.lastItem, this.spec});
+  FindItem({this.index, this.lastItem, this.spec, this.onComplate});
 
   final int index;
   final bool lastItem;
   final Spec spec;
-
-  String _process = "";
+  final void Function(bool isComplate) onComplate;
 
   _FindItemState createState() => _FindItemState();
 }
 
-class _FindItemState extends State<FindItem> {
+class _FindItemState extends State<FindItem> with UpdateStateMixin<FindItem> {
+  double _downloadProcess = 0.0;
+  String _itemButtonTitle = '添加';
+
   @override
   Widget build(BuildContext context) {
     final Widget row = GestureDetector(
@@ -185,19 +192,14 @@ class _FindItemState extends State<FindItem> {
                   padding: EdgeInsets.only(right: 12),
                 ),
                 // 按钮
-                RaisedButton(
-                  shape: StadiumBorder(),
-                  child: Text(
-                    '添加' + widget._process,
-                    style: TextStyle(
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: -0.28,
-                    ),
+                Container(
+                  width: 80,
+                  height: 40,
+                  child: DownloadButton(
+                    progress: _downloadProcess,
+                    title: _itemButtonTitle,
+                    onPressed: downloadProgram,
                   ),
-                  onPressed: () {
-                    downFlutterAsserts();
-                  },
                 ),
                 Padding(
                   padding: EdgeInsets.only(right: 15),
@@ -222,6 +224,23 @@ class _FindItemState extends State<FindItem> {
     );
   }
 
+  Future<void> downloadProgram() async {
+    try {
+      await ProgramsManager().downloadProgram(widget.spec,
+          onProgress: (received, total) {
+        if (total != -1) {
+          updateState(() {
+            _downloadProcess = (received / total);
+          });
+        }
+      });
+      updateState(() {
+        _downloadProcess = 0.0;
+      });
+      widget.onComplate(true);
+    } catch (e) {}
+  }
+
   void showFindPage(BuildContext context, Spec spec) {
     // Navigator.push(
     //     context,
@@ -229,46 +248,5 @@ class _FindItemState extends State<FindItem> {
     //       settings: const RouteSettings(name: '/find/page'),
     //       builder: (BuildContext context) => FindPage(spec: spec),
     //     ));
-  }
-
-  void downFlutterAsserts() async {
-    var dio = new Dio();
-
-    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-        (HttpClient client) {
-      client.idleTimeout = new Duration(seconds: 0);
-    };
-
-    // This is big file(about 200M)
-    // var url = "http://download.dcloud.net.cn/HBuilder.9.0.2.macosx_64.dmg";
-
-    // This is a image, about 4KB
-    var url =
-        "https://flutter.io/assets/flutter-lockup-4cb0ee072ab312e59784d9fbf4fb7ad42688a7fdaea1270ccf6bbf4f34b7e03f.svg";
-    String dir = (await getApplicationDocumentsDirectory()).path;
-    //var url = "https://github.com/wendux/tt"; //404
-    try {
-      Response response = await dio.download(
-        url,
-        "$dir/flutter.svg",
-        onProgress: (received, total) {
-          if (total != -1) {
-            debugPrint((received / total * 100).toStringAsFixed(0) + "%");
-            setState(() {
-              widget._process =
-                  (received / total * 100).toStringAsFixed(0) + "%";
-            });
-          }
-        },
-        cancelToken: CancelToken(),
-        options: Options(
-          //receiveDataWhenStatusError: false,
-          headers: {HttpHeaders.acceptEncodingHeader: "*"},
-        ),
-      );
-      debugPrint("download succeed!");
-    } catch (e) {
-      debugPrint(e.response.data);
-    }
   }
 }

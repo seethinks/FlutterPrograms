@@ -4,17 +4,17 @@ import '../../bean/spec.dart';
 import '../../common/separator.dart';
 
 // Program 详情页面
-class FindPage extends StatefulWidget {
+class ProgramDetail extends StatefulWidget {
   
-  const FindPage({this.spec});
+  const ProgramDetail({this.spec});
   static const String routeName = '/find/page';
   final Spec spec;
 
   @override
-  State<StatefulWidget> createState() => FindPageState();
+  State<StatefulWidget> createState() => ProgramDetailState();
 }
 
-class FindPageState extends State<FindPage> {
+class ProgramDetailState extends State<ProgramDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,11 +25,11 @@ class FindPageState extends State<FindPage> {
         child: ListView(
           children: <Widget>[
             Padding(padding: EdgeInsets.only(top: 16.0)),
-            FindPageHeader(widget.spec),
+            ProgramDetailHeader(widget.spec),
             Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
-            FindPageIntroduce(widget.spec),
+            ProgramDetailIntroduce(widget.spec),
             Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
-            FindPagePreview(widget.spec),
+            ProgramDetailPreview(widget.spec),
           ],
         ),
       ),
@@ -38,15 +38,15 @@ class FindPageState extends State<FindPage> {
 }
 
 // Program 详情页 Header
-class FindPageHeader extends StatefulWidget {
-  FindPageHeader(
+class ProgramDetailHeader extends StatefulWidget {
+  ProgramDetailHeader(
     this.spec,
   );
   final Spec spec;
-  _FindPageHeaderState createState() => _FindPageHeaderState();
+  _ProgramDetailHeaderState createState() => _ProgramDetailHeaderState();
 }
 
-class _FindPageHeaderState extends State<FindPageHeader> {
+class _ProgramDetailHeaderState extends State<ProgramDetailHeader> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -123,18 +123,18 @@ class _FindPageHeaderState extends State<FindPageHeader> {
 }
 
 // Program 详情页 图片预览
-class FindPagePreview extends StatefulWidget {
-  FindPagePreview(
+class ProgramDetailPreview extends StatefulWidget {
+  ProgramDetailPreview(
     this.spec,
   );
   final Spec spec;
-  _FindPagePreviewState createState() => _FindPagePreviewState();
+  _ProgramDetailPreviewState createState() => _ProgramDetailPreviewState();
 }
 
-class _FindPagePreviewState extends State<FindPagePreview> {
+class _ProgramDetailPreviewState extends State<ProgramDetailPreview> {
   @override
   Widget build(BuildContext context) {
-    return FindPageItem(
+    return ProgramDetailItem(
       title: "预览",
       child: Container(
         height: (MediaQuery.of(context).size.width / 3 * 2),
@@ -159,18 +159,18 @@ class _FindPagePreviewState extends State<FindPagePreview> {
 }
 
 // Program 详情页 介绍
-class FindPageIntroduce extends StatefulWidget {
-  FindPageIntroduce(
+class ProgramDetailIntroduce extends StatefulWidget {
+  ProgramDetailIntroduce(
     this.spec,
   );
   final Spec spec;
-  _FindPageIntroduceState createState() => _FindPageIntroduceState();
+  _ProgramDetailIntroduceState createState() => _ProgramDetailIntroduceState();
 }
 
-class _FindPageIntroduceState extends State<FindPageIntroduce> {
+class _ProgramDetailIntroduceState extends State<ProgramDetailIntroduce> {
   @override
   Widget build(BuildContext context) {
-    return FindPageItem(
+    return ProgramDetailItem(
       title: "介绍",
       child: Container(
         padding: EdgeInsets.only(left: 25, right: 25),
@@ -181,8 +181,8 @@ class _FindPageIntroduceState extends State<FindPageIntroduce> {
 }
 
 // Program 详情页 Item
-class FindPageItem extends StatelessWidget {
-  FindPageItem({Key key, this.title, this.child}) : super(key: key);
+class ProgramDetailItem extends StatelessWidget {
+  ProgramDetailItem({Key key, this.title, this.child}) : super(key: key);
   final String title;
   final Widget child;
 
