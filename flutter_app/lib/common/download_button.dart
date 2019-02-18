@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/base/update_state_mixin.dart';
 
 class DownloadButton extends StatefulWidget {
   DownloadButton({
@@ -15,7 +16,7 @@ class DownloadButton extends StatefulWidget {
   DownloadButtonState createState() => DownloadButtonState();
 }
 
-class DownloadButtonState extends State<DownloadButton> {
+class DownloadButtonState extends State<DownloadButton> with UpdateStateMixin<DownloadButton> {
   bool _isProgressing = false;
   double _progress = 0.0;
 
@@ -68,11 +69,11 @@ class DownloadButtonState extends State<DownloadButton> {
   }
 
   void onPressed() {
-    setState(() {
+    updateState(() {
       _isProgressing = true;
     });
     widget.onPressed().then((s) {
-      setState(() {
+      updateState(() {
         _isProgressing = false;
       });
     });
