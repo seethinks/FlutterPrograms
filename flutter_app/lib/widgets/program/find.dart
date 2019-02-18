@@ -27,6 +27,8 @@ class _FindState extends State<Find> with AutomaticKeepAliveClientMixin {
   FindPageIndex get _widgetIndex =>
       (widget.specs.length == 0) ? FindPageIndex.empty : FindPageIndex.list;
 
+  Map<String, Widget> _cache = <String, Widget>{};
+
   @override
   void initState() {
     super.initState();
@@ -66,14 +68,15 @@ class _FindState extends State<Find> with AutomaticKeepAliveClientMixin {
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                       (BuildContext context, int index) {
-                    return FindItem(
-                      index: index,
-                      lastItem: index == widget.specs.length - 1,
-                      spec: widget.specs[index],
-                      onComplate: (bool isComplate) {
-                        _handleProgramDownloadComplate();
-                      },
-                    );
+                    return _findItem(index: index);
+                    // return FindItem(
+                    //   index: index,
+                    //   lastItem: index == widget.specs.length - 1,
+                    //   spec: widget.specs[index],
+                    //   onComplate: (int index, Spec spec, bool isComplate) {
+                    //     _handleProgramDownloadComplate(spec);
+                    //   },
+                    // );
                   }, childCount: widget.specs.length),
                 )
               ],
@@ -82,6 +85,25 @@ class _FindState extends State<Find> with AutomaticKeepAliveClientMixin {
         ],
       ),
     );
+  }
+
+  Widget _findItem({int index}) {
+    Spec spec = widget.specs[index];
+
+    if (_cache.containsKey(spec.id)) {
+      return _cache[spec.id];
+    } else {
+      var item = FindItem(
+        index: index,
+        lastItem: index == widget.specs.length - 1,
+        spec: widget.specs[index],
+        onComplate: (int index, Spec spec, bool isComplate) {
+          _handleProgramDownloadComplate(spec);
+        },
+      );
+      _cache[spec.id] = item;
+      return item;
+    }
   }
 
   Future<void> _fetchSpecs({bool fromRemote = true}) async {
@@ -104,7 +126,8 @@ class _FindState extends State<Find> with AutomaticKeepAliveClientMixin {
     return _fetchSpecs();
   }
 
-  Future<void> _handleProgramDownloadComplate() async {
+  Future<void> _handleProgramDownloadComplate(Spec spec) async {
+    _cache.remove(spec.id);
     bus.emit(EventTypes.localProgramChanged);
     return _fetchSpecs(fromRemote: false);
   }
@@ -122,7 +145,7 @@ class FindItem extends StatefulWidget {
   final int index;
   final bool lastItem;
   final Spec spec;
-  final void Function(bool isComplate) onComplate;
+  final void Function(int index, Spec spec, bool isComplate) onComplate;
 
   _FindItemState createState() => _FindItemState();
 }
@@ -252,8 +275,14 @@ class _FindItemState extends State<FindItem> with UpdateStateMixin<FindItem> {
       updateState(() {
         _downloadProcess = 0.0;
       });
-      widget.onComplate(true);
+      widget.onComplate(widget.index, widget.spec, true);
     } catch (e) {}
+  }
+
+  @override
+  void dispose() {
+    log.info('find item dispose');
+    super.dispose();
   }
 
   void showFindPage(BuildContext context, Spec spec) {
