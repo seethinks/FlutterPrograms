@@ -21,13 +21,14 @@ class Find extends BasePage {
   _FindState createState() => _FindState();
 }
 
-class _FindState extends State<Find> with AutomaticKeepAliveClientMixin {
+class _FindState extends State<Find>
+    with AutomaticKeepAliveClientMixin, UpdateStateMixin<Find> {
   final GlobalKey<EmptyWidgetState> _emptyWidgetKey =
       GlobalKey<EmptyWidgetState>();
   FindPageIndex get _widgetIndex =>
-      (widget.specs.length == 0) ? FindPageIndex.empty : FindPageIndex.list;
+      (_itemsInfo.length == 0) ? FindPageIndex.empty : FindPageIndex.list;
 
-  var _items = <FindItem>[];
+  var _itemsInfo = <ProgramItemInfo>[];
 
   @override
   void initState() {
@@ -62,14 +63,18 @@ class _FindState extends State<Find> with AutomaticKeepAliveClientMixin {
           // 列表页
           RefreshIndicator(
             onRefresh: _handlePullRefresh,
-            child: Container(
-              constraints: BoxConstraints.expand(),
-              child: SingleChildScrollView(
-                physics: AlwaysScrollableScrollPhysics(),
-                child: Column(
-                  children: _getProgramItems(),
+            child: CustomScrollView(
+              slivers: <Widget>[
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                      var item = _itemsInfo[index];
+                      return ProgramItemWidget(info: item);
+                    },
+                    childCount: _itemsInfo.length,
+                  ),
                 ),
-              ),
+              ],
             ),
           ),
         ],
@@ -77,19 +82,19 @@ class _FindState extends State<Find> with AutomaticKeepAliveClientMixin {
     );
   }
 
-  List<FindItem> _getProgramItems() {
+  List<ProgramItemInfo> _getProgramItems() {
     var specMap = <String, Spec>{};
     widget.specs.forEach((f) => specMap[f.id] = f);
 
-    var delItems = <FindItem>[];
-    for (var item in _items) {
+    var delItems = <ProgramItemInfo>[];
+    for (var item in _itemsInfo) {
       if (specMap.keys.contains(item.spec.id) == false) {
         delItems.add(item);
       }
     }
 
-    var itemMap = <String, FindItem>{};
-    _items.forEach((f) => itemMap[f.spec.id] = f);
+    var itemMap = <String, ProgramItemInfo>{};
+    _itemsInfo.forEach((f) => itemMap[f.spec.id] = f);
 
     var addSpecs = <Spec>[];
     for (var spec in widget.specs) {
@@ -99,22 +104,28 @@ class _FindState extends State<Find> with AutomaticKeepAliveClientMixin {
     }
 
     for (var delItem in delItems) {
-      _items.remove(delItem);
+      _itemsInfo.remove(delItem);
     }
 
     for (var spec in addSpecs) {
       var index = widget.specs.indexOf(spec);
-      var item = FindItem(
+      var item = ProgramItemInfo(
         index: index,
-        lastItem: index == widget.specs.length - 1,
         spec: widget.specs[index],
-        onComplate: (int index, Spec spec, bool isComplate) {
-          _handleProgramDownloadComplate(spec);
+        showProcess: false,
+        processValue: 0.0,
+        buttonTitle: '添加',
+        buttonOnPressed: (ProgramItemInfo info) {
+          downloadProgram(info);
         },
+        itemOnPressed: (ProgramItemInfo info) {
+          // downloadProgram(info);
+        },
+        isLastItem: index == widget.specs.length - 1,
       );
-      _items.add(item);
+      _itemsInfo.add(item);
     }
-    return _items;
+    return _itemsInfo;
   }
 
   Future<void> _fetchSpecs({bool fromRemote = true}) async {
@@ -123,10 +134,10 @@ class _FindState extends State<Find> with AutomaticKeepAliveClientMixin {
       setState(() {
         widget.specs.clear();
         widget.specs = specs;
+        _getProgramItems();
       });
       completer.complete();
     }).catchError((e) {
-      // log.info(e);
       setState(() {});
       completer.complete();
     });
@@ -142,6 +153,25 @@ class _FindState extends State<Find> with AutomaticKeepAliveClientMixin {
     return _fetchSpecs(fromRemote: false);
   }
 
+  Future<void> downloadProgram(ProgramItemInfo itemInfo) async {
+    try {
+      await ProgramsManager().downloadProgram(itemInfo.spec,
+          onProgress: (received, total) {
+        if (total != -1) {
+          updateState(() {
+            var _itemInfo = _itemsInfo[_itemsInfo.indexOf(itemInfo)];
+            _itemInfo.processValue = (received / total);
+            _itemInfo.showProcess = true;
+          });
+        }
+      });
+      if (mounted) {
+        _itemsInfo.remove(itemInfo);
+        updateState(() {});
+      }
+    } catch (e) {}
+  }
+
   @override
   void dispose() {
     bus.off(EventTypes.localProgramChanged);
@@ -149,27 +179,47 @@ class _FindState extends State<Find> with AutomaticKeepAliveClientMixin {
   }
 }
 
-class FindItem extends StatefulWidget {
-  FindItem({this.index, this.lastItem, this.spec, this.onComplate});
+class ProgramItemInfo {
+  ProgramItemInfo({
+    this.index,
+    this.spec,
+    this.showProcess,
+    this.processValue,
+    this.buttonTitle,
+    this.buttonOnPressed,
+    this.itemOnPressed,
+    this.isLastItem,
+  });
 
-  final int index;
-  final bool lastItem;
-  final Spec spec;
-  final void Function(int index, Spec spec, bool isComplate) onComplate;
-
-  _FindItemState createState() => _FindItemState();
+  int index;
+  Spec spec;
+  bool showProcess;
+  double processValue;
+  String buttonTitle;
+  void Function(ProgramItemInfo info) buttonOnPressed;
+  void Function(ProgramItemInfo info) itemOnPressed;
+  bool isLastItem;
 }
 
-class _FindItemState extends State<FindItem> with UpdateStateMixin<FindItem> {
-  double _downloadProcess = 0.0;
-  String _itemButtonTitle = '添加';
+class ProgramItemWidget extends StatefulWidget {
+  ProgramItemWidget({
+    Key key,
+    this.info,
+  }) : super(key: key);
 
+  final ProgramItemInfo info;
+
+  _ProgramItemWidgetState createState() => _ProgramItemWidgetState();
+}
+
+class _ProgramItemWidgetState extends State<ProgramItemWidget>
+    with UpdateStateMixin<ProgramItemWidget> {
   @override
   Widget build(BuildContext context) {
     final Widget row = GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () {
-          showFindPage(context, widget.spec);
+          showFindPage(context, widget.info.spec);
         },
         child: Container(
           padding: EdgeInsets.only(top: 8, bottom: 8),
@@ -195,7 +245,7 @@ class _FindItemState extends State<FindItem> with UpdateStateMixin<FindItem> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Image(
-                      image: NetworkImage(widget.spec.iconUrl),
+                      image: NetworkImage(widget.info.spec.iconUrl),
                     ),
                   ),
                 ),
@@ -211,7 +261,7 @@ class _FindItemState extends State<FindItem> with UpdateStateMixin<FindItem> {
                       Padding(padding: EdgeInsets.only(top: 12.0)),
                       // 应用名称
                       Text(
-                        widget.spec.name,
+                        widget.info.spec.name,
                         style: TextStyle(
                           color: Color(0xFF3333333),
                           fontSize: 18.0,
@@ -222,7 +272,7 @@ class _FindItemState extends State<FindItem> with UpdateStateMixin<FindItem> {
                       // 描述
                       Expanded(
                         child: Text(
-                          widget.spec.description,
+                          widget.info.spec.description,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -243,10 +293,11 @@ class _FindItemState extends State<FindItem> with UpdateStateMixin<FindItem> {
                 Container(
                   width: 80,
                   height: 40,
-                  child: DownloadButton(
-                    progress: _downloadProcess,
-                    title: _itemButtonTitle,
-                    onPressed: downloadProgram,
+                  child: DownloadButton2(
+                    title: widget.info.buttonTitle,
+                    showProcess: widget.info.showProcess,
+                    progressValue: widget.info.processValue,
+                    onPressed: buttonOnPressed,
                   ),
                 ),
                 Padding(
@@ -257,7 +308,7 @@ class _FindItemState extends State<FindItem> with UpdateStateMixin<FindItem> {
           ),
         ));
 
-    if (widget.lastItem) {
+    if (widget.info.isLastItem) {
       return row;
     }
 
@@ -272,26 +323,13 @@ class _FindItemState extends State<FindItem> with UpdateStateMixin<FindItem> {
     );
   }
 
-  Future<void> downloadProgram() async {
-    try {
-      await ProgramsManager().downloadProgram(widget.spec,
-          onProgress: (received, total) {
-        if (total != -1) {
-          updateState(() {
-            _downloadProcess = (received / total);
-          });
-        }
-      });
-      updateState(() {
-        _downloadProcess = 0.0;
-      });
-      widget.onComplate(widget.index, widget.spec, true);
-    } catch (e) {}
+  void buttonOnPressed() {
+    widget.info.buttonOnPressed(widget.info);
   }
 
   @override
   void dispose() {
-    log.info('find item dispose' + widget.spec.id);
+    log.info('find item dispose' + widget.info.spec.id);
     super.dispose();
   }
 

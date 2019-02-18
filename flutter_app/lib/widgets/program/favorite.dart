@@ -11,6 +11,7 @@ import '../base/base_page.dart';
 import '../base/update_state_mixin.dart';
 import '../../tools/event_bus.dart';
 
+
 enum FavoritePageIndex { empty, list }
 
 class Favorite extends BasePage {
@@ -212,7 +213,7 @@ class _FavoriteItemState extends State<FavoriteItem>
                   width: 80,
                   height: 40,
                   child: DownloadButton(
-                    progress: _downloadProcess,
+                    progressValue: _downloadProcess,
                     title: _itemButtonTitle,
                     onPressed: _itemButtonOnPressed,
                   ),
