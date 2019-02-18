@@ -27,7 +27,7 @@ class _FindState extends State<Find> with AutomaticKeepAliveClientMixin {
   FindPageIndex get _widgetIndex =>
       (widget.specs.length == 0) ? FindPageIndex.empty : FindPageIndex.list;
 
-  Map<String, Widget> _cache = <String, Widget>{};
+  var _items = <FindItem>[];
 
   @override
   void initState() {
@@ -62,24 +62,14 @@ class _FindState extends State<Find> with AutomaticKeepAliveClientMixin {
           // 列表页
           RefreshIndicator(
             onRefresh: _handlePullRefresh,
-            child: CustomScrollView(
-              key: PageStorageKey('value'),
-              slivers: <Widget>[
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                      (BuildContext context, int index) {
-                    return _findItem(index: index);
-                    // return FindItem(
-                    //   index: index,
-                    //   lastItem: index == widget.specs.length - 1,
-                    //   spec: widget.specs[index],
-                    //   onComplate: (int index, Spec spec, bool isComplate) {
-                    //     _handleProgramDownloadComplate(spec);
-                    //   },
-                    // );
-                  }, childCount: widget.specs.length),
-                )
-              ],
+            child: Container(
+              constraints: BoxConstraints.expand(),
+              child: SingleChildScrollView(
+                physics: AlwaysScrollableScrollPhysics(),
+                child: Column(
+                  children: _getProgramItems(),
+                ),
+              ),
             ),
           ),
         ],
@@ -87,12 +77,33 @@ class _FindState extends State<Find> with AutomaticKeepAliveClientMixin {
     );
   }
 
-  Widget _findItem({int index}) {
-    Spec spec = widget.specs[index];
+  List<FindItem> _getProgramItems() {
+    var specMap = <String, Spec>{};
+    widget.specs.forEach((f) => specMap[f.id] = f);
 
-    if (_cache.containsKey(spec.id)) {
-      return _cache[spec.id];
-    } else {
+    var delItems = <FindItem>[];
+    for (var item in _items) {
+      if (specMap.keys.contains(item.spec.id) == false) {
+        delItems.add(item);
+      }
+    }
+
+    var itemMap = <String, FindItem>{};
+    _items.forEach((f) => itemMap[f.spec.id] = f);
+
+    var addSpecs = <Spec>[];
+    for (var spec in widget.specs) {
+      if (itemMap.keys.contains(spec.id) == false) {
+        addSpecs.add(spec);
+      }
+    }
+
+    for (var delItem in delItems) {
+      _items.remove(delItem);
+    }
+
+    for (var spec in addSpecs) {
+      var index = widget.specs.indexOf(spec);
       var item = FindItem(
         index: index,
         lastItem: index == widget.specs.length - 1,
@@ -101,9 +112,9 @@ class _FindState extends State<Find> with AutomaticKeepAliveClientMixin {
           _handleProgramDownloadComplate(spec);
         },
       );
-      _cache[spec.id] = item;
-      return item;
+      _items.add(item);
     }
+    return _items;
   }
 
   Future<void> _fetchSpecs({bool fromRemote = true}) async {
@@ -127,7 +138,6 @@ class _FindState extends State<Find> with AutomaticKeepAliveClientMixin {
   }
 
   Future<void> _handleProgramDownloadComplate(Spec spec) async {
-    _cache.remove(spec.id);
     bus.emit(EventTypes.localProgramChanged);
     return _fetchSpecs(fromRemote: false);
   }
@@ -281,7 +291,7 @@ class _FindItemState extends State<FindItem> with UpdateStateMixin<FindItem> {
 
   @override
   void dispose() {
-    log.info('find item dispose');
+    log.info('find item dispose' + widget.spec.id);
     super.dispose();
   }
 
