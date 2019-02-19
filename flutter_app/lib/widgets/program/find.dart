@@ -11,9 +11,7 @@ import '../common/program_item.dart';
 enum FindPageIndex { empty, list }
 
 class Find extends BasePage {
-  Find({
-    String title = '首页',
-  });
+  Find() : super(title: '发现');
   static const String routeName = '/Find';
 
   _FindState createState() => _FindState();

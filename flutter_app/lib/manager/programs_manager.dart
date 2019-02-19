@@ -93,6 +93,9 @@ class ProgramsManager {
           localSpecMap[f.id] = f;
           localSpecMap[f.id].canUpdate = true;
         }
+        else {
+          localSpecMap[f.id].canUpdate = false;
+        }
       }
     });
 

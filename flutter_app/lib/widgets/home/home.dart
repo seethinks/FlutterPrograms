@@ -12,9 +12,7 @@ import '../../tools/event_bus.dart';
 enum HomePageIndex { empty, list }
 
 class Home extends BasePage {
-  Home({
-    String title = '首页',
-  });
+  Home() : super(title: '首页');
   static const String routeName = '/Home';
 
   _HomeState createState() => _HomeState();
@@ -29,7 +27,7 @@ class _HomeState extends State<Home> {
   HomePageIndex get _widgetIndex {
     return (_specs.length == 0) ? HomePageIndex.empty : HomePageIndex.list;
   }
-      
+
   @override
   void initState() {
     super.initState();

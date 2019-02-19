@@ -119,7 +119,7 @@ class _ProgramItemWidgetState extends State<ProgramItemWidget>
                 Container(
                   width: 80,
                   height: 40,
-                  child: DownloadButton2(
+                  child: DownloadButton(
                     title: widget.info.buttonTitle,
                     showProcess: widget.info.showProcess,
                     progressValue: widget.info.processValue,
