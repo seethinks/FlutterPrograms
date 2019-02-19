@@ -138,7 +138,8 @@ class _FavoriteItemState extends State<FavoriteItem>
     final Widget row = GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () {
-          showFindPage(context, widget.spec);
+          // showFindPage(context, widget.spec);
+          log.info('favorite item tap');
         },
         child: Container(
           padding: EdgeInsets.only(top: 8, bottom: 8),
@@ -272,14 +273,5 @@ class _FavoriteItemState extends State<FavoriteItem>
     if (widget.spec.canUpdate == true) {
       await downloadProgram();
     }
-  }
-
-  void showFindPage(BuildContext context, Spec spec) {
-    // Navigator.push(
-    //     context,
-    //     MaterialPageRoute<void>(
-    //       settings: const RouteSettings(name: '/find/page'),
-    //       builder: (BuildContext context) => FindPage(spec: spec),
-    //     ));
   }
 }
