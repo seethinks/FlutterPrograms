@@ -1,7 +1,7 @@
 library flutter_app;
 
 import 'package:flutter/material.dart';
-import 'common/themes.dart';
+import 'config/themes.dart';
 import 'app.dart';
 import 'tools/logging.dart';
 

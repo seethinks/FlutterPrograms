@@ -6,15 +6,16 @@ import '../base/update_state_mixin.dart';
 import '../../tools/logging.dart';
 import '../../bean/spec.dart';
 import '../../manager/programs_manager.dart';
-import '../../common/empty_widget.dart';
+import '../common/empty_widget.dart';
 import '../../tools/event_bus.dart';
 
 enum HomePageIndex { empty, list }
 
 class Home extends BasePage {
-  String title = "首页";
+  Home({
+    String title = '首页',
+  });
   static const String routeName = '/Home';
-  List<Spec> specs = <Spec>[];
 
   _HomeState createState() => _HomeState();
 }
@@ -22,9 +23,13 @@ class Home extends BasePage {
 class _HomeState extends State<Home> {
   final GlobalKey<EmptyWidgetState> _emptyWidgetKey =
       GlobalKey<EmptyWidgetState>();
-  HomePageIndex get _widgetIndex =>
-      (widget.specs.length == 0) ? HomePageIndex.empty : HomePageIndex.list;
 
+  List<Spec> _specs = <Spec>[];
+
+  HomePageIndex get _widgetIndex {
+    return (_specs.length == 0) ? HomePageIndex.empty : HomePageIndex.list;
+  }
+      
   @override
   void initState() {
     super.initState();
@@ -56,12 +61,12 @@ class _HomeState extends State<Home> {
             child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 4, childAspectRatio: 0.8),
-                itemCount: widget.specs.length,
+                itemCount: _specs.length,
                 itemBuilder: (context, index) {
                   return HomeItem(
                     index: index,
-                    lastItem: index == widget.specs.length - 1,
-                    spec: widget.specs[index],
+                    lastItem: index == _specs.length - 1,
+                    spec: _specs[index],
                     onPressed: () {
                       _handleItemPressed();
                     },
@@ -77,8 +82,8 @@ class _HomeState extends State<Home> {
     var completer = new Completer();
     ProgramsManager().fetchFavoriteList(fromRemote: fromRemote).then((specs) {
       setState(() {
-        widget.specs.clear();
-        widget.specs = specs;
+        _specs.clear();
+        _specs = specs;
       });
       completer.complete();
     }).catchError((e) {

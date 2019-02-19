@@ -54,7 +54,7 @@ class Network {
       log.info('assertFile:' + assertFile);
 
       var respData = await dio.download(
-        "http://file3.data.weipan.cn/65806108/f6de5f80b741fd2839b4b864940a71a3e4355d77?ip=1550503202,122.70.128.111&ssig=T0FDISu5Ht&Expires=1550503802&KID=sae,l30zoo1wmz&fn=4-执迷不悔.mp3&se_ip_debug=122.70.128.111&from=1221134",
+  "http://issuecdn.baidupcs.com/issue/netdisk/MACguanjia/BaiduNetdisk_mac_2.2.2.dmg",
         assertFile,
         onProgress: (received, total){
           var process = (received / total * 100).toStringAsFixed(0) + "%";

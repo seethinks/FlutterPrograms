@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 class BasePage extends StatefulWidget {
-  BasePage({ Key key }) : super(key: key);
+  BasePage({
+    Key key,
+    this.title,
+  }) : super(key: key);
 
-  String title = "";
+  final String title;
   static const String routeName = '';
 
   @override
@@ -11,5 +14,4 @@ class BasePage extends StatefulWidget {
     // TODO: implement createState
     return null;
   }
-
 }

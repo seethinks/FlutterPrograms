@@ -4,10 +4,10 @@ import 'dart:async';
 import '../base/base_page.dart';
 import '../base/update_state_mixin.dart';
 import '../../bean/spec.dart';
-import '../../common/separator.dart';
 import '../../manager/programs_manager.dart';
-import '../../common/empty_widget.dart';
-import '../../common/download_button.dart';
+import '../common/separator.dart';
+import '../common/empty_widget.dart';
+import '../common/download_button.dart';
 import '../../tools/event_bus.dart';
 import '../../tools/logging.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/base/update_state_mixin.dart';
+import '../base/update_state_mixin.dart';
 
 class DownloadButton2 extends StatefulWidget {
   DownloadButton2({
