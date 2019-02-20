@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../base/update_state_mixin.dart';
+import '../../assert.dart';
 
 class DownloadButton extends StatefulWidget {
   DownloadButton({

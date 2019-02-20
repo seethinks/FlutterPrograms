@@ -1,16 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:logging/logging.dart';
 import 'dart:async';
-import '../../bean/spec.dart';
-import '../../manager/programs_manager.dart';
-import '../common/separator.dart';
-import '../common/empty_widget.dart';
-import '../common/download_button.dart';
-import '../../tools/logging.dart';
-import '../base/base_page.dart';
-import '../base/update_state_mixin.dart';
-import '../../tools/event_bus.dart';
-import '../common/program_item.dart';
+import '../../assert.dart';
 
 enum FavoritePageIndex { empty, list }
 

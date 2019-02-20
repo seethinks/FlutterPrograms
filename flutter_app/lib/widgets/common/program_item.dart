@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import '../base/update_state_mixin.dart';
-import '../common/download_button.dart';
-import '../common/separator.dart';
-import '../../tools/logging.dart';
-import '../../bean/spec.dart';
+import '../../assert.dart';
 
 class ProgramItemInfo {
   ProgramItemInfo({

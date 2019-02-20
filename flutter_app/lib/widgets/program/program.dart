@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../base/base_page.dart';
+import '../../assert.dart';
 import './find.dart';
 import './favorite.dart';
 

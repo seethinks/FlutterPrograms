@@ -148,6 +148,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.0"
+  event_bus:
+    dependency: "direct main"
+    description:
+      name: event_bus
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.3"
   fixnum:
     dependency: transitive
     description:
@@ -243,7 +250,7 @@ packages:
     source: hosted
     version: "0.3.9+1"
   logging:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: logging
       url: "https://pub.flutter-io.cn"
