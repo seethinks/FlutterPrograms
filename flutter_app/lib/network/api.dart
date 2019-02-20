@@ -1,6 +1,6 @@
 import 'dart:io';
 
 
-class api {
+class Api {
   static Uri specsList = Uri.parse("https://raw.githubusercontent.com/FlutterPrograms/Specs/master/specs/specs.json");
 }

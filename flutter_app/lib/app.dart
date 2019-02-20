@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:logging/logging.dart';
 import 'tools/utils.dart';
 import 'tools/logging.dart';
-import 'dart:async';
 
 import 'package:flutter/foundation.dart' show defaultTargetPlatform;
 import 'package:url_launcher/url_launcher.dart';

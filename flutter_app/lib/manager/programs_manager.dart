@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'dart:convert';
 import 'dart:async';
-import 'package:path/path.dart' as path;
 import '../bean/spec.dart';
 import '../bean/spec_record.dart';
 import '../network/network.dart';
