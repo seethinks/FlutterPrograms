@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _emptyWidgetKey.currentState.loading();
     });
-    bus.on(EventTypes.localProgramChanged, (f) {
+    eventBus.on<EventLocalProgramChanged>().listen((_){
       _fetchSpecs();
     });
   }
@@ -94,7 +94,7 @@ class _HomeState extends State<Home> {
 
   @override
   void dispose() {
-    bus.off(EventTypes.localProgramChanged);
+    log.info('dispose: ' + '$this.runtimeType');
     super.dispose();
   }
 }

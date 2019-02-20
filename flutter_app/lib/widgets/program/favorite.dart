@@ -39,7 +39,7 @@ class _FavoriteState extends State<Favorite>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _emptyWidgetKey.currentState.loading();
     });
-    bus.on(EventTypes.localProgramChanged, (f) {
+    eventBus.on<EventLocalProgramChanged>().listen((onData){
       _fetchSpecs();
     });
   }
@@ -149,7 +149,7 @@ class _FavoriteState extends State<Favorite>
   }
 
   void _handleDownloadComplate() {
-    bus.emit(EventTypes.localProgramChanged);
+    eventBus.fire(EventLocalProgramChanged());
   }
 
   Future<void> downloadProgram(ProgramItemInfo itemInfo) async {
@@ -178,165 +178,7 @@ class _FavoriteState extends State<Favorite>
 
   @override
   void dispose() {
-    bus.off(EventTypes.localProgramChanged);
+    log.info('dispose: ' + '$this.runtimeType');
     super.dispose();
   }
 }
-
-// class FavoriteItem extends StatefulWidget {
-//   FavoriteItem({this.index, this.lastItem, this.spec, this.onComplate});
-
-//   final int index;
-//   final bool lastItem;
-//   final Spec spec;
-//   final void Function(bool isComplate) onComplate;
-
-//   _FavoriteItemState createState() => _FavoriteItemState();
-// }
-
-// class _FavoriteItemState extends State<FavoriteItem>
-//     with UpdateStateMixin<FavoriteItem> {
-//   double _downloadProcess = 0.0;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final Widget row = GestureDetector(
-//         behavior: HitTestBehavior.opaque,
-//         onTap: () {
-//           // showFindPage(context, widget.spec);
-//           log.info('favorite item tap');
-//         },
-//         child: Container(
-//           padding: EdgeInsets.only(top: 8, bottom: 8),
-//           child: SizedBox(
-//             height: 90,
-//             child: Row(
-//               children: <Widget>[
-//                 Padding(
-//                   padding: EdgeInsets.only(left: 15),
-//                 ),
-//                 // icon 图片
-//                 Container(
-//                   width: 80,
-//                   height: 80,
-//                   decoration: BoxDecoration(
-//                     shape: BoxShape.rectangle,
-//                     borderRadius: BorderRadius.circular(20),
-//                     border: Border.all(
-//                       color: Colors.grey,
-//                       width: 0.5,
-//                     ),
-//                   ),
-//                   child: ClipRRect(
-//                     borderRadius: BorderRadius.circular(20),
-//                     child: Image(
-//                       image: NetworkImage(widget.spec.iconUrl),
-//                     ),
-//                   ),
-//                 ),
-//                 Padding(
-//                   padding: EdgeInsets.only(right: 12),
-//                 ),
-//                 // 应用名称、描述
-//                 Expanded(
-//                   child: Column(
-//                     mainAxisSize: MainAxisSize.max,
-//                     crossAxisAlignment: CrossAxisAlignment.start,
-//                     children: <Widget>[
-//                       Padding(padding: EdgeInsets.only(top: 12.0)),
-//                       // 应用名称
-//                       Text(
-//                         widget.spec.name,
-//                         style: TextStyle(
-//                           color: Color(0xFF3333333),
-//                           fontSize: 18.0,
-//                           fontWeight: FontWeight.w600,
-//                         ),
-//                       ),
-//                       Padding(padding: EdgeInsets.only(top: 8.0)),
-//                       // 描述
-//                       Expanded(
-//                         child: Text(
-//                           widget.spec.description,
-//                           maxLines: 2,
-//                           overflow: TextOverflow.ellipsis,
-//                           style: TextStyle(
-//                             color: Color(0xFF8E8E93),
-//                             fontSize: 16.0,
-//                             fontWeight: FontWeight.w300,
-//                           ),
-//                         ),
-//                       ),
-//                       Padding(padding: EdgeInsets.only(top: 12.0)),
-//                     ],
-//                   ),
-//                 ),
-//                 Padding(
-//                   padding: EdgeInsets.only(right: 12),
-//                 ),
-//                 // 按钮
-//                 Container(
-//                   width: 80,
-//                   height: 40,
-//                   child: DownloadButton(
-//                     progressValue: _downloadProcess,
-//                     title: _itemButtonTitle,
-//                     onPressed: _itemButtonOnPressed,
-//                   ),
-//                 ),
-//                 Padding(
-//                   padding: EdgeInsets.only(right: 15),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ));
-
-//     if (widget.lastItem) {
-//       return row;
-//     }
-
-//     return Column(
-//       children: <Widget>[
-//         row,
-//         Container(
-//           padding: EdgeInsets.only(left: 15),
-//           child: Separator(),
-//         ),
-//       ],
-//     );
-//   }
-
-//   Future<void> downloadProgram() async {
-//     try {
-//       await ProgramsManager().downloadProgram(widget.spec,
-//           onProgress: (received, total) {
-//         if (total != -1) {
-//           updateState(() {
-//             _downloadProcess = (received / total);
-//           });
-//         }
-//       });
-//       if (mounted) {
-//         updateState(() {
-//           _downloadProcess = 0.0;
-//         });
-//       }
-//       widget.onComplate(true);
-//     } catch (e) {}
-//   }
-
-//   String get _itemButtonTitle {
-//     if (widget.spec.canUpdate == true) {
-//       return '升级';
-//     } else {
-//       return '打开';
-//     }
-//   }
-
-//   Future<void> _itemButtonOnPressed() async {
-//     if (widget.spec.canUpdate == true) {
-//       await downloadProgram();
-//     }
-//   }
-// }

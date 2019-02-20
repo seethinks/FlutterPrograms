@@ -35,7 +35,7 @@ class _FindState extends State<Find>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _emptyWidgetKey.currentState.loading();
     });
-    bus.on(EventTypes.localProgramChanged, (f) {
+    eventBus.on<EventLocalProgramChanged>().listen((onData){
       _fetchSpecs();
     });
   }
@@ -140,7 +140,7 @@ class _FindState extends State<Find>
   }
 
   void _handleDownloadComplate() {
-    bus.emit(EventTypes.localProgramChanged);
+    eventBus.fire(EventLocalProgramChanged());
   }
 
   Future<void> downloadProgram(ProgramItemInfo itemInfo) async {
@@ -165,7 +165,7 @@ class _FindState extends State<Find>
 
   @override
   void dispose() {
-    bus.off(EventTypes.localProgramChanged);
+    log.info('dispose: ' + '$this.runtimeType');
     super.dispose();
   }
 }
