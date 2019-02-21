@@ -1,6 +1,8 @@
 
 export 'package:flutter/material.dart';
 
+export 'package:middleman/middleman.dart';
+
 export 'bean/spec_record.dart';
 export 'bean/spec.dart';
 

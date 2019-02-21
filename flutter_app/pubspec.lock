@@ -270,6 +270,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.1.6"
+  middleman:
+    dependency: "direct main"
+    description:
+      path: "../flutter_plugin/middleman"
+      relative: true
+    source: path
+    version: "0.0.1"
   mime:
     dependency: transitive
     description:

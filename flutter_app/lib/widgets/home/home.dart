@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _emptyWidgetKey.currentState.loading();
     });
-    eventBus.on<EventLocalProgramChanged>().listen((_){
+    eventBus.on<EventLocalProgramChanged>().listen((_) {
       _fetchSpecs();
     });
   }
@@ -58,8 +58,8 @@ class _HomeState extends State<Home> {
                     index: index,
                     lastItem: index == _specs.length - 1,
                     spec: _specs[index],
-                    onPressed: () {
-                      _handleItemPressed();
+                    onPressed: ({Spec spec}) {
+                      _handleItemPressed(spec: spec);
                     },
                   );
                 }),
@@ -88,8 +88,10 @@ class _HomeState extends State<Home> {
     return _fetchSpecs();
   }
 
-  void _handleItemPressed() {
-    log.info('message');
+  void _handleItemPressed({Spec spec}) async {
+    var specJson = spec.toJson();
+    var resp = await Middleman.channel.invokeMethod('openProgram', specJson);
+    log.info('Flutter Home _handleItemPressed ' + '$resp');
   }
 
   @override
@@ -105,7 +107,7 @@ class HomeItem extends StatefulWidget {
   final int index;
   final bool lastItem;
   final Spec spec;
-  final VoidCallback onPressed;
+  final void Function({Spec spec}) onPressed;
 
   _HomeItemState createState() => _HomeItemState();
 }
@@ -118,7 +120,7 @@ class _HomeItemState extends State<HomeItem> with UpdateStateMixin<HomeItem> {
     final Widget item = GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
-        widget.onPressed();
+        widget.onPressed(spec: widget.spec);
       },
       child: Container(
         child: Column(
