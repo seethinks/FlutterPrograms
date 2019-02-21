@@ -36,7 +36,16 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     var index = _widgetIndex.index;
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
+      appBar: PreferredSize(
+        child: AppBar(
+          title: Text(widget.title,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.normal, 
+          ),),
+        ),
+        preferredSize: Size.fromHeight(44),
+      ),
       body: IndexedStack(
         index: index,
         children: <Widget>[
@@ -48,10 +57,12 @@ class _HomeState extends State<Home> {
             onRefresh: _handlePullRefresh,
           ),
           Container(
-            padding: EdgeInsets.only(top: 18, left: 18, right: 18),
             child: GridView.builder(
+                padding: EdgeInsets.only(top: 12, left: 10, right: 10),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4, childAspectRatio: 0.8),
+                  crossAxisCount: 4,
+                  childAspectRatio: 0.8,
+                ),
                 itemCount: _specs.length,
                 itemBuilder: (context, index) {
                   return HomeItem(
@@ -70,18 +81,16 @@ class _HomeState extends State<Home> {
   }
 
   Future<void> _fetchSpecs({bool fromRemote = false}) async {
-    var completer = new Completer();
-    ProgramsManager().fetchFavoriteList(fromRemote: fromRemote).then((specs) {
+    try {
+      var specs =
+          await ProgramsManager().fetchFavoriteList(fromRemote: fromRemote);
       setState(() {
         _specs.clear();
         _specs = specs;
       });
-      completer.complete();
-    }).catchError((e) {
+    } catch (e) {
       setState(() {});
-      completer.complete();
-    });
-    return completer.future;
+    }
   }
 
   Future<void> _handlePullRefresh() async {
@@ -129,18 +138,18 @@ class _HomeItemState extends State<HomeItem> with UpdateStateMixin<HomeItem> {
               padding: EdgeInsets.only(top: 12),
             ),
             Container(
-              width: 65,
-              height: 65,
+              width: 54,
+              height: 54,
               decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(24),
                 border: Border.all(
                   color: Colors.grey,
                   width: 0.5,
                 ),
               ),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(24),
                 child: Image(
                   fit: BoxFit.cover,
                   image: NetworkImage(widget.spec.iconUrl),
@@ -151,14 +160,17 @@ class _HomeItemState extends State<HomeItem> with UpdateStateMixin<HomeItem> {
               padding: EdgeInsets.only(top: 10),
             ),
             // 应用名称
-            Text(
-              widget.spec.name,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                color: Color(0xFF3333333),
-                fontSize: 16.0,
-                fontWeight: FontWeight.w600,
+            Container(
+              padding: EdgeInsets.only(left: 8, right: 8),
+              child: Text(
+                widget.spec.name,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: Color(0xFF3333333),
+                  fontSize: 11.0,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           ],
