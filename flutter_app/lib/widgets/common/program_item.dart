@@ -44,67 +44,88 @@ class _ProgramItemWidgetState extends State<ProgramItemWidget>
           log.info('program item tap');
         },
         child: Container(
-          padding: EdgeInsets.only(top: 8, bottom: 8),
+          color: Colors.white,
+          padding: EdgeInsets.only(top: 12, bottom: 12),
           child: SizedBox(
-            height: 90,
+            height: 75,
             child: Row(
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(left: 15),
+                  padding: EdgeInsets.only(left: 20),
                 ),
-                // icon 图片
-                Container(
-                  width: 80,
-                  height: 80,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                      color: Colors.grey,
-                      width: 0.5,
+                // icon 图片, 应用名称
+                Stack(
+                  children: <Widget>[
+                    //icon 图片
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: Container(
+                        width: 54,
+                        height: 54,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.circular(18),
+                          border: Border.all(
+                            color: Colors.grey,
+                            width: 0.5,
+                          ),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(18),
+                          child: Image(
+                            image: NetworkImage(widget.info.spec.iconUrl),
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Image(
-                      image: NetworkImage(widget.info.spec.iconUrl),
+                    // 应用名称
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Text(
+                        widget.info.spec.name,
+                        style: TextStyle(
+                          color: Color(0xFF3333333),
+                          fontSize: 11.0,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
                 Padding(
                   padding: EdgeInsets.only(right: 12),
                 ),
-                // 应用名称、描述
+                // 作者，应用描述
                 Expanded(
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Padding(padding: EdgeInsets.only(top: 12.0)),
-                      // 应用名称
+                      Padding(padding: EdgeInsets.only(top: 6.0)),
+                      // 作者
                       Text(
-                        widget.info.spec.name,
+                        '作者：' + widget.info.spec.author,
                         style: TextStyle(
                           color: Color(0xFF3333333),
-                          fontSize: 18.0,
+                          fontSize: 11.0,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      Padding(padding: EdgeInsets.only(top: 8.0)),
+                      Padding(padding: EdgeInsets.only(top: 4.0)),
                       // 描述
                       Expanded(
                         child: Text(
-                          widget.info.spec.description,
-                          maxLines: 2,
+                          '简介：' + widget.info.spec.description,
+                          maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            color: Color(0xFF8E8E93),
-                            fontSize: 16.0,
+                            color: Color(0xFF6F6F6F),
+                            fontSize: 11.0,
                             fontWeight: FontWeight.w300,
                           ),
                         ),
                       ),
-                      Padding(padding: EdgeInsets.only(top: 12.0)),
+                      Padding(padding: EdgeInsets.only(top: 6.0)),
                     ],
                   ),
                 ),
@@ -113,8 +134,8 @@ class _ProgramItemWidgetState extends State<ProgramItemWidget>
                 ),
                 // 按钮
                 Container(
-                  width: 80,
-                  height: 40,
+                  width: 74,
+                  height: 32,
                   child: DownloadButton(
                     title: widget.info.buttonTitle,
                     showProcess: widget.info.showProcess,
@@ -123,7 +144,7 @@ class _ProgramItemWidgetState extends State<ProgramItemWidget>
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(right: 15),
+                  padding: EdgeInsets.only(right: 20),
                 ),
               ],
             ),
@@ -138,7 +159,7 @@ class _ProgramItemWidgetState extends State<ProgramItemWidget>
       children: <Widget>[
         row,
         Container(
-          padding: EdgeInsets.only(left: 15),
+          padding: EdgeInsets.only(left: 20, right: 20),
           child: Separator(),
         ),
       ],

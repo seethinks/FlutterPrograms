@@ -29,28 +29,31 @@ class ProgramState extends State<Program> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: TabBar(
-          controller: _controller,
-          isScrollable: true,
-          labelStyle: TextStyle(
-            fontSize: 20,
-          ),
-          indicator: ShapeDecoration(
-            shape: const StadiumBorder(
-                  side: BorderSide(
-                    color: Colors.white24,
-                    width: 2.0,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(44),
+        child: AppBar(
+          title: TabBar(
+            controller: _controller,
+            isScrollable: true,
+            labelStyle: TextStyle(
+              fontSize: 16,
+            ),
+            indicator: ShapeDecoration(
+              shape: const StadiumBorder(
+                    side: BorderSide(
+                      color: Colors.white24,
+                      width: 2.0,
+                    ),
+                  ) +
+                  const StadiumBorder(
+                    side: BorderSide(
+                      color: Colors.transparent,
+                      width: 4.0,
+                    ),
                   ),
-                ) +
-                const StadiumBorder(
-                  side: BorderSide(
-                    color: Colors.transparent,
-                    width: 4.0,
-                  ),
-                ),
+            ),
+            tabs: widget.tabViews.map((f) => Tab(text: f.title)).toList(),
           ),
-          tabs: widget.tabViews.map((f) => Tab(text: f.title)).toList(),
         ),
       ),
       body: TabBarView(

@@ -35,7 +35,7 @@ class _FindState extends State<Find>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _emptyWidgetKey.currentState.loading();
     });
-    eventBus.on<EventLocalProgramChanged>().listen((onData){
+    eventBus.on<EventLocalProgramChanged>().listen((onData) {
       _fetchSpecs();
     });
   }
@@ -61,18 +61,13 @@ class _FindState extends State<Find>
           // 列表页
           RefreshIndicator(
             onRefresh: _handlePullRefresh,
-            child: CustomScrollView(
-              slivers: <Widget>[
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                      var item = _itemsInfo[index];
-                      return ProgramItemWidget(info: item);
-                    },
-                    childCount: _itemsInfo.length,
-                  ),
-                ),
-              ],
+            child: ListView.builder(
+              padding: EdgeInsets.only(top: 12, bottom: 12),
+              itemBuilder: (BuildContext context, int index) {
+                var item = _itemsInfo[index];
+                return ProgramItemWidget(info: item);
+              },
+              itemCount: _itemsInfo.length,
             ),
           ),
         ],

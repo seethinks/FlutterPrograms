@@ -18,22 +18,18 @@ class DownloadButton extends StatefulWidget {
   DownloadButtonState createState() => DownloadButtonState();
 }
 
-class DownloadButtonState extends State<DownloadButton> with UpdateStateMixin<DownloadButton> {
-
+class DownloadButtonState extends State<DownloadButton>
+    with UpdateStateMixin<DownloadButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: Container(
-          width: 200,
-          height: 40,
-          child: IndexedStack(
-            index: widget.showProcess ? 0 : 1,
-            children: <Widget>[
-              _buildProgressWidget(context),
-              _buildEmptyWidget(context),
-            ],
-          ),
+        child: IndexedStack(
+          index: widget.showProcess ? 0 : 1,
+          children: <Widget>[
+            _buildProgressWidget(context),
+            _buildEmptyWidget(context),
+          ],
         ),
       ),
     );
@@ -43,6 +39,7 @@ class DownloadButtonState extends State<DownloadButton> with UpdateStateMixin<Do
     return Container(
       child: Center(
         child: CircularProgressIndicator(
+          strokeWidth: 2.0,
           value: (widget.progressValue <= 0.1) ? null : widget.progressValue,
         ),
       ),
@@ -57,7 +54,7 @@ class DownloadButtonState extends State<DownloadButton> with UpdateStateMixin<Do
           child: Text(
             widget.title,
             style: TextStyle(
-              fontSize: 14.0,
+              fontSize: 13.0,
               fontWeight: FontWeight.w700,
               letterSpacing: -0.28,
             ),

@@ -8,7 +8,7 @@ class Separator extends StatelessWidget {
       children: <Widget>[
         Container(
           height: 0.5,
-          color: const Color(0xFFD9D9D9),
+          color: const Color(0xFFD6D6D6),
         ),
       ],
     );

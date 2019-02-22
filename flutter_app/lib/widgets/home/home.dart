@@ -36,15 +36,8 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     var index = _widgetIndex.index;
     return Scaffold(
-      appBar: PreferredSize(
-        child: AppBar(
-          title: Text(widget.title,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.normal, 
-          ),),
-        ),
-        preferredSize: Size.fromHeight(44),
+      appBar: ThinnerAppBar(
+        title: widget.title,
       ),
       body: IndexedStack(
         index: index,
@@ -61,7 +54,7 @@ class _HomeState extends State<Home> {
                 padding: EdgeInsets.only(top: 12, left: 10, right: 10),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 4,
-                  childAspectRatio: 0.8,
+                  childAspectRatio: 0.9,
                 ),
                 itemCount: _specs.length,
                 itemBuilder: (context, index) {
@@ -142,14 +135,14 @@ class _HomeItemState extends State<HomeItem> with UpdateStateMixin<HomeItem> {
               height: 54,
               decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(24),
+                borderRadius: BorderRadius.circular(18),
                 border: Border.all(
                   color: Colors.grey,
                   width: 0.5,
                 ),
               ),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(24),
+                borderRadius: BorderRadius.circular(18),
                 child: Image(
                   fit: BoxFit.cover,
                   image: NetworkImage(widget.spec.iconUrl),
