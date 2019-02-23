@@ -48,11 +48,16 @@ class _AboutState extends State<About> {
                   width: 64,
                   height: 64,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(18),
-                    child: Image(
-                      image: NetworkImage(iconUrl),
-                    ),
-                  ),
+                      borderRadius: BorderRadius.circular(18),
+                      child: () {
+                        if (iconUrl.length != 0) {
+                          return Image(
+                            image: NetworkImage(iconUrl),
+                          );
+                        } else {
+                          return null;
+                        }
+                      }()),
                 ),
               ),
             ),
