@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import '../../assert.dart';
+import '../../../assert.dart';
 
 enum FavoritePageIndex { empty, list }
 
 class Favorite extends BasePage {
   Favorite() : super(title: '收藏');
   static const String routeName = '/Find';
-  List<Spec> specs = <Spec>[];
 
   _FavoriteState createState() => _FavoriteState();
 }
@@ -164,7 +163,15 @@ class _FavoriteState extends State<Favorite>
         setState(() {});
         _handleDownloadComplate();
       }
-    } catch (e) {}
+    } catch (e) {
+      setState(() {
+        var _itemInfo = _itemsInfo[_itemsInfo.indexOf(itemInfo)];
+        _itemInfo.showProcess = false;
+      });
+      if (mounted) {
+        _handleDownloadComplate();
+      }
+    }
   }
 
   void openProgram(ProgramItemInfo info) {

@@ -1,3 +1,4 @@
+export 'dart:convert';
 
 export 'package:flutter/material.dart';
 
@@ -9,6 +10,7 @@ export 'bean/spec.dart';
 export 'config/themes.dart';
 
 export 'manager/programs_manager.dart';
+export 'manager/native_interface.dart';
 
 export 'network/network.dart';
 

@@ -1,0 +1,6 @@
+framework module middleman {
+  umbrella header "middleman-umbrella.h"
+
+  export *
+  module * { export * }
+}

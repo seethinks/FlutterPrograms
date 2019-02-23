@@ -1,0 +1,16 @@
+{
+    "name" : "FlutterPrograms",
+    "id" : "com.flutter-programs.application",
+    "version" : "0.1.0",
+    "author" : "flutter team",
+    "description" : "flutter programs",
+    "iconUrl" : "https://raw.githubusercontent.com/dart-lang/site-shared/6ea7736189198de9bc0deb718768f972c49b82c1/src/_assets/image/flutter/icon/64.png",
+    "images" : [
+        "https://raw.githubusercontent.com/dart-lang/site-shared/6ea7736189198de9bc0deb718768f972c49b82c1/src/_assets/image/flutter/logo%2Btext/vertical/default.png"
+    ],
+    "flutterAssertUrl" : "https://raw.githubusercontent.com/FlutterPrograms/InitPrograms/master/FlutterPlusPlus/flutter_assets.zip",
+    "github" : "https://github.com/flutter/flutter",
+    "feature" : "flutter programs 0.1.0",
+    "versionRecord" : "",
+    "flutterVersion" : "1.0.0"
+}

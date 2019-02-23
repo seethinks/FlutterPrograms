@@ -29,10 +29,17 @@
 //
 //    [GeneratedPluginRegistrant registerWithRegistry:self];
     
+    NSLog(@"%@", NSHomeDirectory());
+    
     self.flutterEngine = [[FlutterEngine alloc] initWithName:@"io.flutter" project:nil];
     [self.flutterEngine runWithEntrypoint:nil];
-    
+
     UIViewController *vc = [[FlutterViewController alloc] initWithEngine:self.flutterEngine nibName:nil bundle:nil];
+    
+//    NSString *appAssertPath = [[NSBundle mainBundle].bundlePath stringByAppendingPathComponent:@"flutter_assets"];
+//
+//    FlutterDartProject *dartPro = [[FlutterDartProject alloc] initWithFlutterAssetsURL:[NSURL fileURLWithPath:appAssertPath]];
+//        FlutterViewController *vc = [[FlutterViewController alloc] initWithProject:dartPro nibName:nil bundle:nil];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = vc;

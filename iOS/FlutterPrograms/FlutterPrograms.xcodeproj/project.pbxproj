@@ -18,6 +18,9 @@
 		6738863A21FAF3C300D3B47A /* FlutterProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6738863921FAF3C300D3B47A /* FlutterProgramsTests.m */; };
 		6738864521FAF3C300D3B47A /* FlutterProgramsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6738864421FAF3C300D3B47A /* FlutterProgramsUITests.m */; };
 		6738865421FAF4E200D3B47A /* FlutterProgramController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6738865221FAF4E200D3B47A /* FlutterProgramController.m */; };
+		676F9DC32220FF7E00015E85 /* FPAssertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 676F9DC22220FF7E00015E85 /* FPAssertManager.m */; };
+		676F9DC5222100C400015E85 /* FPAssertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 676F9DC22220FF7E00015E85 /* FPAssertManager.m */; };
+		676F9DC82221054C00015E85 /* FPNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 676F9DC72221054C00015E85 /* FPNetworkManager.m */; };
 		678969C421FB1B00003A4EB5 /* NSLayoutConstraint+NNVisualFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 678969C321FB1B00003A4EB5 /* NSLayoutConstraint+NNVisualFormat.m */; };
 		678969C821FB279F003A4EB5 /* MainController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 678969C621FB279E003A4EB5 /* MainController.storyboard */; };
 		678969C921FB279F003A4EB5 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 678969C721FB279E003A4EB5 /* MainController.m */; };
@@ -72,6 +75,11 @@
 		6738865221FAF4E200D3B47A /* FlutterProgramController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlutterProgramController.m; sourceTree = "<group>"; };
 		6738865321FAF4E200D3B47A /* FlutterProgramController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlutterProgramController.h; sourceTree = "<group>"; };
 		6738865F21FAF7B400D3B47A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		676F9DC12220FF7E00015E85 /* FPAssertManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPAssertManager.h; sourceTree = "<group>"; };
+		676F9DC22220FF7E00015E85 /* FPAssertManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPAssertManager.m; sourceTree = "<group>"; };
+		676F9DC62221054C00015E85 /* FPNetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPNetworkManager.h; sourceTree = "<group>"; };
+		676F9DC72221054C00015E85 /* FPNetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPNetworkManager.m; sourceTree = "<group>"; };
+		676F9DCA222140AA00015E85 /* FPConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPConfig.h; sourceTree = "<group>"; };
 		678969C221FB1B00003A4EB5 /* NSLayoutConstraint+NNVisualFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+NNVisualFormat.h"; sourceTree = "<group>"; };
 		678969C321FB1B00003A4EB5 /* NSLayoutConstraint+NNVisualFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+NNVisualFormat.m"; sourceTree = "<group>"; };
 		678969C521FB279E003A4EB5 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
@@ -168,6 +176,8 @@
 		6738861F21FAF3C100D3B47A /* FlutterPrograms */ = {
 			isa = PBXGroup;
 			children = (
+				676F9DC92221409300015E85 /* Config */,
+				676F9DC42220FF8A00015E85 /* Manager */,
 				6738862021FAF3C100D3B47A /* AppDelegate.h */,
 				6738862121FAF3C100D3B47A /* AppDelegate.m */,
 				678969C521FB279E003A4EB5 /* MainController.h */,
@@ -213,6 +223,25 @@
 				6738865F21FAF7B400D3B47A /* PrefixHeader.pch */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		676F9DC42220FF8A00015E85 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				676F9DC12220FF7E00015E85 /* FPAssertManager.h */,
+				676F9DC22220FF7E00015E85 /* FPAssertManager.m */,
+				676F9DC62221054C00015E85 /* FPNetworkManager.h */,
+				676F9DC72221054C00015E85 /* FPNetworkManager.m */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		676F9DC92221409300015E85 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				676F9DCA222140AA00015E85 /* FPConfig.h */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 		678969C121FB1B00003A4EB5 /* Category */ = {
@@ -462,6 +491,7 @@
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
 				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/middleman/middleman.framework",
 				"${BUILT_PRODUCTS_DIR}/path_provider/path_provider.framework",
 				"${BUILT_PRODUCTS_DIR}/share/share.framework",
 				"${BUILT_PRODUCTS_DIR}/shared_preferences/shared_preferences.framework",
@@ -478,6 +508,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/middleman.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/path_provider.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/share.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/shared_preferences.framework",
@@ -504,6 +535,7 @@
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
 				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/middleman/middleman.framework",
 				"${BUILT_PRODUCTS_DIR}/path_provider/path_provider.framework",
 				"${BUILT_PRODUCTS_DIR}/share/share.framework",
 				"${BUILT_PRODUCTS_DIR}/shared_preferences/shared_preferences.framework",
@@ -520,6 +552,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/middleman.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/path_provider.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/share.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/shared_preferences.framework",
@@ -542,6 +575,7 @@
 				6738862221FAF3C100D3B47A /* AppDelegate.m in Sources */,
 				678969C921FB279F003A4EB5 /* MainController.m in Sources */,
 				6738865421FAF4E200D3B47A /* FlutterProgramController.m in Sources */,
+				676F9DC5222100C400015E85 /* FPAssertManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,10 +599,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				676F9DC82221054C00015E85 /* FPNetworkManager.m in Sources */,
 				678FCB772202A521002C0262 /* NSLayoutConstraint+NNVisualFormat.m in Sources */,
 				678FCB782202A521002C0262 /* main.m in Sources */,
 				678FCB792202A521002C0262 /* AppDelegate.m in Sources */,
 				678FCB7A2202A521002C0262 /* MainController.m in Sources */,
+				676F9DC32220FF7E00015E85 /* FPAssertManager.m in Sources */,
 				678FCB7B2202A521002C0262 /* FlutterProgramController.m in Sources */,
 				678FCB8C2202A8C0002C0262 /* FlutterMainController.m in Sources */,
 			);
@@ -838,8 +874,9 @@
 			baseConfigurationReference = 45915A349FE372FF18B9A372 /* Pods-FlutterPrograms.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = D42J6S8LXL;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TN94U5BZF3;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "${SRCROOT}/FlutterPrograms/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
@@ -847,9 +884,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.build.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.build.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = Build;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -859,8 +896,9 @@
 			baseConfigurationReference = 7F2996DEFB88239C6317A445 /* Pods-FlutterPrograms.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TN94U5BZF3;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "${SRCROOT}/FlutterPrograms/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
@@ -868,7 +906,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.build.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.build.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

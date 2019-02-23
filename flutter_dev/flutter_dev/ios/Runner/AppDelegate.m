@@ -11,7 +11,14 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     __weak typeof(self) weakSelf = self;
     [[MiddlemanPlugin shared] setMethodCallHandler:@"openProgram" handler:^(id arguments, FlutterResult result) {
         NSLog(@"Native iOS %@:%@",NSStringFromClass([weakSelf class]), arguments);
-        return result(@"Open program successful!!!");
+        return result(@(true));
+    }];
+    
+    [[MiddlemanPlugin shared] setMethodCallHandler:@"getAppSpec" handler:^(id arguments, FlutterResult result) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"spec.json" ofType:nil];
+        NSData *specData = [NSData dataWithContentsOfFile:path];
+        NSString *specString = [[NSString alloc] initWithData:specData encoding:NSUTF8StringEncoding];
+        return result(specString);
     }];
     return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }

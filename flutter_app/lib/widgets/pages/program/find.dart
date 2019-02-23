@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import '../../assert.dart';
+import '../../../assert.dart';
 
 enum FindPageIndex { empty, list }
 
@@ -155,7 +155,15 @@ class _FindState extends State<Find>
         setState(() {});
         _handleDownloadComplate();
       }
-    } catch (e) {}
+    } catch (e) {
+      setState(() {
+        var _itemInfo = _itemsInfo[_itemsInfo.indexOf(itemInfo)];
+        _itemInfo.showProcess = false;
+      });
+      if (mounted) {
+        _handleDownloadComplate();
+      }
+    }
   }
 
   @override

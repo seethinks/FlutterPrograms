@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import '../../assert.dart';
+import '../../../assert.dart';
 import './find.dart';
 import './favorite.dart';
 
-class Program extends StatefulWidget {
-  String title = "程序";
+class Program extends BasePage {
+  Program() : super(title: '发现');
   static const String routeName = '/Program';
-  var tabViews = <BasePage>[Find(), Favorite()];
+  final tabViews = <BasePage>[Find(), Favorite()];
 
   ProgramState createState() => ProgramState();
 }

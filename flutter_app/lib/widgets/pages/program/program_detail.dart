@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import '../../assert.dart';
+import '../../../assert.dart';
 
 // Program 详情页面
 class ProgramDetail extends StatefulWidget {
