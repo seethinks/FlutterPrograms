@@ -10,6 +10,7 @@
 #import "MainController.h"
 #import <FlutterPluginRegistrant/GeneratedPluginRegistrant.h>
 #import "FlutterMainController.h"
+#import "FPUpdateAssertController.h"
 
 @interface AppDelegate ()
 
@@ -21,25 +22,50 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-//    UIViewController *vc = [[UIStoryboard storyboardWithName:@"MainController" bundle:nil] instantiateInitialViewController];
-//
-//    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-//    self.window.rootViewController = vc;
-//    [self.window makeKeyAndVisible];
-//
-//    [GeneratedPluginRegistrant registerWithRegistry:self];
+    //    UIViewController *vc = [[UIStoryboard storyboardWithName:@"MainController" bundle:nil] instantiateInitialViewController];
+    //
+    //    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    //    self.window.rootViewController = vc;
+    //    [self.window makeKeyAndVisible];
+    //
+    //    [GeneratedPluginRegistrant registerWithRegistry:self];
     
     NSLog(@"%@", NSHomeDirectory());
     
-    self.flutterEngine = [[FlutterEngine alloc] initWithName:@"io.flutter" project:nil];
-    [self.flutterEngine runWithEntrypoint:nil];
-
-    UIViewController *vc = [[FlutterViewController alloc] initWithEngine:self.flutterEngine nibName:nil bundle:nil];
+    FPAssert *assert = [[FPAssertManager shared] launchAssert];
     
-//    NSString *appAssertPath = [[NSBundle mainBundle].bundlePath stringByAppendingPathComponent:@"flutter_assets"];
-//
-//    FlutterDartProject *dartPro = [[FlutterDartProject alloc] initWithFlutterAssetsURL:[NSURL fileURLWithPath:appAssertPath]];
-//        FlutterViewController *vc = [[FlutterViewController alloc] initWithProject:dartPro nibName:nil bundle:nil];
+    //    [[FPAssertManager shared] getApplicationAssert:^(FPAssert * _Nonnull info) {
+    //
+    //        if (![[FPAssertManager shared] checkVersionWithApplicationAssert: info]) {
+    //            // 不更新，启动app
+    ////            FlutterDartProject *dartPro = [[FlutterDartProject alloc] initWithFlutterAssetsURL:[NSURL fileURLWithPath:info.assertPath]];
+    ////            FlutterViewController *vc = [[FlutterViewController alloc] initWithProject:dartPro nibName:nil bundle:nil];
+    //            FPAssert *assert = [FPAssert new];
+    //            assert.specFilePath = FPApplicationSpecFilePath();
+    //            assert.assertPath = FPApplicationAssertPath();
+    //
+    //            FPUpdateAssertController *vc =  [[FPUpdateAssertController alloc] initWithAssert:assert];
+    //
+    //            self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    //            self.window.rootViewController = vc;
+    //            [self.window makeKeyAndVisible];
+    //        }
+    //        else {
+    //            // 更新app
+    //
+    //        }
+    //    }];
+    
+    
+    
+    //    self.flutterEngine = [[FlutterEngine alloc] initWithName:@"io.flutter" project:nil];
+    //    [self.flutterEngine runWithEntrypoint:nil];
+    ////
+    //    UIViewController *vc = [[FlutterViewController alloc] initWithEngine:self.flutterEngine nibName:nil bundle:nil];
+    
+    
+    FlutterDartProject *dartPro = [[FlutterDartProject alloc] initWithFlutterAssetsURL:[NSURL fileURLWithPath:assert.launchAssertPath]];
+    FlutterViewController *vc = [[FlutterViewController alloc] initWithProject:dartPro nibName:nil bundle:nil];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = vc;

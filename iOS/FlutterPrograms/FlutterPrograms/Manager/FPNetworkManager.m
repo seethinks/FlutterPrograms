@@ -16,7 +16,8 @@ static FPNetworkManager *_instance = nil;
     if (!_instance) {
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
-            _instance = [[FPNetworkManager alloc] init];
+            NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+            _instance = [[FPNetworkManager alloc] initWithSessionConfiguration:configuration];
         });
     }
     return _instance;

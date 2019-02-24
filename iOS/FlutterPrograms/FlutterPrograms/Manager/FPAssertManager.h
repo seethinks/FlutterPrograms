@@ -12,7 +12,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FPAssertManager : NSObject
 
+@property (nonatomic, readonly) NSArray<FPAssert *> *asserts;
+
+- (FPAssert *)launchAssert;
+
 + (instancetype)shared;
+//- (void)fetchApplicationUpdateSpec;
+//- (void)fetchApplicationUpdateAssert;
+//- (void)getApplicationAssert:(void (^)(FPAssert *info))callback;
+//- (BOOL)checkVersionWithApplicationAssert:(FPAssert *)info;
+//- (void)fetchApplicationAssert:(FPAssert *)assert  progress:(void (^)(NSProgress *downloadProgress)) downloadProgressBlock completionHandler:(void (^)(BOOL isSuccess)) completionHandler;
 
 @end
 

@@ -19,8 +19,9 @@
 		6738864521FAF3C300D3B47A /* FlutterProgramsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6738864421FAF3C300D3B47A /* FlutterProgramsUITests.m */; };
 		6738865421FAF4E200D3B47A /* FlutterProgramController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6738865221FAF4E200D3B47A /* FlutterProgramController.m */; };
 		676F9DC32220FF7E00015E85 /* FPAssertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 676F9DC22220FF7E00015E85 /* FPAssertManager.m */; };
-		676F9DC5222100C400015E85 /* FPAssertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 676F9DC22220FF7E00015E85 /* FPAssertManager.m */; };
 		676F9DC82221054C00015E85 /* FPNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 676F9DC72221054C00015E85 /* FPNetworkManager.m */; };
+		676F9DDD222187E000015E85 /* FPAssert.m in Sources */ = {isa = PBXBuildFile; fileRef = 676F9DDC222187E000015E85 /* FPAssert.m */; };
+		676F9DE022218A7800015E85 /* FPSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 676F9DDF22218A7800015E85 /* FPSpec.m */; };
 		678969C421FB1B00003A4EB5 /* NSLayoutConstraint+NNVisualFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 678969C321FB1B00003A4EB5 /* NSLayoutConstraint+NNVisualFormat.m */; };
 		678969C821FB279F003A4EB5 /* MainController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 678969C621FB279E003A4EB5 /* MainController.storyboard */; };
 		678969C921FB279F003A4EB5 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 678969C721FB279E003A4EB5 /* MainController.m */; };
@@ -34,6 +35,18 @@
 		678FCB812202A521002C0262 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6738862921FAF3C300D3B47A /* Assets.xcassets */; };
 		678FCB822202A521002C0262 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6738862621FAF3C100D3B47A /* Main.storyboard */; };
 		678FCB8C2202A8C0002C0262 /* FlutterMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 678FCB8B2202A8C0002C0262 /* FlutterMainController.m */; };
+		67BE6E812222372F003F55C0 /* FPUpdateAssertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67C110AC2221C34500164CC8 /* FPUpdateAssertController.m */; };
+		67BE6E8222223731003F55C0 /* FPBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67C110AF222235A200164CC8 /* FPBaseController.m */; };
+		67BE6E85222253DC003F55C0 /* FPPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BE6E84222253DC003F55C0 /* FPPath.m */; };
+		67BE6E86222253DC003F55C0 /* FPPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BE6E84222253DC003F55C0 /* FPPath.m */; };
+		67BE6E8822225DC7003F55C0 /* flutter_bundle in Resources */ = {isa = PBXBuildFile; fileRef = 67BE6E8722225DC7003F55C0 /* flutter_bundle */; };
+		67BE6E8922225DC7003F55C0 /* flutter_bundle in Resources */ = {isa = PBXBuildFile; fileRef = 67BE6E8722225DC7003F55C0 /* flutter_bundle */; };
+		67C110A522219B1B00164CC8 /* FPSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 676F9DDF22218A7800015E85 /* FPSpec.m */; };
+		67C110A622219B1E00164CC8 /* FPAssert.m in Sources */ = {isa = PBXBuildFile; fileRef = 676F9DDC222187E000015E85 /* FPAssert.m */; };
+		67C110A722219B4600164CC8 /* FPAssertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 676F9DC22220FF7E00015E85 /* FPAssertManager.m */; };
+		67C110A822219B4B00164CC8 /* FPNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 676F9DC72221054C00015E85 /* FPNetworkManager.m */; };
+		67C110AD2221C34500164CC8 /* FPUpdateAssertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67C110AC2221C34500164CC8 /* FPUpdateAssertController.m */; };
+		67C110B0222235A200164CC8 /* FPBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67C110AF222235A200164CC8 /* FPBaseController.m */; };
 		FAE52DEAA4686BE8F28A9F38 /* Pods_FlutterPrograms.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C8A5AF4B56898C7F24BE82 /* Pods_FlutterPrograms.framework */; };
 /* End PBXBuildFile section */
 
@@ -80,15 +93,26 @@
 		676F9DC62221054C00015E85 /* FPNetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPNetworkManager.h; sourceTree = "<group>"; };
 		676F9DC72221054C00015E85 /* FPNetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPNetworkManager.m; sourceTree = "<group>"; };
 		676F9DCA222140AA00015E85 /* FPConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPConfig.h; sourceTree = "<group>"; };
+		676F9DD322217F1B00015E85 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		676F9DDB222187E000015E85 /* FPAssert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPAssert.h; sourceTree = "<group>"; };
+		676F9DDC222187E000015E85 /* FPAssert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPAssert.m; sourceTree = "<group>"; };
+		676F9DDE22218A7800015E85 /* FPSpec.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPSpec.h; sourceTree = "<group>"; };
+		676F9DDF22218A7800015E85 /* FPSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPSpec.m; sourceTree = "<group>"; };
 		678969C221FB1B00003A4EB5 /* NSLayoutConstraint+NNVisualFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+NNVisualFormat.h"; sourceTree = "<group>"; };
 		678969C321FB1B00003A4EB5 /* NSLayoutConstraint+NNVisualFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+NNVisualFormat.m"; sourceTree = "<group>"; };
 		678969C521FB279E003A4EB5 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
 		678969C621FB279E003A4EB5 /* MainController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainController.storyboard; sourceTree = "<group>"; };
 		678969C721FB279E003A4EB5 /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
 		678FCB872202A521002C0262 /* FlutterPrograms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlutterPrograms.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		678FCB882202A522002C0262 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = /Users/guhaijun/Desktop/Projects/XXPrograms/iOS/FlutterPrograms/Info.plist; sourceTree = "<absolute>"; };
 		678FCB8A2202A8C0002C0262 /* FlutterMainController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlutterMainController.h; sourceTree = "<group>"; };
 		678FCB8B2202A8C0002C0262 /* FlutterMainController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlutterMainController.m; sourceTree = "<group>"; };
+		67BE6E83222253DC003F55C0 /* FPPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPPath.h; sourceTree = "<group>"; };
+		67BE6E84222253DC003F55C0 /* FPPath.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPPath.m; sourceTree = "<group>"; };
+		67BE6E8722225DC7003F55C0 /* flutter_bundle */ = {isa = PBXFileReference; lastKnownFileType = folder; path = flutter_bundle; sourceTree = "<group>"; };
+		67C110AB2221C34500164CC8 /* FPUpdateAssertController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPUpdateAssertController.h; sourceTree = "<group>"; };
+		67C110AC2221C34500164CC8 /* FPUpdateAssertController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPUpdateAssertController.m; sourceTree = "<group>"; };
+		67C110AE222235A200164CC8 /* FPBaseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPBaseController.h; sourceTree = "<group>"; };
+		67C110AF222235A200164CC8 /* FPBaseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPBaseController.m; sourceTree = "<group>"; };
 		76A8511446C2520A0C6763EB /* Pods-FlutterProgramsRelease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlutterProgramsRelease.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlutterProgramsRelease/Pods-FlutterProgramsRelease.debug.xcconfig"; sourceTree = "<group>"; };
 		7F2996DEFB88239C6317A445 /* Pods-FlutterPrograms.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlutterPrograms.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlutterPrograms/Pods-FlutterPrograms.release.xcconfig"; sourceTree = "<group>"; };
 		C4D5F792B852C734042A265B /* Pods_FlutterProgramsRelease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlutterProgramsRelease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,10 +200,17 @@
 		6738861F21FAF3C100D3B47A /* FlutterPrograms */ = {
 			isa = PBXGroup;
 			children = (
+				67BE6E8722225DC7003F55C0 /* flutter_bundle */,
+				67C110A4222193D400164CC8 /* Tools */,
+				676F9DD72221862B00015E85 /* Model */,
 				676F9DC92221409300015E85 /* Config */,
 				676F9DC42220FF8A00015E85 /* Manager */,
 				6738862021FAF3C100D3B47A /* AppDelegate.h */,
 				6738862121FAF3C100D3B47A /* AppDelegate.m */,
+				67C110AE222235A200164CC8 /* FPBaseController.h */,
+				67C110AF222235A200164CC8 /* FPBaseController.m */,
+				67C110AB2221C34500164CC8 /* FPUpdateAssertController.h */,
+				67C110AC2221C34500164CC8 /* FPUpdateAssertController.m */,
 				678969C521FB279E003A4EB5 /* MainController.h */,
 				678969C721FB279E003A4EB5 /* MainController.m */,
 				678969C621FB279E003A4EB5 /* MainController.storyboard */,
@@ -217,7 +248,7 @@
 		6738865E21FAF77D00D3B47A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				678FCB882202A522002C0262 /* Info.plist */,
+				676F9DD322217F1B00015E85 /* Info.plist */,
 				6738862E21FAF3C300D3B47A /* Info-release.plist */,
 				6738862F21FAF3C300D3B47A /* main.m */,
 				6738865F21FAF7B400D3B47A /* PrefixHeader.pch */,
@@ -244,6 +275,17 @@
 			path = Config;
 			sourceTree = "<group>";
 		};
+		676F9DD72221862B00015E85 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				676F9DDE22218A7800015E85 /* FPSpec.h */,
+				676F9DDF22218A7800015E85 /* FPSpec.m */,
+				676F9DDB222187E000015E85 /* FPAssert.h */,
+				676F9DDC222187E000015E85 /* FPAssert.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		678969C121FB1B00003A4EB5 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +293,15 @@
 				678969C321FB1B00003A4EB5 /* NSLayoutConstraint+NNVisualFormat.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		67C110A4222193D400164CC8 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				67BE6E83222253DC003F55C0 /* FPPath.h */,
+				67BE6E84222253DC003F55C0 /* FPPath.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -380,6 +431,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				678969C821FB279F003A4EB5 /* MainController.storyboard in Resources */,
+				67BE6E8922225DC7003F55C0 /* flutter_bundle in Resources */,
 				6738862D21FAF3C300D3B47A /* LaunchScreen.storyboard in Resources */,
 				6738862A21FAF3C300D3B47A /* Assets.xcassets in Resources */,
 				6738862821FAF3C100D3B47A /* Main.storyboard in Resources */,
@@ -405,6 +457,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				678FCB7F2202A521002C0262 /* MainController.storyboard in Resources */,
+				67BE6E8822225DC7003F55C0 /* flutter_bundle in Resources */,
 				678FCB802202A521002C0262 /* LaunchScreen.storyboard in Resources */,
 				678FCB812202A521002C0262 /* Assets.xcassets in Resources */,
 				678FCB822202A521002C0262 /* Main.storyboard in Resources */,
@@ -572,10 +625,16 @@
 			files = (
 				678969C421FB1B00003A4EB5 /* NSLayoutConstraint+NNVisualFormat.m in Sources */,
 				6738863021FAF3C300D3B47A /* main.m in Sources */,
+				67BE6E86222253DC003F55C0 /* FPPath.m in Sources */,
+				67C110A822219B4B00164CC8 /* FPNetworkManager.m in Sources */,
 				6738862221FAF3C100D3B47A /* AppDelegate.m in Sources */,
+				67C110A522219B1B00164CC8 /* FPSpec.m in Sources */,
 				678969C921FB279F003A4EB5 /* MainController.m in Sources */,
+				67C110A622219B1E00164CC8 /* FPAssert.m in Sources */,
 				6738865421FAF4E200D3B47A /* FlutterProgramController.m in Sources */,
-				676F9DC5222100C400015E85 /* FPAssertManager.m in Sources */,
+				67BE6E812222372F003F55C0 /* FPUpdateAssertController.m in Sources */,
+				67BE6E8222223731003F55C0 /* FPBaseController.m in Sources */,
+				67C110A722219B4600164CC8 /* FPAssertManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -599,14 +658,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67C110AD2221C34500164CC8 /* FPUpdateAssertController.m in Sources */,
 				676F9DC82221054C00015E85 /* FPNetworkManager.m in Sources */,
 				678FCB772202A521002C0262 /* NSLayoutConstraint+NNVisualFormat.m in Sources */,
 				678FCB782202A521002C0262 /* main.m in Sources */,
 				678FCB792202A521002C0262 /* AppDelegate.m in Sources */,
+				676F9DE022218A7800015E85 /* FPSpec.m in Sources */,
 				678FCB7A2202A521002C0262 /* MainController.m in Sources */,
 				676F9DC32220FF7E00015E85 /* FPAssertManager.m in Sources */,
 				678FCB7B2202A521002C0262 /* FlutterProgramController.m in Sources */,
 				678FCB8C2202A8C0002C0262 /* FlutterMainController.m in Sources */,
+				67BE6E85222253DC003F55C0 /* FPPath.m in Sources */,
+				67C110B0222235A200164CC8 /* FPBaseController.m in Sources */,
+				676F9DDD222187E000015E85 /* FPAssert.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -879,7 +943,7 @@
 				DEVELOPMENT_TEAM = TN94U5BZF3;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "${SRCROOT}/FlutterPrograms/Supporting Files/PrefixHeader.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/FlutterPrograms/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -901,7 +965,7 @@
 				DEVELOPMENT_TEAM = TN94U5BZF3;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "${SRCROOT}/FlutterPrograms/Supporting Files/PrefixHeader.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/FlutterPrograms/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
