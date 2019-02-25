@@ -24,10 +24,10 @@
 #import "FPBaseController.h"
 
 #import "FPSpec.h"
-#import "FPAssert.h"
+#import "FPAppBundle.h"
 #import "FPPath.h"
 
 #import "FPNetworkManager.h"
-#import "FPAssertManager.h"
+#import "FPAppBundleManager.h"
 
 #endif /* PrefixHeader_pch */

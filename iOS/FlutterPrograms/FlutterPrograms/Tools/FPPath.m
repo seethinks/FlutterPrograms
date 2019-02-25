@@ -18,26 +18,46 @@
     return [HJM_PathDocuments stringByAppendingPathComponent:@"Application"];
 }
 
-+ (NSString *)updateSpecPath {
-    return [[self applicationPath] stringByAppendingPathComponent:@"UpdateSpec"];
-}
-
 + (NSString *)appBundlesPath {
     return [[self applicationPath] stringByAppendingPathComponent:@"Bundles"];
 }
 
-+ (NSString *)updateSpecFilePath {
-    return [[self updateSpecPath] stringByAppendingPathComponent:FP_SPEC_FILE_NAME];
++ (NSString *)appLaunchsPath {
+    return [[self applicationPath] stringByAppendingPathComponent:@"Launchs"];
 }
 
-+ (NSString *)launchAssertDirectoryWithSpec:(FPSpec *)spec {
++ (NSString *)updateSpecPath {
+    return [[self applicationPath] stringByAppendingPathComponent:@"UpdateSpec"];
+}
+
++ (NSString *)appBundlePathWithSpec:(FPSpec *)spec {
     return [[self appBundlesPath] stringByAppendingPathComponent:spec.version];
 }
 
-+ (NSString *)launchAssertPathWithSpec:(FPSpec *)spec {
-    NSString *path = [self launchAssertDirectoryWithSpec:spec];
-    path = [path stringByAppendingPathComponent:@"flutter_assets"];
++ (NSString *)appLaunchPathWithSpec:(FPSpec *)spec {
+    return [[self appLaunchsPath] stringByAppendingPathComponent:spec.version];
+}
+
++ (NSString *)assertFilePathWithSpec:(FPSpec *)spec {
+    NSString *path = [self appBundlePathWithSpec:spec];
+    path = [path stringByAppendingPathComponent:FP_ASSERT_FILE_NAME];
     return path;
+}
+
++ (NSString *)specFilePathWithSpec:(FPSpec *)spec {
+    NSString *path = [self appBundlePathWithSpec:spec];
+    path = [path stringByAppendingPathComponent:FP_SPEC_FILE_NAME];
+    return path;
+}
+
++ (NSString *)appLaunchAssertPathWithSpec:(FPSpec *)spec {
+    NSString *path = [self appLaunchPathWithSpec:spec];
+    path = [path stringByAppendingPathComponent:FP_ASSERT_PATH_NAME];
+    return path;
+}
+
++ (NSString *)updateSpecFilePath {
+    return [[self updateSpecPath] stringByAppendingPathComponent:FP_SPEC_FILE_NAME];
 }
 
 + (NSString *)appBundlePathAtMainBundle {

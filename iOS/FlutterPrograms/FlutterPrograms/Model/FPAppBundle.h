@@ -1,5 +1,5 @@
 //
-//  FPAssert.h
+//  FPAppBundle.h
 //  FlutterPrograms
 //
 //  Created by GuHaijun on 2019/2/23.
@@ -10,16 +10,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FPAssert : NSObject
+@interface FPAppBundle : NSObject
 
-+ (instancetype)assertWithAppBundlePath:(NSString *)appBundlePath;
++ (instancetype)appBundleWithPath:(NSString *)appBundlePath;
 
 @property (nonatomic, readonly) FPSpec *spec;
 @property (nonatomic, readonly) NSString *appBundlePath;
 @property (nonatomic, readonly) NSString *specFilePath;
 @property (nonatomic, readonly) NSString *assertFilePath;
-@property (nonatomic, readonly) NSString *launchAssertDirectory;
-@property (nonatomic, readonly) NSString *launchAssertPath;
+
+- (NSString *)launchPath ;
+- (NSString *)launchAssertPath;
 
 @end
 

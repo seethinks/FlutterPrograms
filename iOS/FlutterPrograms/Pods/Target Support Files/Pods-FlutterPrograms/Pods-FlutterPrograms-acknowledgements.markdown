@@ -144,11 +144,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-## middleman
-
-TODO: Add your license here.
-
-
 ## path_provider
 
 Copyright 2017, the Flutter project authors. All rights reserved.

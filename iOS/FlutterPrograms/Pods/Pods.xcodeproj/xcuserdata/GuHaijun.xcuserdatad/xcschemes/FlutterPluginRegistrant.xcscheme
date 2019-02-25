@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1F6E5BEE97B505B18F30E2096815FEEB"
+               BlueprintIdentifier = "56B5C374CF19B3F2F57CFA999799E00B"
                BlueprintName = "FlutterPluginRegistrant"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "FlutterPluginRegistrant.framework">

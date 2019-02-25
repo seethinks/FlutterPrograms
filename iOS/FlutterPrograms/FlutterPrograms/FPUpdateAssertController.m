@@ -10,14 +10,14 @@
 
 @interface FPUpdateAssertController ()
 
-@property (nonatomic, strong) FPAssert *assert;
+@property (nonatomic, strong) FPAppBundle *assert;
 @property (nonatomic, strong) UIView *contentView;
 
 @end
 
 @implementation FPUpdateAssertController
 
-- (instancetype)initWithAssert:(FPAssert *)assert {
+- (instancetype)initWithAssert:(FPAppBundle *)assert {
     self = [super init];
     if (self) {
         self.assert = assert;
@@ -40,7 +40,7 @@
 
 - (void)fetchUpdateAssert {
     [SVProgressHUD show];
-//    [[FPAssertManager shared] fetchApplicationAssert:self.assert progress:^(NSProgress * _Nonnull downloadProgress) {
+//    [[FPAppBundleManager shared] fetchApplicationAssert:self.assert progress:^(NSProgress * _Nonnull downloadProgress) {
 //        [SVProgressHUD showProgress:downloadProgress.fractionCompleted];
 //    } completionHandler:^(BOOL isSuccess) {
 //        [SVProgressHUD dismiss];

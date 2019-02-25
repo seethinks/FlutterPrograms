@@ -31,19 +31,20 @@
     //    [GeneratedPluginRegistrant registerWithRegistry:self];
     
     NSLog(@"%@", NSHomeDirectory());
-    FPAssertManager *amgr = [FPAssertManager shared];
-    FPAssert *assert = [amgr launchAssert];
-    
-    BOOL update = [amgr checkUpdate];
+    FPAppBundleManager *amgr = [FPAppBundleManager shared];
+    FPAppBundle *appBundle = [amgr launchAppBundle];
+    if ([amgr checkUpdate]) {
+        [amgr downloadUpdateAssertFile];
+    }
     [amgr downloadUpdateSpec];
     
-    //    [[FPAssertManager shared] getApplicationAssert:^(FPAssert * _Nonnull info) {
+    //    [[FPAppBundleManager shared] getApplicationAssert:^(FPAppBundle * _Nonnull info) {
     //
-    //        if (![[FPAssertManager shared] checkVersionWithApplicationAssert: info]) {
+    //        if (![[FPAppBundleManager shared] checkVersionWithApplicationAssert: info]) {
     //            // 不更新，启动app
     ////            FlutterDartProject *dartPro = [[FlutterDartProject alloc] initWithFlutterAssetsURL:[NSURL fileURLWithPath:info.assertPath]];
     ////            FlutterViewController *vc = [[FlutterViewController alloc] initWithProject:dartPro nibName:nil bundle:nil];
-    //            FPAssert *assert = [FPAssert new];
+    //            FPAppBundle *assert = [FPAppBundle new];
     //            assert.specFilePath = FPApplicationSpecFilePath();
     //            assert.assertPath = FPApplicationAssertPath();
     //
@@ -67,7 +68,7 @@
     //    UIViewController *vc = [[FlutterViewController alloc] initWithEngine:self.flutterEngine nibName:nil bundle:nil];
     
     
-    FlutterDartProject *dartPro = [[FlutterDartProject alloc] initWithFlutterAssetsURL:[NSURL fileURLWithPath:assert.launchAssertPath]];
+    FlutterDartProject *dartPro = [[FlutterDartProject alloc] initWithFlutterAssetsURL:[NSURL fileURLWithPath:appBundle.launchAssertPath]];
     FlutterViewController *vc = [[FlutterViewController alloc] initWithProject:dartPro nibName:nil bundle:nil];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FPUpdateAssertController : FPBaseController
 
-- (instancetype)initWithAssert:(FPAssert *)assert;
+- (instancetype)initWithAssert:(FPAppBundle *)assert;
 
 @end
 
