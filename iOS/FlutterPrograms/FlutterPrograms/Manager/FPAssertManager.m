@@ -11,6 +11,7 @@
 @interface FPAssertManager()
 
 @property (nonatomic, strong) NSArray<FPAssert *> *asserts;
+@property (nonatomic, strong) FPAssert *launchAssert;
 
 @end
 
@@ -70,14 +71,122 @@ static FPAssertManager *_instance = nil;
 
 
 - (FPAssert *)launchAssert {
-    for (FPAssert *assert in self.asserts) {
-        if ([SSZipArchive unzipFileAtPath:assert.assertFilePath toDestination:assert.launchAssertDirectory]) {
-            return assert;
+    if (!_launchAssert) {
+        for (FPAssert *assert in self.asserts) {
+            if ([SSZipArchive unzipFileAtPath:assert.assertFilePath toDestination:assert.launchAssertDirectory]) {
+                _launchAssert = assert;
+                break;
+            }
         }
     }
-    return nil;
+    return _launchAssert;
 }
 
+- (BOOL)checkUpdate {
+    
+    NSString *updateSpecFilePath = [FPPath updateSpecFilePath];
+    NSFileManager *fmgr = [NSFileManager defaultManager];
+    if (![fmgr fileExistsAtPath:updateSpecFilePath]) {
+        return false;
+    }
+    FPSpec *updateSpec = [FPSpec specWithPath:updateSpecFilePath];
+    
+    if (updateSpec.version.length == 0) {
+        return false;
+    }
+    
+    if ([updateSpec.version compare:self.launchAssert.spec.version options:NSNumericSearch] == NSOrderedAscending) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+- (void)downloadUpdateAssert {
+
+    NSString *updateSpecPath = [FPPath updateSpecPath];
+    FPAssert *assert = [FPAssert assertWithAppBundlePath:updateSpecPath];
+
+    NSURL *URL = [NSURL URLWithString:assert.spec.flutterAssertUrl];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+
+    NSURLSessionDownloadTask *downloadTask = [[FPNetworkManager shared] downloadTaskWithRequest:request  progress:^(NSProgress * _Nonnull downloadProgress) {
+
+    } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+
+        NSFileManager *fmgr = [NSFileManager defaultManager];
+        NSString *tempPath = assert.assertFilePath;
+        if ([fmgr fileExistsAtPath:tempPath]) {
+            [fmgr removeItemAtPath:tempPath error:nil];
+        }
+        [fmgr createDirectoryAtPath:tempPath withIntermediateDirectories:true attributes:nil error:nil];
+
+        NSURL *tempFileUrl = [NSURL fileURLWithPath:tempPath];
+        return tempFileUrl;
+
+    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+        BOOL isSuccess = false;
+        NSFileManager *fmgr = [NSFileManager defaultManager];
+        if (error) {
+            [fmgr removeItemAtURL:filePath error:nil];
+            isSuccess = false;
+            FP_NSLog(@"%@", error);
+        }
+        else {
+//            [fmgr removeItemAtPath:assert.assertPath error:nil];
+//            [fmgr copyItemAtPath:filePath.path toPath:assert.assertPath error:nil];
+//            [fmgr removeItemAtPath:assert.specFilePath error:nil];
+//            [fmgr copyItemAtPath:FPApplicationUpdateSpecFileLocalPath() toPath:assert.specFilePath error:nil];
+//            isSuccess = true;
+            FP_NSLog(@"%@", filePath.path);
+        }
+    }];
+    [downloadTask resume];
+}
+
+- (void)downloadUpdateSpec {
+    
+    NSURL *URL = [NSURL URLWithString:[FPPath updateSpecFileRemoteUrl]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    
+    NSURLSessionDownloadTask *downloadTask = [[FPNetworkManager shared] downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+        
+        NSFileManager *fmgr = [NSFileManager defaultManager];
+        BOOL isDir = false;
+        NSString *updateSpecPath = [FPPath updateSpecPath];
+        if (![fmgr fileExistsAtPath:updateSpecPath isDirectory:&isDir]) {
+            [fmgr createDirectoryAtPath:updateSpecPath withIntermediateDirectories:true attributes:nil error:nil];
+        }
+        else {
+            if (!isDir) {
+                [fmgr removeItemAtPath:updateSpecPath error:nil];
+                [fmgr createDirectoryAtPath:updateSpecPath withIntermediateDirectories:true attributes:nil error:nil];
+            }
+        }
+        NSString *updateSpecFilePath = [FPPath updateSpecFilePath];
+        if ([fmgr fileExistsAtPath:updateSpecFilePath]) {
+            [fmgr removeItemAtPath:updateSpecFilePath error:nil];
+        }
+        
+        NSURL *updateSpecFileUrl = [NSURL fileURLWithPath:updateSpecFilePath];
+        return updateSpecFileUrl;
+        
+    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+        if (error) {
+            NSFileManager *fmgr = [NSFileManager defaultManager];
+            [fmgr removeItemAtURL:filePath error:nil];
+            FP_NSLog(@"%@", filePath.path)
+            FP_NSLog(@"%@", error);
+        }
+        else {
+            FP_NSLog(@"%@", filePath.path)
+        }
+    }];
+    [downloadTask resume];
+}
 
 lazygetter(NSArray, asserts)
 
@@ -125,45 +234,7 @@ lazygetter(NSArray, asserts)
 //    [downloadTask resume];
 //}
 //
-//- (void)fetchApplicationUpdateSpec {
-//    
-//    NSURL *URL = [NSURL URLWithString:FPApplicationUpdateSpecFileRemoteUrl()];
-//    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-//    
-//    NSURLSessionDownloadTask *downloadTask = [[FPNetworkManager shared] downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
-//        
-//    } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
-//        
-//        NSFileManager *fmgr = [NSFileManager defaultManager];
-//        BOOL isDir = false;
-//        NSString *updateSpecPath = FPApplicationUpdateSpecFileLocalPath();
-//        if (![fmgr fileExistsAtPath:updateSpecPath isDirectory:&isDir]) {
-//            [fmgr createDirectoryAtPath:updateSpecPath withIntermediateDirectories:true attributes:nil error:nil];
-//        }
-//        else {
-//            if (!isDir) {
-//                [fmgr removeItemAtPath:updateSpecPath error:nil];
-//                [fmgr createDirectoryAtPath:updateSpecPath withIntermediateDirectories:true attributes:nil error:nil];
-//            }
-//        }
-//        NSString *updateSpecFilePath = FPApplicationUpdateSpecFileLocalPath();
-//        if ([fmgr fileExistsAtPath:updateSpecFilePath]) {
-//            [fmgr removeItemAtPath:updateSpecFilePath error:nil];
-//        }
-//        
-//        NSURL *updateSpecFileUrl = [NSURL fileURLWithPath:updateSpecFilePath];
-//        return updateSpecFileUrl;
-//        
-//    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
-//        if (!error) {
-//            NSFileManager *fmgr = [NSFileManager defaultManager];
-//            [fmgr removeItemAtURL:filePath error:nil];
-//            FP_NSLog(@"%@", error);
-//        }
-//    }];
-//    [downloadTask resume];
-//    
-//}
+
 //
 //- (BOOL)checkVersionWithApplicationAssert:(FPAssert *)info {
 //    NSString *updateSpecFilePath = FPApplicationUpdateSpecFileLocalPath();

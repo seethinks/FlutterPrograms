@@ -12,14 +12,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FPPath : NSObject
 
-+ (NSString *)applicationUpdateSpecFileRemoteUrl;
 + (NSString *)applicationPath;
-+ (NSString *)updateSpecPath;
 + (NSString *)appBundlesPath;
-+ (NSString *)updateSpecPathFilePath;
 + (NSString *)launchAssertPathWithSpec:(FPSpec *)spec;
 + (NSString *)launchAssertDirectoryWithSpec:(FPSpec *)spec;
 + (NSString *)appBundlePathAtMainBundle;
+
++ (NSString *)updateSpecFileRemoteUrl;
++ (NSString *)updateSpecPath;
++ (NSString *)updateSpecFilePath;
 
 @end
 

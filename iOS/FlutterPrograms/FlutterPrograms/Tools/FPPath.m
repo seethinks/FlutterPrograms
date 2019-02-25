@@ -10,7 +10,7 @@
 
 @implementation FPPath
 
-+ (NSString *)applicationUpdateSpecFileRemoteUrl {
++ (NSString *)updateSpecFileRemoteUrl {
     return @"https://raw.githubusercontent.com/FlutterPrograms/UpdateSpec/master/spec/spec.json";
 }
 
@@ -26,8 +26,8 @@
     return [[self applicationPath] stringByAppendingPathComponent:@"Bundles"];
 }
 
-+ (NSString *)updateSpecPathFilePath {
-    return [[self updateSpecPath] stringByAppendingString:FP_SPEC_FILE_NAME];
++ (NSString *)updateSpecFilePath {
+    return [[self updateSpecPath] stringByAppendingPathComponent:FP_SPEC_FILE_NAME];
 }
 
 + (NSString *)launchAssertDirectoryWithSpec:(FPSpec *)spec {

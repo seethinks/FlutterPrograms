@@ -31,8 +31,11 @@
     //    [GeneratedPluginRegistrant registerWithRegistry:self];
     
     NSLog(@"%@", NSHomeDirectory());
+    FPAssertManager *amgr = [FPAssertManager shared];
+    FPAssert *assert = [amgr launchAssert];
     
-    FPAssert *assert = [[FPAssertManager shared] launchAssert];
+    BOOL update = [amgr checkUpdate];
+    [amgr downloadUpdateSpec];
     
     //    [[FPAssertManager shared] getApplicationAssert:^(FPAssert * _Nonnull info) {
     //
