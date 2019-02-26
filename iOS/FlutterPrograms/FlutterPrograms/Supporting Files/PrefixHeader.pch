@@ -20,8 +20,10 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <HJMacros/HJMacros.h>
 #import <Masonry/Masonry.h>
+#import <middleman/MiddlemanPlugin.h>
 
-#import "FPBaseController.h"
+#import <FlutterPluginRegistrant/GeneratedPluginRegistrant.h>
+
 
 #import "FPSpec.h"
 #import "FPAppBundle.h"

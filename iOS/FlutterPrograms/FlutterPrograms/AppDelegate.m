@@ -10,7 +10,7 @@
 #import "MainController.h"
 #import <FlutterPluginRegistrant/GeneratedPluginRegistrant.h>
 #import "FlutterMainController.h"
-#import "FPUpdateAssertController.h"
+#import "FPAppController.h"
 
 @interface AppDelegate ()
 
@@ -33,9 +33,9 @@
     NSLog(@"%@", NSHomeDirectory());
     FPAppBundleManager *amgr = [FPAppBundleManager shared];
     FPAppBundle *appBundle = [amgr launchAppBundle];
-    if ([amgr checkUpdate]) {
-        [amgr downloadUpdateAssertFile];
-    }
+//    if ([amgr checkUpdate]) {
+//        [amgr downloadUpdateAssertFile];
+//    }
     [amgr downloadUpdateSpec];
     
     //    [[FPAppBundleManager shared] getApplicationAssert:^(FPAppBundle * _Nonnull info) {
@@ -68,15 +68,19 @@
     //    UIViewController *vc = [[FlutterViewController alloc] initWithEngine:self.flutterEngine nibName:nil bundle:nil];
     
     
-    FlutterDartProject *dartPro = [[FlutterDartProject alloc] initWithFlutterAssetsURL:[NSURL fileURLWithPath:appBundle.launchAssertPath]];
-    FlutterViewController *vc = [[FlutterViewController alloc] initWithProject:dartPro nibName:nil bundle:nil];
+//    FlutterDartProject *dartPro = [[FlutterDartProject alloc] initWithFlutterAssetsURL:[NSURL fileURLWithPath:appBundle.launchAssertPath]];
+//    FlutterViewController *vc = [[FlutterViewController alloc] initWithProject:dartPro nibName:nil bundle:nil];
+    
+    FPAppController *vc = [[FPAppController alloc] initWithAppBundle:appBundle nibName:nil bundle:nil];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = vc;
     [self.window makeKeyAndVisible];
     
-    [GeneratedPluginRegistrant registerWithRegistry:self.flutterEngine];
     
+//    [GeneratedPluginRegistrant registerWithRegistry:self.flutterEngine];
+    [GeneratedPluginRegistrant registerWithRegistry:vc.pluginRegistry];
+
     // Override point for customization after application launch.
     return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }

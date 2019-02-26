@@ -29,6 +29,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *)appBundlePathAtMainBundle;
 
++ (NSString *)programsPath;
+
++ (NSString *)programBundlePathWithSpec:(FPSpec *)spec;
++ (NSString *)programLaunchPathWithSpec:(FPSpec *)spec;
++ (NSString *)programLaunchAssertPathWithSpec:(FPSpec *)spec;
++ (NSString *)programLaunchAssertFilePathWithSpec:(FPSpec *)spec;
+
+
 @end
 
 NS_ASSUME_NONNULL_END
