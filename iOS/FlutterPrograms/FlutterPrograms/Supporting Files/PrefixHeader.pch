@@ -15,7 +15,6 @@
 #import "FPConfig.h"
 
 #import <AFNetworking/AFNetworking.h>
-#import <MJRefresh/MJRefresh.h>
 #import <SSZipArchive/SSZipArchive.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <HJMacros/HJMacros.h>
