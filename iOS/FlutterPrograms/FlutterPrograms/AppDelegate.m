@@ -7,9 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "MainController.h"
 #import <FlutterPluginRegistrant/GeneratedPluginRegistrant.h>
-#import "FlutterMainController.h"
 #import "FPAppController.h"
 
 @interface AppDelegate ()
@@ -21,55 +19,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
-    //    UIViewController *vc = [[UIStoryboard storyboardWithName:@"MainController" bundle:nil] instantiateInitialViewController];
-    //
-    //    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    //    self.window.rootViewController = vc;
-    //    [self.window makeKeyAndVisible];
-    //
-    //    [GeneratedPluginRegistrant registerWithRegistry:self];
-    
+  
     NSLog(@"%@", NSHomeDirectory());
     FPAppBundleManager *amgr = [FPAppBundleManager shared];
     FPAppBundle *appBundle = [amgr launchAppBundle];
-//    if ([amgr checkUpdate]) {
-//        [amgr downloadUpdateAssertFile];
-//    }
     [amgr downloadUpdateSpec];
-    
-    //    [[FPAppBundleManager shared] getApplicationAssert:^(FPAppBundle * _Nonnull info) {
-    //
-    //        if (![[FPAppBundleManager shared] checkVersionWithApplicationAssert: info]) {
-    //            // 不更新，启动app
-    ////            FlutterDartProject *dartPro = [[FlutterDartProject alloc] initWithFlutterAssetsURL:[NSURL fileURLWithPath:info.assertPath]];
-    ////            FlutterViewController *vc = [[FlutterViewController alloc] initWithProject:dartPro nibName:nil bundle:nil];
-    //            FPAppBundle *assert = [FPAppBundle new];
-    //            assert.specFilePath = FPApplicationSpecFilePath();
-    //            assert.assertPath = FPApplicationAssertPath();
-    //
-    //            FPUpdateAssertController *vc =  [[FPUpdateAssertController alloc] initWithAssert:assert];
-    //
-    //            self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    //            self.window.rootViewController = vc;
-    //            [self.window makeKeyAndVisible];
-    //        }
-    //        else {
-    //            // 更新app
-    //
-    //        }
-    //    }];
-    
-    
-    
-    //    self.flutterEngine = [[FlutterEngine alloc] initWithName:@"io.flutter" project:nil];
-    //    [self.flutterEngine runWithEntrypoint:nil];
-    ////
-    //    UIViewController *vc = [[FlutterViewController alloc] initWithEngine:self.flutterEngine nibName:nil bundle:nil];
-    
-    
-//    FlutterDartProject *dartPro = [[FlutterDartProject alloc] initWithFlutterAssetsURL:[NSURL fileURLWithPath:appBundle.launchAssertPath]];
-//    FlutterViewController *vc = [[FlutterViewController alloc] initWithProject:dartPro nibName:nil bundle:nil];
     
     FPAppController *vc = [[FPAppController alloc] initWithAppBundle:appBundle nibName:nil bundle:nil];
     
@@ -77,8 +31,6 @@
     self.window.rootViewController = vc;
     [self.window makeKeyAndVisible];
     
-    
-//    [GeneratedPluginRegistrant registerWithRegistry:self.flutterEngine];
     [GeneratedPluginRegistrant registerWithRegistry:vc.pluginRegistry];
 
     // Override point for customization after application launch.

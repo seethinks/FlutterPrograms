@@ -7,7 +7,7 @@
 //
 
 #import "FPAppController.h"
-#import "FlutterProgramController.h"
+#import "FPProgramController.h"
 
 @interface FPAppController ()
 
@@ -52,7 +52,7 @@
     }
     NSString *LaunchAssertPath = [FPPath programLaunchAssertPathWithSpec:spec];
     FlutterDartProject *dartPro = [[FlutterDartProject alloc] initWithFlutterAssetsURL:[NSURL fileURLWithPath:LaunchAssertPath]];
-    FlutterProgramController *vc = [[FlutterProgramController alloc] initWithProject:dartPro nibName:nil bundle:nil];
+    FPProgramController *vc = [[FPProgramController alloc] initWithProject:dartPro nibName:nil bundle:nil];
     
     [GeneratedPluginRegistrant registerWithRegistry:vc.pluginRegistry];
     [self presentViewController:vc animated:true completion:nil];

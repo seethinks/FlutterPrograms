@@ -11,30 +11,21 @@
 		5E8DC40194530E34CEC2F9D5 /* Pods_FlutterPrograms.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C8A5AF4B56898C7F24BE82 /* Pods_FlutterPrograms.framework */; };
 		5FB6BE5E4212D68B1FA6FAA3 /* Pods_FlutterPrograms.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C8A5AF4B56898C7F24BE82 /* Pods_FlutterPrograms.framework */; };
 		6738862221FAF3C100D3B47A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6738862121FAF3C100D3B47A /* AppDelegate.m */; };
-		6738862821FAF3C100D3B47A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6738862621FAF3C100D3B47A /* Main.storyboard */; };
 		6738862A21FAF3C300D3B47A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6738862921FAF3C300D3B47A /* Assets.xcassets */; };
 		6738862D21FAF3C300D3B47A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6738862B21FAF3C300D3B47A /* LaunchScreen.storyboard */; };
 		6738863021FAF3C300D3B47A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6738862F21FAF3C300D3B47A /* main.m */; };
 		6738863A21FAF3C300D3B47A /* FlutterProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6738863921FAF3C300D3B47A /* FlutterProgramsTests.m */; };
 		6738864521FAF3C300D3B47A /* FlutterProgramsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6738864421FAF3C300D3B47A /* FlutterProgramsUITests.m */; };
-		6738865421FAF4E200D3B47A /* FlutterProgramController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6738865221FAF4E200D3B47A /* FlutterProgramController.m */; };
 		676F9DC32220FF7E00015E85 /* FPAppBundleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 676F9DC22220FF7E00015E85 /* FPAppBundleManager.m */; };
 		676F9DC82221054C00015E85 /* FPNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 676F9DC72221054C00015E85 /* FPNetworkManager.m */; };
 		676F9DDD222187E000015E85 /* FPAppBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 676F9DDC222187E000015E85 /* FPAppBundle.m */; };
 		676F9DE022218A7800015E85 /* FPSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 676F9DDF22218A7800015E85 /* FPSpec.m */; };
 		678969C421FB1B00003A4EB5 /* NSLayoutConstraint+NNVisualFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 678969C321FB1B00003A4EB5 /* NSLayoutConstraint+NNVisualFormat.m */; };
-		678969C821FB279F003A4EB5 /* MainController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 678969C621FB279E003A4EB5 /* MainController.storyboard */; };
-		678969C921FB279F003A4EB5 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 678969C721FB279E003A4EB5 /* MainController.m */; };
 		678FCB772202A521002C0262 /* NSLayoutConstraint+NNVisualFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 678969C321FB1B00003A4EB5 /* NSLayoutConstraint+NNVisualFormat.m */; };
 		678FCB782202A521002C0262 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6738862F21FAF3C300D3B47A /* main.m */; };
 		678FCB792202A521002C0262 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6738862121FAF3C100D3B47A /* AppDelegate.m */; };
-		678FCB7A2202A521002C0262 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 678969C721FB279E003A4EB5 /* MainController.m */; };
-		678FCB7B2202A521002C0262 /* FlutterProgramController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6738865221FAF4E200D3B47A /* FlutterProgramController.m */; };
-		678FCB7F2202A521002C0262 /* MainController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 678969C621FB279E003A4EB5 /* MainController.storyboard */; };
 		678FCB802202A521002C0262 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6738862B21FAF3C300D3B47A /* LaunchScreen.storyboard */; };
 		678FCB812202A521002C0262 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6738862921FAF3C300D3B47A /* Assets.xcassets */; };
-		678FCB822202A521002C0262 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6738862621FAF3C100D3B47A /* Main.storyboard */; };
-		678FCB8C2202A8C0002C0262 /* FlutterMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 678FCB8B2202A8C0002C0262 /* FlutterMainController.m */; };
 		67BE6E85222253DC003F55C0 /* FPPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BE6E84222253DC003F55C0 /* FPPath.m */; };
 		67BE6E86222253DC003F55C0 /* FPPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BE6E84222253DC003F55C0 /* FPPath.m */; };
 		67BE6E8822225DC7003F55C0 /* flutter_bundle in Resources */ = {isa = PBXBuildFile; fileRef = 67BE6E8722225DC7003F55C0 /* flutter_bundle */; };
@@ -76,7 +67,6 @@
 		6738861D21FAF3C100D3B47A /* FlutterProgramsRelease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlutterProgramsRelease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6738862021FAF3C100D3B47A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6738862121FAF3C100D3B47A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		6738862721FAF3C100D3B47A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6738862921FAF3C300D3B47A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6738862C21FAF3C300D3B47A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6738862E21FAF3C300D3B47A /* Info-release.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-release.plist"; sourceTree = "<group>"; };
@@ -87,8 +77,6 @@
 		6738864021FAF3C300D3B47A /* FlutterProgramsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlutterProgramsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6738864421FAF3C300D3B47A /* FlutterProgramsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlutterProgramsUITests.m; sourceTree = "<group>"; };
 		6738864621FAF3C300D3B47A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6738865221FAF4E200D3B47A /* FlutterProgramController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlutterProgramController.m; sourceTree = "<group>"; };
-		6738865321FAF4E200D3B47A /* FlutterProgramController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlutterProgramController.h; sourceTree = "<group>"; };
 		6738865F21FAF7B400D3B47A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		676F9DC12220FF7E00015E85 /* FPAppBundleManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPAppBundleManager.h; sourceTree = "<group>"; };
 		676F9DC22220FF7E00015E85 /* FPAppBundleManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPAppBundleManager.m; sourceTree = "<group>"; };
@@ -102,12 +90,7 @@
 		676F9DDF22218A7800015E85 /* FPSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPSpec.m; sourceTree = "<group>"; };
 		678969C221FB1B00003A4EB5 /* NSLayoutConstraint+NNVisualFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+NNVisualFormat.h"; sourceTree = "<group>"; };
 		678969C321FB1B00003A4EB5 /* NSLayoutConstraint+NNVisualFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+NNVisualFormat.m"; sourceTree = "<group>"; };
-		678969C521FB279E003A4EB5 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
-		678969C621FB279E003A4EB5 /* MainController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainController.storyboard; sourceTree = "<group>"; };
-		678969C721FB279E003A4EB5 /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
 		678FCB872202A521002C0262 /* FlutterPrograms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlutterPrograms.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		678FCB8A2202A8C0002C0262 /* FlutterMainController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlutterMainController.h; sourceTree = "<group>"; };
-		678FCB8B2202A8C0002C0262 /* FlutterMainController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlutterMainController.m; sourceTree = "<group>"; };
 		67BE6E83222253DC003F55C0 /* FPPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPPath.h; sourceTree = "<group>"; };
 		67BE6E84222253DC003F55C0 /* FPPath.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPPath.m; sourceTree = "<group>"; };
 		67BE6E8722225DC7003F55C0 /* flutter_bundle */ = {isa = PBXFileReference; lastKnownFileType = folder; path = flutter_bundle; sourceTree = "<group>"; };
@@ -217,14 +200,6 @@
 				67BE6EAB2224C3E8003F55C0 /* FPProgramController.m */,
 				67BE6E962224C211003F55C0 /* FPFlutterController.h */,
 				67BE6E972224C211003F55C0 /* FPFlutterController.m */,
-				678969C521FB279E003A4EB5 /* MainController.h */,
-				678969C721FB279E003A4EB5 /* MainController.m */,
-				678969C621FB279E003A4EB5 /* MainController.storyboard */,
-				678FCB8A2202A8C0002C0262 /* FlutterMainController.h */,
-				678FCB8B2202A8C0002C0262 /* FlutterMainController.m */,
-				6738865321FAF4E200D3B47A /* FlutterProgramController.h */,
-				6738865221FAF4E200D3B47A /* FlutterProgramController.m */,
-				6738862621FAF3C100D3B47A /* Main.storyboard */,
 				6738862921FAF3C300D3B47A /* Assets.xcassets */,
 				6738862B21FAF3C300D3B47A /* LaunchScreen.storyboard */,
 				678969C121FB1B00003A4EB5 /* Category */,
@@ -436,11 +411,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				678969C821FB279F003A4EB5 /* MainController.storyboard in Resources */,
 				67BE6E8922225DC7003F55C0 /* flutter_bundle in Resources */,
 				6738862D21FAF3C300D3B47A /* LaunchScreen.storyboard in Resources */,
 				6738862A21FAF3C300D3B47A /* Assets.xcassets in Resources */,
-				6738862821FAF3C100D3B47A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,11 +435,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				678FCB7F2202A521002C0262 /* MainController.storyboard in Resources */,
 				67BE6E8822225DC7003F55C0 /* flutter_bundle in Resources */,
 				678FCB802202A521002C0262 /* LaunchScreen.storyboard in Resources */,
 				678FCB812202A521002C0262 /* Assets.xcassets in Resources */,
-				678FCB822202A521002C0262 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,9 +606,7 @@
 				67C110A822219B4B00164CC8 /* FPNetworkManager.m in Sources */,
 				6738862221FAF3C100D3B47A /* AppDelegate.m in Sources */,
 				67C110A522219B1B00164CC8 /* FPSpec.m in Sources */,
-				678969C921FB279F003A4EB5 /* MainController.m in Sources */,
 				67C110A622219B1E00164CC8 /* FPAppBundle.m in Sources */,
-				6738865421FAF4E200D3B47A /* FlutterProgramController.m in Sources */,
 				67BE6E992224C211003F55C0 /* FPFlutterController.m in Sources */,
 				67BE6EA92224C3D7003F55C0 /* FPAppController.m in Sources */,
 				67C110A722219B4600164CC8 /* FPAppBundleManager.m in Sources */,
@@ -671,12 +640,9 @@
 				678FCB782202A521002C0262 /* main.m in Sources */,
 				678FCB792202A521002C0262 /* AppDelegate.m in Sources */,
 				676F9DE022218A7800015E85 /* FPSpec.m in Sources */,
-				678FCB7A2202A521002C0262 /* MainController.m in Sources */,
 				67BE6EA82224C3D7003F55C0 /* FPAppController.m in Sources */,
 				676F9DC32220FF7E00015E85 /* FPAppBundleManager.m in Sources */,
 				67BE6E982224C211003F55C0 /* FPFlutterController.m in Sources */,
-				678FCB7B2202A521002C0262 /* FlutterProgramController.m in Sources */,
-				678FCB8C2202A8C0002C0262 /* FlutterMainController.m in Sources */,
 				67BE6E85222253DC003F55C0 /* FPPath.m in Sources */,
 				676F9DDD222187E000015E85 /* FPAppBundle.m in Sources */,
 			);
@@ -698,14 +664,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		6738862621FAF3C100D3B47A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6738862721FAF3C100D3B47A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		6738862B21FAF3C300D3B47A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

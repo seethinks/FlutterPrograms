@@ -8,8 +8,6 @@
 
 #import <Flutter/Flutter.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 typedef void(^FPVoidCallback)(NSString *state, NSString *message, NSDictionary *info);
 
 @interface FPFlutterController : FlutterViewController
@@ -20,5 +18,3 @@ typedef void(^FPVoidCallback)(NSString *state, NSString *message, NSDictionary *
 - (instancetype)initWithAppBundle:(FPAppBundle *)appBundle nibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
 
 @end
-
-NS_ASSUME_NONNULL_END
