@@ -23,21 +23,11 @@
     // Do any additional setup after loading the view.
     [self.view addSubview:self.closeButton];
     
-    CGFloat statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
-    NSArray<NSLayoutConstraint *> *constraints =
-    [NSLayoutConstraint nn_constraintsWithVisualFormats: @[@{
-                                                               @"format" : @"H:[closeButton(==42)]-25-|",
-                                                               },
-                                                           @{
-                                                               @"format" :  @"V:|-topEdge-[closeButton(==32)]",
-                                                               @"metrics" : @{ @"topEdge" : @(statusBarHeight + 5)}
-                                                               }
-                                                           ]
-                                                  views: @{
-                                                           @"closeButton" : self.closeButton
-                                                           }
-     ];
-    [NSLayoutConstraint activateConstraints:constraints];
+    [self.closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.equalTo(@(CGSizeMake(42, 32)));
+        make.right.offset(-20);
+        make.top.offset((fp_safeAreaTopMargin() + 25));
+    }];
 }
 
 - (void)closeAction {
