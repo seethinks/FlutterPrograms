@@ -9,7 +9,6 @@ def all_pods
     pod "AFNetworking"
     pod "SSZipArchive"
     pod "SVProgressHUD"
-    pod "MJRefresh"
     pod "HJMacros", "0.6.0"
     pod "Masonry", "1.1.0"
 end
