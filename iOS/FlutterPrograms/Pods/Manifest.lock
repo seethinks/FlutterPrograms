@@ -26,6 +26,7 @@ PODS:
     - HJMacros/Bases (= 0.6.0)
   - HJMacros/Bases (0.6.0)
   - Masonry (1.1.0)
+  - MaterialControls (1.2.2)
   - middleman (0.0.1):
     - Flutter
   - path_provider (0.0.1):
@@ -45,6 +46,7 @@ DEPENDENCIES:
   - FlutterPluginRegistrant (from `../../flutter_module/.ios/Flutter/FlutterPluginRegistrant`)
   - HJMacros (= 0.6.0)
   - Masonry (= 1.1.0)
+  - MaterialControls (~> 1.2.2)
   - middleman (from `../../flutter_module/.ios/Flutter/.symlinks/middleman/ios`)
   - path_provider (from `../../flutter_module/.ios/Flutter/.symlinks/path_provider/ios`)
   - share (from `../../flutter_module/.ios/Flutter/.symlinks/share/ios`)
@@ -58,6 +60,7 @@ SPEC REPOS:
     - AFNetworking
     - HJMacros
     - Masonry
+    - MaterialControls
     - SSZipArchive
     - SVProgressHUD
 
@@ -83,6 +86,7 @@ SPEC CHECKSUMS:
   FlutterPluginRegistrant: 5b7d3123b25f27079bc30ad853082d25db4d8ee0
   HJMacros: 49759546fd8dd284a58caea4fd61dcc57ec8a4f8
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MaterialControls: 1c6b29e78d3a13d8dd6a67ed31b6d26eb5de8f72
   middleman: 17a525099ca966f26d46098eddeecf038fb7690f
   path_provider: 09407919825bfe3c2deae39453b7a5b44f467873
   share: 222b5dcc8031238af9d7de91149df65bad1aef75
@@ -91,6 +95,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   url_launcher: 92b89c1029a0373879933c21642958c874539095
 
-PODFILE CHECKSUM: 97a488930a5b9759cdf88e0847e0e9864301e080
+PODFILE CHECKSUM: 6217cc29b5c48725ef3e7d9b67d7e56a57c26989
 
 COCOAPODS: 1.5.3
