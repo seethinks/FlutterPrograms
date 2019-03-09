@@ -11,7 +11,7 @@
 @implementation FPPath
 
 + (NSString *)updateSpecFileRemoteUrl {
-    return @"https://raw.githubusercontent.com/FlutterPrograms/UpdateSpec/master/spec/spec.json";
+    return @"https://raw.githubusercontent.com/FlutterPrograms/AppSpec/master/spec/spec.json";
 }
 
 + (NSString *)applicationPath {
