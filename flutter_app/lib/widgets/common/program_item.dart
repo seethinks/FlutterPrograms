@@ -54,7 +54,9 @@ class _ProgramItemWidgetState extends State<ProgramItemWidget>
                   padding: EdgeInsets.only(left: 20),
                 ),
                 // icon 图片, 应用名称
-                Stack(
+                Container(
+                  width: 74,
+                  child:  Stack(
                   children: <Widget>[
                     //icon 图片
                     Align(
@@ -81,16 +83,21 @@ class _ProgramItemWidgetState extends State<ProgramItemWidget>
                     // 应用名称
                     Align(
                       alignment: Alignment.bottomCenter,
-                      child: Text(
-                        widget.info.spec.name,
-                        style: TextStyle(
-                          color: Color(0xFF3333333),
-                          fontSize: 11.0,
-                          fontWeight: FontWeight.w600,
+                      child: Container(
+                        child: Text(
+                          widget.info.spec.name,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: Color(0xFF3333333),
+                            fontSize: 11.0,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ),
                   ],
+                ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(right: 12),
