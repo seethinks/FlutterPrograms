@@ -35,6 +35,7 @@
     }];
     
     [[MiddlemanPlugin shared] setMethodCallHandler:@"getAppSpec" handler:^(id arguments, FlutterResult result) {
+        NSLog(@"Native iOS %@:%@",NSStringFromClass([weakSelf class]), arguments);
         NSData *specData = [NSData dataWithContentsOfFile:self.appBunndle.specFilePath];
         NSString *specString = [[NSString alloc] initWithData:specData encoding:NSUTF8StringEncoding];
         return result(specString);
