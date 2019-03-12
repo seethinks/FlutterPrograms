@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - FileMD5Hash (2.0.0)
   - Flutter (1.0.0)
   - FlutterPluginRegistrant (0.0.1):
     - Flutter
@@ -42,6 +43,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - FileMD5Hash
   - Flutter (from `../../flutter_module/.ios/Flutter/engine`)
   - FlutterPluginRegistrant (from `../../flutter_module/.ios/Flutter/FlutterPluginRegistrant`)
   - HJMacros (= 0.6.0)
@@ -58,6 +60,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - FileMD5Hash
     - HJMacros
     - Masonry
     - MaterialControls
@@ -82,6 +85,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  FileMD5Hash: 3ed69cc19a21ff4d30ae8833fc104275ad2c7de0
   Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
   FlutterPluginRegistrant: 5b7d3123b25f27079bc30ad853082d25db4d8ee0
   HJMacros: 49759546fd8dd284a58caea4fd61dcc57ec8a4f8
@@ -95,6 +99,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   url_launcher: 92b89c1029a0373879933c21642958c874539095
 
-PODFILE CHECKSUM: 6217cc29b5c48725ef3e7d9b67d7e56a57c26989
+PODFILE CHECKSUM: d4d599f9f8e74b747e4cb888f725556e193b2584
 
 COCOAPODS: 1.5.3

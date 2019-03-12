@@ -144,6 +144,7 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FileMD5Hash/FileMD5Hash.framework"
   install_framework "${PODS_ROOT}/../../../flutter_module/.ios/Flutter/engine/Flutter.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FlutterPluginRegistrant/FlutterPluginRegistrant.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework"
@@ -158,6 +159,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FileMD5Hash/FileMD5Hash.framework"
   install_framework "${PODS_ROOT}/../../../flutter_module/.ios/Flutter/engine/Flutter.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FlutterPluginRegistrant/FlutterPluginRegistrant.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework"

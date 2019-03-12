@@ -12,6 +12,7 @@ def all_pods
     pod "HJMacros", "0.6.0"
     pod "Masonry", "1.1.0"
     pod "MaterialControls", "~> 1.2.2"
+    pod "FileMD5Hash"
 end
 
 target :FlutterPrograms do

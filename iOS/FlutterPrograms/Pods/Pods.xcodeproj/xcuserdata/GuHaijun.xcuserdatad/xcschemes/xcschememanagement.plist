@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FileMD5Hash.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>FlutterPluginRegistrant.xcscheme</key>
 		<dict>
 			<key>isShown</key>
