@@ -91,8 +91,6 @@ class _HomeState extends State<Home> {
   }
 
   void _handleItemPressed({Spec spec}) async {
-    var specJson = spec.toJson();
-    // var resp = await Middleman.channel.invokeMethod('openProgram', specJson);
     var resp = await NativeInterface.openProgram(spec: spec);
     log.info('Flutter Home _handleItemPressed ' + '$resp');
   }

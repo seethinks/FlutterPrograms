@@ -174,8 +174,9 @@ class _FavoriteState extends State<Favorite>
     }
   }
 
-  void openProgram(ProgramItemInfo info) {
-    log.info('open' + info.spec.id);
+  void openProgram(ProgramItemInfo info) async {
+    var resp = await NativeInterface.openProgram(spec: info.spec);
+    log.info('Flutter Home _handleItemPressed ' + '$resp');
   }
 
   @override
