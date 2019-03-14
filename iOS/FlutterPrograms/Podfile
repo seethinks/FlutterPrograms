@@ -18,15 +18,15 @@ target :FlutterPrograms do
     all_pods
     
     # 替换 Flutter 官方 Flutter.framework
-    FileUtils.rm_r('../../flutter_module/.ios/Flutter/engine/Flutter.framework', :force => true)
-    FileUtils.cp_r('../flutter_frameworks/ios_debug_all/Flutter.framework', '../../flutter_module/.ios/Flutter/engine/Flutter.framework')
+#    FileUtils.rm_r('../../flutter_module/.ios/Flutter/engine/Flutter.framework', :force => true)
+#    FileUtils.cp_r('../flutter_frameworks/ios_debug_all/Flutter.framework', '../../flutter_module/.ios/Flutter/engine/Flutter.framework')
 end
 
 target :FlutterProgramsHotUpdate do
     all_pods
     
     # 替换 Flutter 官方 Flutter.framework
-    FileUtils.rm_r('../../flutter_module/.ios/Flutter/engine/Flutter.framework', :force => true)
-    FileUtils.cp_r('../flutter_frameworks/ios_debug_all/Flutter.framework', '../../flutter_module/.ios/Flutter/engine/Flutter.framework')
+#    FileUtils.rm_r('../../flutter_module/.ios/Flutter/engine/Flutter.framework', :force => true)
+#    FileUtils.cp_r('../flutter_frameworks/ios_debug_all/Flutter.framework', '../../flutter_module/.ios/Flutter/engine/Flutter.framework')
 end
 

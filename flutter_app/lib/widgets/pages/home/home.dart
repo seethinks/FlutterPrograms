@@ -114,7 +114,6 @@ class HomeItem extends StatefulWidget {
 }
 
 class _HomeItemState extends State<HomeItem> with UpdateStateMixin<HomeItem> {
-  double _downloadProcess = 0.0;
 
   @override
   Widget build(BuildContext context) {
