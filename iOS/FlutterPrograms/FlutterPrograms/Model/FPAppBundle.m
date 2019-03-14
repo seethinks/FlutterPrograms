@@ -53,5 +53,30 @@
 - (NSString *)launchAssertPath {
     return [FPPath appLaunchAssertPathWithSpec:self.spec];
 }
+    
+- (BOOL)checkAssertMD5 {
+    
+    // 文件检查
+    NSFileManager *fmgr = [NSFileManager defaultManager];
+    BOOL isDir = true;
+    if ([fmgr fileExistsAtPath:self.assertFilePath isDirectory:&isDir]) {
+        if (isDir) {
+            return false;
+        }
+    }
+    if ([fmgr fileExistsAtPath:self.specFilePath isDirectory:&isDir]) {
+        if (isDir) {
+            return false;
+        }
+    }
+    
+    // md5校验
+    NSString *assertMD5 = [FileHash md5HashOfFileAtPath:self.assertFilePath];
+    if ([assertMD5 isEqualToString:self.spec.flutterAssertMD5]) {
+        return true;
+    }
+    
+    return false;
+}
 
 @end

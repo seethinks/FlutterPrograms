@@ -19,6 +19,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <HJMacros/HJMacros.h>
 #import <Masonry/Masonry.h>
+#import <FileMD5Hash/FileHash.h>
 #import <middleman/MiddlemanPlugin.h>
 
 #import <FlutterPluginRegistrant/GeneratedPluginRegistrant.h>

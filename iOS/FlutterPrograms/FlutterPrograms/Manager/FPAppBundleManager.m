@@ -37,7 +37,7 @@ static FPAppBundleManager *_instance = nil;
     NSMutableArray *AppBundles = [NSMutableArray new];
     NSString *localAppBundlesPath = [FPPath appBundlesPath];
     BOOL isDir = false;
-    // 本地 bundles 路径存在，且为文件夹，遍历本地 app 可能存在版本的 bundle
+    // 本地 bundles 路径存在，遍历本地 app 可能存在版本的 bundle
     if ([fmgr fileExistsAtPath:localAppBundlesPath isDirectory:&isDir]) {
         if (isDir) {
             NSArray *bundles = [fmgr contentsOfDirectoryAtPath:localAppBundlesPath error:nil];
@@ -46,7 +46,7 @@ static FPAppBundleManager *_instance = nil;
                 for (NSString *bundle in bundles) {
                     NSString *bundlePath = [localAppBundlesPath stringByAppendingPathComponent:bundle];
                     FPAppBundle *appBundle = [FPAppBundle appBundleWithPath:bundlePath];
-                    if ([fmgr fileExistsAtPath:appBundle.specFilePath] && [fmgr fileExistsAtPath:appBundle.assertFilePath]) {
+                    if ([appBundle checkAssertMD5]) {
                         [AppBundles addObject:appBundle];
                     }
                 }
@@ -56,7 +56,7 @@ static FPAppBundleManager *_instance = nil;
     
     // 获取 mainBundle 中 bundle 资源
     FPAppBundle *appBundle = [FPAppBundle appBundleWithPath:[FPPath appBundlePathAtMainBundle]];
-    if ([fmgr fileExistsAtPath:appBundle.specFilePath] && [fmgr fileExistsAtPath:appBundle.assertFilePath]) {
+    if ([appBundle checkAssertMD5]) {
         [AppBundles addObject:appBundle];
     }
     

@@ -1,7 +1,7 @@
 {
     "name" : "FlutterPrograms",
     "id" : "com.flutter-programs.application",
-    "version" : "0.0.1",
+    "version" : "1.0.0",
     "author" : "顾海军",
     "description" : "",
     "iconUrl" : "https://raw.githubusercontent.com/dart-lang/site-shared/6ea7736189198de9bc0deb718768f972c49b82c1/src/_assets/image/flutter/icon/64.png",
@@ -9,8 +9,9 @@
         "https://raw.githubusercontent.com/dart-lang/site-shared/6ea7736189198de9bc0deb718768f972c49b82c1/src/_assets/image/flutter/logo%2Btext/vertical/default.png"
     ],
     "flutterAssertUrl" : "",
+    "flutterAssertMD5" : "2054ef186616c8656ea58c526ea98de9",
     "github" : "https://github.com/FlutterPrograms/FlutterPrograms",
-    "feature" : "flutter programs 0.0.1",
+    "feature" : "flutter programs",
     "versionRecord" : "",
     "flutterVersion" : "1.0.0"
 }

@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *iconUrl;
 @property (nonatomic, strong) id images;
 @property (nonatomic, strong) NSString *flutterAssertUrl;
+@property (nonatomic, strong) NSString *flutterAssertMD5;
 @property (nonatomic, strong) NSString *github;
 @property (nonatomic, strong) NSString *feature;
 @property (nonatomic, strong) NSString *versionRecord;

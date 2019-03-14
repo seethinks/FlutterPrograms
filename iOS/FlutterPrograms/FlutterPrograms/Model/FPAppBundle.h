@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *)launchPath ;
 - (NSString *)launchAssertPath;
+- (BOOL)checkAssertMD5;
 
 @end
 
