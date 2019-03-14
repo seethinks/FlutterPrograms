@@ -21,15 +21,6 @@ dependencies:
     sdk: flutter
   flutter_app:
     path: ../flutter_app
-  dio: ^2.0.0
-  share: ^0.5.3
-  shared_preferences: ^0.4.3
-  url_launcher: ^4.0.1
-  path_provider: ^0.4.1
-  json_annotation: ^2.0.0
-  event_bus: ^1.0.3
-  middleman:
-    path: ../flutter_plugin/middleman
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

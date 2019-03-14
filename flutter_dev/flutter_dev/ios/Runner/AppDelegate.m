@@ -16,7 +16,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
                                   @"message" : @"成功",
                                   @"data" : @{
                                           },
-                                  }
+                                  };
         return result(retDict);
     }];
     
@@ -30,7 +30,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
                                   @"data" : @{
                                           @"specString" : specString,
                                           },
-                                  }
+                                  };
         return result(retDict);
     }];
     return [super application:application didFinishLaunchingWithOptions:launchOptions];

@@ -56,48 +56,52 @@ class _ProgramItemWidgetState extends State<ProgramItemWidget>
                 // icon 图片, 应用名称
                 Container(
                   width: 74,
-                  child:  Stack(
-                  children: <Widget>[
-                    //icon 图片
-                    Align(
-                      alignment: Alignment.topCenter,
-                      child: Container(
-                        width: 54,
-                        height: 54,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.rectangle,
-                          borderRadius: BorderRadius.circular(18),
-                          border: Border.all(
-                            color: Colors.grey,
-                            width: 0.5,
+                  child: Stack(
+                    children: <Widget>[
+                      //icon 图片
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: Container(
+                          width: 54,
+                          height: 54,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            borderRadius: BorderRadius.circular(18),
+                            border: Border.all(
+                              color: Colors.grey,
+                              width: 0.5,
+                            ),
                           ),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(18),
-                          child: Image(
-                            image: NetworkImage(widget.info.spec.iconUrl),
-                          ),
-                        ),
-                      ),
-                    ),
-                    // 应用名称
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Container(
-                        child: Text(
-                          widget.info.spec.name,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: Color(0xFF3333333),
-                            fontSize: 11.0,
-                            fontWeight: FontWeight.w600,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(18),
+                            child: CachedNetworkImage(
+                              fit: BoxFit.contain,
+                              placeholder: (context, url) => Image.asset(
+                                  'images/icon_60pt.png',
+                                  package: 'flutter_app'),
+                              imageUrl: widget.info.spec.iconUrl,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
+                      // 应用名称
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Container(
+                          child: Text(
+                            widget.info.spec.name,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: Color(0xFF3333333),
+                              fontSize: 11.0,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(right: 12),

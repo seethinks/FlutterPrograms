@@ -142,9 +142,12 @@ class _HomeItemState extends State<HomeItem> with UpdateStateMixin<HomeItem> {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(18),
-                child: Image(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(widget.spec.iconUrl),
+                child: CachedNetworkImage(
+                  fit: BoxFit.contain,
+                  placeholder: (context, url) => Image.asset(
+                      'images/icon_60pt.png',
+                      package: 'flutter_app'),
+                  imageUrl: widget.spec.iconUrl,
                 ),
               ),
             ),

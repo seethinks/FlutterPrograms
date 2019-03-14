@@ -3,6 +3,7 @@ export 'dart:convert';
 export 'package:flutter/material.dart';
 
 export 'package:middleman/middleman.dart';
+export 'package:cached_network_image/cached_network_image.dart';
 
 export 'bean/spec_record.dart';
 export 'bean/spec.dart';

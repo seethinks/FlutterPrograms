@@ -4,7 +4,6 @@ import '../../../assert.dart';
 
 // Program 详情页面
 class ProgramDetail extends StatefulWidget {
-  
   const ProgramDetail({this.spec});
   static const String routeName = '/find/page';
   final Spec spec;
@@ -57,8 +56,11 @@ class _ProgramDetailHeaderState extends State<ProgramDetailHeader> {
           width: 110.0,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(26),
-            child: Image(
-              image: NetworkImage(widget.spec.iconUrl),
+            child: CachedNetworkImage(
+              fit: BoxFit.contain,
+              placeholder: (context, url) =>
+                  Image.asset('images/icon_60pt.png', package: 'flutter_app'),
+              imageUrl: widget.spec.iconUrl,
             ),
           ),
         ),
@@ -146,8 +148,12 @@ class _ProgramDetailPreviewState extends State<ProgramDetailPreview> {
                 padding: EdgeInsets.only(left: 8.0, right: 8.0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(6),
-                  child: Image(
-                    image: NetworkImage(widget.spec.images[index]),
+                  child: CachedNetworkImage(
+                    fit: BoxFit.contain,
+                    placeholder: (context, url) => Image.asset(
+                        'images/icon_60pt.png',
+                        package: 'flutter_app'),
+                    imageUrl: widget.spec.images[index],
                   ),
                 ));
           },
@@ -196,7 +202,8 @@ class ProgramDetailItem extends StatelessWidget {
             child: Separator(),
           ),
           Container(
-              padding: EdgeInsets.only(left: 25, right: 25, top: 10, bottom: 10),
+              padding:
+                  EdgeInsets.only(left: 25, right: 25, top: 10, bottom: 10),
               child: Text(
                 title,
                 style: const TextStyle(

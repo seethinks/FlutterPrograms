@@ -51,8 +51,12 @@ class _AboutState extends State<About> {
                       borderRadius: BorderRadius.circular(18),
                       child: () {
                         if (iconUrl.length != 0) {
-                          return Image(
-                            image: NetworkImage(iconUrl),
+                          return CachedNetworkImage(
+                            fit: BoxFit.contain,
+                            placeholder: (context, url) => Image.asset(
+                                'images/icon.png',
+                                package: 'flutter_app'),
+                            imageUrl: iconUrl,
                           );
                         } else {
                           return null;

@@ -22,12 +22,15 @@ PODS:
     - path_provider
     - share
     - shared_preferences
+    - sqflite
     - url_launcher
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
   - HJMacros (0.6.0):
     - HJMacros/Bases (= 0.6.0)
   - HJMacros/Bases (0.6.0)
   - Masonry (1.1.0)
-  - MaterialControls (1.2.2)
   - middleman (0.0.1):
     - Flutter
   - path_provider (0.0.1):
@@ -36,6 +39,9 @@ PODS:
     - Flutter
   - shared_preferences (0.0.1):
     - Flutter
+  - sqflite (0.0.1):
+    - Flutter
+    - FMDB (~> 2.7.2)
   - SSZipArchive (2.1.4)
   - SVProgressHUD (2.2.5)
   - url_launcher (0.0.1):
@@ -48,11 +54,11 @@ DEPENDENCIES:
   - FlutterPluginRegistrant (from `../../flutter_module/.ios/Flutter/FlutterPluginRegistrant`)
   - HJMacros (= 0.6.0)
   - Masonry (= 1.1.0)
-  - MaterialControls (~> 1.2.2)
   - middleman (from `../../flutter_module/.ios/Flutter/.symlinks/middleman/ios`)
   - path_provider (from `../../flutter_module/.ios/Flutter/.symlinks/path_provider/ios`)
   - share (from `../../flutter_module/.ios/Flutter/.symlinks/share/ios`)
   - shared_preferences (from `../../flutter_module/.ios/Flutter/.symlinks/shared_preferences/ios`)
+  - sqflite (from `../../flutter_module/.ios/Flutter/.symlinks/sqflite/ios`)
   - SSZipArchive
   - SVProgressHUD
   - url_launcher (from `../../flutter_module/.ios/Flutter/.symlinks/url_launcher/ios`)
@@ -61,9 +67,9 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
     - FileMD5Hash
+    - FMDB
     - HJMacros
     - Masonry
-    - MaterialControls
     - SSZipArchive
     - SVProgressHUD
 
@@ -80,6 +86,8 @@ EXTERNAL SOURCES:
     :path: "../../flutter_module/.ios/Flutter/.symlinks/share/ios"
   shared_preferences:
     :path: "../../flutter_module/.ios/Flutter/.symlinks/shared_preferences/ios"
+  sqflite:
+    :path: "../../flutter_module/.ios/Flutter/.symlinks/sqflite/ios"
   url_launcher:
     :path: "../../flutter_module/.ios/Flutter/.symlinks/url_launcher/ios"
 
@@ -87,18 +95,19 @@ SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   FileMD5Hash: 3ed69cc19a21ff4d30ae8833fc104275ad2c7de0
   Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
-  FlutterPluginRegistrant: 5b7d3123b25f27079bc30ad853082d25db4d8ee0
+  FlutterPluginRegistrant: 2b71aa5f1e60b54c7d56d39eb0ab3499b7fde8f0
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   HJMacros: 49759546fd8dd284a58caea4fd61dcc57ec8a4f8
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  MaterialControls: 1c6b29e78d3a13d8dd6a67ed31b6d26eb5de8f72
   middleman: 17a525099ca966f26d46098eddeecf038fb7690f
   path_provider: 09407919825bfe3c2deae39453b7a5b44f467873
   share: 222b5dcc8031238af9d7de91149df65bad1aef75
   shared_preferences: 5a1d487c427ee18fcd3ea1f2a131569481834b53
+  sqflite: d1612813fa7db7c667bed9f1d1b508deffc56999
   SSZipArchive: 41455d4b8d2b6ab93990820b50dc697c2554a322
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   url_launcher: 92b89c1029a0373879933c21642958c874539095
 
-PODFILE CHECKSUM: 3610c7cb7e37165e5233d44b8c0c34063fa1ba3b
+PODFILE CHECKSUM: 15482814b6be0e8e1fba730a4fa3a271b323752b
 
 COCOAPODS: 1.5.3
