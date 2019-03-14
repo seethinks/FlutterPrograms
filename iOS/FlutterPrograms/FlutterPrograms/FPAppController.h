@@ -10,4 +10,8 @@
 
 @interface FPAppController : FPFlutterController
 
+@property (nonatomic, strong) FPAppBundle *appBunndle;
+
+- (instancetype)initWithAppBundle:(FPAppBundle *)appBundle nibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
+
 @end

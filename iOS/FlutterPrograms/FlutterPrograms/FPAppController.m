@@ -15,6 +15,14 @@
 
 @implementation FPAppController
 
+- (instancetype)initWithAppBundle:(FPAppBundle *)appBundle nibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithFlutterAssertPath:appBundle.launchAssertPath nibName:nil bundle:nil];
+    if (self) {
+        _appBunndle = appBundle;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -41,7 +49,14 @@
         NSLog(@"Native iOS %@:%@",NSStringFromClass([weakSelf class]), arguments);
         NSData *specData = [NSData dataWithContentsOfFile:self.appBunndle.specFilePath];
         NSString *specString = [[NSString alloc] initWithData:specData encoding:NSUTF8StringEncoding];
-        return result(specString);
+        specString = (specString == nil) ? @"" : specString;
+        FPMiddlemanResult *openInfo = [FPMiddlemanResult new];
+        openInfo.code = @"1";
+        openInfo.message = @"应用参数错误";
+        openInfo.data = @{
+                          @"specString" : specString,
+                          };
+        return result(openInfo.dict);
     }];
 }
 
@@ -64,9 +79,7 @@
         return openInfo.dict;
     }
     NSString *LaunchAssertPath = [FPPath programLaunchAssertPathWithSpec:spec];
-    FlutterDartProject *dartPro = [[FlutterDartProject alloc] initWithFlutterAssetsURL:[NSURL fileURLWithPath:LaunchAssertPath]];
-    FPProgramController *vc = [[FPProgramController alloc] initWithProject:dartPro nibName:nil bundle:nil];
-    
+    FPProgramController *vc = [[FPProgramController alloc] initWithFlutterAssertPath:LaunchAssertPath nibName:nil bundle:nil];
     [GeneratedPluginRegistrant registerWithRegistry:vc.pluginRegistry];
     [self presentViewController:vc animated:true completion:nil];
 

@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6738861C21FAF3C100D3B47A"
-               BuildableName = "FlutterProgramsRelease.app"
-               BlueprintName = "FlutterProgramsRelease"
+               BuildableName = "FlutterProgramsHotUpdate.app"
+               BlueprintName = "FlutterProgramsHotUpdate"
                ReferencedContainer = "container:FlutterPrograms.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -53,8 +53,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6738861C21FAF3C100D3B47A"
-            BuildableName = "FlutterProgramsRelease.app"
-            BlueprintName = "FlutterProgramsRelease"
+            BuildableName = "FlutterProgramsHotUpdate.app"
+            BlueprintName = "FlutterProgramsHotUpdate"
             ReferencedContainer = "container:FlutterPrograms.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -76,8 +76,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6738861C21FAF3C100D3B47A"
-            BuildableName = "FlutterProgramsRelease.app"
-            BlueprintName = "FlutterProgramsRelease"
+            BuildableName = "FlutterProgramsHotUpdate.app"
+            BlueprintName = "FlutterProgramsHotUpdate"
             ReferencedContainer = "container:FlutterPrograms.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -95,8 +95,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6738861C21FAF3C100D3B47A"
-            BuildableName = "FlutterProgramsRelease.app"
-            BlueprintName = "FlutterProgramsRelease"
+            BuildableName = "FlutterProgramsHotUpdate.app"
+            BlueprintName = "FlutterProgramsHotUpdate"
             ReferencedContainer = "container:FlutterPrograms.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

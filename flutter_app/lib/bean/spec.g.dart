@@ -8,6 +8,7 @@ part of 'spec.dart';
 
 Spec _$SpecFromJson(Map<String, dynamic> json) {
   return Spec(
+      json['flutterVersion'] as String,
       json['name'] as String,
       json['id'] as String,
       json['version'] as String,
@@ -16,6 +17,7 @@ Spec _$SpecFromJson(Map<String, dynamic> json) {
       json['iconUrl'] as String,
       json['images'],
       json['flutterAssertUrl'] as String,
+      json['flutterAssertMD5'] as String,
       json['github'] as String,
       json['feature'] as String,
       json['versionRecord'])
@@ -23,6 +25,7 @@ Spec _$SpecFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$SpecToJson(Spec instance) => <String, dynamic>{
+      'flutterVersion': instance.flutterVersion,
       'name': instance.name,
       'id': instance.id,
       'version': instance.version,
@@ -31,6 +34,7 @@ Map<String, dynamic> _$SpecToJson(Spec instance) => <String, dynamic>{
       'iconUrl': instance.iconUrl,
       'images': instance.images,
       'flutterAssertUrl': instance.flutterAssertUrl,
+      'flutterAssertMD5': instance.flutterAssertMD5,
       'github': instance.github,
       'feature': instance.feature,
       'versionRecord': instance.versionRecord,

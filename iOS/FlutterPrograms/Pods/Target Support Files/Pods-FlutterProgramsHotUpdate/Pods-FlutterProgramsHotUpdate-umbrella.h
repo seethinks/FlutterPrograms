@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_FlutterProgramsReleaseVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_FlutterProgramsReleaseVersionString[];
+FOUNDATION_EXPORT double Pods_FlutterProgramsHotUpdateVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_FlutterProgramsHotUpdateVersionString[];
 

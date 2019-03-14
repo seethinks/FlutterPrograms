@@ -14,12 +14,19 @@
 
 @implementation FPFlutterController
 
-- (instancetype)initWithAppBundle:(FPAppBundle *)appBundle nibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    FlutterDartProject *dartPro = [[FlutterDartProject alloc] initWithFlutterAssetsURL:[NSURL fileURLWithPath:appBundle.launchAssertPath]];
-    self = [super initWithProject:dartPro nibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        _appBunndle = appBundle;
-    }
+- (instancetype)initWithFlutterAssertPath:(NSString*)flutterAssertPath
+                                  nibName:(NSString*)nibNameOrNil
+                                   bundle:(NSBundle*)nibBundleOrNil {
+#if HOT_UPDATE
+    FlutterDartProject *dartPro = [[FlutterDartProject alloc] initWithFlutterAssetsURL:[NSURL fileURLWithPath:flutterAssertPath]];
+    FPFlutterController *vc = [super initWithProject:dartPro nibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = vc;
+#else
+    FlutterEngine *engine = [[FlutterEngine alloc] initWithName:@"io.flutter" project:nil];
+    [engine runWithEntrypoint:nil];
+    FPFlutterController *vc = [super initWithEngine:engine nibName:nil bundle:nil];
+    self = vc;
+#endif
     return self;
 }
 

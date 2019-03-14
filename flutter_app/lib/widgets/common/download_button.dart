@@ -38,9 +38,12 @@ class DownloadButtonState extends State<DownloadButton>
   Widget _buildProgressWidget(BuildContext context) {
     return Container(
       child: Center(
-        child: CircularProgressIndicator(
-          strokeWidth: 2.0,
-          value: (widget.progressValue <= 0.1) ? null : widget.progressValue,
+        child: AspectRatio(
+          aspectRatio: 1.0,
+          child: CircularProgressIndicator(
+            strokeWidth: 2.0,
+            value: (widget.progressValue <= 0.1) ? null : widget.progressValue,
+          ),
         ),
       ),
     );

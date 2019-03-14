@@ -8,13 +8,14 @@
 
 #import <Flutter/Flutter.h>
 
-typedef void(^FPVoidCallback)(NSString *state, NSString *message, NSDictionary *info);
+typedef void(^FPVoidCallback)(NSString *state, NSString *message, NSDictionary *data);
 
 @interface FPFlutterController : FlutterViewController
 
-@property (nonatomic, strong) FPAppBundle *appBunndle;
 @property (nonatomic, strong) FPVoidCallback callback;
 
-- (instancetype)initWithAppBundle:(FPAppBundle *)appBundle nibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
+- (instancetype)initWithFlutterAssertPath:(NSString*)flutterAssertPath
+                                  nibName:(NSString*)nibNameOrNil
+                                   bundle:(NSBundle*)nibBundleOrNil;
 
 @end

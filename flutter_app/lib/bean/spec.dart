@@ -15,6 +15,7 @@ part 'spec.g.dart';
 
 class Spec {
   Spec(
+    this.flutterVersion,
     this.name,
     this.id,
     this.version,
@@ -23,11 +24,13 @@ class Spec {
     this.iconUrl,
     this.images,
     this.flutterAssertUrl,
+    this.flutterAssertMD5,
     this.github,
     this.feature,
     this.versionRecord,
   );
 
+  String flutterVersion;
   String name;
   String id;
   String version;
@@ -36,6 +39,7 @@ class Spec {
   String iconUrl;
   dynamic images;
   String flutterAssertUrl;
+  String flutterAssertMD5;
   String github;
   String feature;
   dynamic versionRecord;
