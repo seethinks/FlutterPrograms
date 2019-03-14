@@ -10,5 +10,7 @@
 			"path": "../flutter_plugin"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"cquery.cacheDirectory": "${workspaceFolder}/.vscode/cquery_cached_index/"
+	}
 }

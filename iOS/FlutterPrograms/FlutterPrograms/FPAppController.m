@@ -51,8 +51,8 @@
         NSString *specString = [[NSString alloc] initWithData:specData encoding:NSUTF8StringEncoding];
         specString = (specString == nil) ? @"" : specString;
         FPMiddlemanResult *openInfo = [FPMiddlemanResult new];
-        openInfo.code = @"1";
-        openInfo.message = @"应用参数错误";
+        openInfo.code = @"0";
+        openInfo.message = @"成功";
         openInfo.data = @{
                           @"specString" : specString,
                           };
@@ -82,7 +82,7 @@
     FPProgramController *vc = [[FPProgramController alloc] initWithFlutterAssertPath:LaunchAssertPath nibName:nil bundle:nil];
     [GeneratedPluginRegistrant registerWithRegistry:vc.pluginRegistry];
     [self presentViewController:vc animated:true completion:nil];
-
+    
     FPMiddlemanResult *openInfo = [FPMiddlemanResult new];
     openInfo.code = @"0";
     openInfo.message = @"程序打开成功";

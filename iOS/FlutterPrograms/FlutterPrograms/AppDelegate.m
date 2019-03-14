@@ -19,7 +19,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-  
+    
     NSLog(@"%@", NSHomeDirectory());
     FPAppBundleManager *amgr = [FPAppBundleManager shared];
     FPAppBundle *appBundle = [amgr launchAppBundle];
@@ -32,7 +32,7 @@
     [self.window makeKeyAndVisible];
     
     [GeneratedPluginRegistrant registerWithRegistry:vc.pluginRegistry];
-
+    
     // Override point for customization after application launch.
     return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
