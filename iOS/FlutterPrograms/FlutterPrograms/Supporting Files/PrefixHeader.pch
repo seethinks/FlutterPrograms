@@ -27,7 +27,9 @@
 
 #import "FPSpec.h"
 #import "FPAppBundle.h"
+#import "FPMiddlemanResult.h"
 #import "FPPath.h"
+#import "FPFileMD5.h"
 #import "FPSafeArea.h"
 
 #import "FPNetworkManager.h"

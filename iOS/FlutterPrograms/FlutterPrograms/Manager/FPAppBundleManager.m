@@ -46,7 +46,7 @@ static FPAppBundleManager *_instance = nil;
                 for (NSString *bundle in bundles) {
                     NSString *bundlePath = [localAppBundlesPath stringByAppendingPathComponent:bundle];
                     FPAppBundle *appBundle = [FPAppBundle appBundleWithPath:bundlePath];
-                    if ([appBundle checkAssertMD5]) {
+                    if ([FPFileMD5 checkAppAssertMD5WithAppBundle:appBundle]) {
                         [AppBundles addObject:appBundle];
                     }
                 }
@@ -56,7 +56,7 @@ static FPAppBundleManager *_instance = nil;
     
     // 获取 mainBundle 中 bundle 资源
     FPAppBundle *appBundle = [FPAppBundle appBundleWithPath:[FPPath appBundlePathAtMainBundle]];
-    if ([appBundle checkAssertMD5]) {
+    if ([FPFileMD5 checkAppAssertMD5WithAppBundle:appBundle]) {
         [AppBundles addObject:appBundle];
     }
     

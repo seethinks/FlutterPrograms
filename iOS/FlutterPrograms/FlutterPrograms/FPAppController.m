@@ -26,11 +26,14 @@
     [[MiddlemanPlugin shared] setMethodCallHandler:@"openProgram" handler:^(id arguments, FlutterResult result) {
         NSLog(@"Native iOS %@:%@",NSStringFromClass([weakSelf class]), arguments);
         if ([arguments isKindOfClass:[NSDictionary class]]) {
-            BOOL opened = [self openProgram:arguments];
-            return result(@(opened));
+            NSDictionary *openInfo = [self openProgram:arguments];
+            return result(openInfo);
         }
         else {
-            return result(@(false));
+            FPMiddlemanResult *openInfo = [FPMiddlemanResult new];
+            openInfo.code = @"1";
+            openInfo.message = @"应用参数错误";
+            return result(openInfo.dict);
         }
     }];
     
@@ -42,14 +45,23 @@
     }];
 }
 
-- (BOOL)openProgram:(NSDictionary *)specJson {
+- (NSDictionary *)openProgram:(NSDictionary *)specJson {
     
     FPSpec *spec = [FPSpec new];
     [spec setValuesForKeysWithDictionary:specJson];
+    if (![FPFileMD5 checkProgramAssertMD5WithSpec:spec]) {
+        FPMiddlemanResult *openInfo = [FPMiddlemanResult new];
+        openInfo.code = @"2";
+        openInfo.message = @"程序校验失败!";
+        return openInfo.dict;
+    }
     NSString *assertFilePath = [FPPath programLaunchAssertFilePathWithSpec:spec];
-    NSString *LaunchPath = [FPPath programLaunchPathWithSpec:spec];
-    if (![SSZipArchive unzipFileAtPath:assertFilePath toDestination:LaunchPath]) {
-        return false;
+    NSString *launchPath = [FPPath programLaunchPathWithSpec:spec];
+    if (![SSZipArchive unzipFileAtPath:assertFilePath toDestination:launchPath]) {
+        FPMiddlemanResult *openInfo = [FPMiddlemanResult new];
+        openInfo.code = @"3";
+        openInfo.message = @"程序解压失败!";
+        return openInfo.dict;
     }
     NSString *LaunchAssertPath = [FPPath programLaunchAssertPathWithSpec:spec];
     FlutterDartProject *dartPro = [[FlutterDartProject alloc] initWithFlutterAssetsURL:[NSURL fileURLWithPath:LaunchAssertPath]];
@@ -57,8 +69,11 @@
     
     [GeneratedPluginRegistrant registerWithRegistry:vc.pluginRegistry];
     [self presentViewController:vc animated:true completion:nil];
-    
-    return true;
+
+    FPMiddlemanResult *openInfo = [FPMiddlemanResult new];
+    openInfo.code = @"0";
+    openInfo.message = @"程序打开成功";
+    return openInfo.dict;
 }
 
 @end
