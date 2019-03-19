@@ -29,9 +29,6 @@
 ##### 1.3.3 [SpecsFile](https://github.com/FlutterPrograms/SpecsFile)
 FlutterPrograms 项目自己收集的 `程序` 描述文件。
 
-## 2. 仓库说明
-
-### 2.1
 
 
 
