@@ -24,7 +24,7 @@
 当需要为主程序添加新的应用，在 [SpecsURL](https://github.com/FlutterPrograms/SpecsURL) 的 `resource.txt` 文件中指定 `Spec` 文件描述地址即可。 `Travis CI` 在仓库提交时，或每`24`小时构建一次，并提交更新 [Specs](https://github.com/FlutterPrograms/Specs) 仓库。
 
 ##### 1.3.2 [Specs](https://github.com/FlutterPrograms/Specs)
-`应用`描述列表数据仓库。仓库中 `specs.json` 文件即`应用`描述列表数据，由 [SpecsURL](https://github.com/FlutterPrograms/SpecsURL) 自动生成。
+`应用`描述列表数据仓库。`主应用`展示的可下载`程序`列表。仓库中 `specs.json` 文件即`应用`描述列表数据，由 [SpecsURL](https://github.com/FlutterPrograms/SpecsURL) 自动生成。
 
 ##### 1.3.3 [SpecsFile](https://github.com/FlutterPrograms/SpecsFile)
 FlutterPrograms 项目自己收集的 `程序` 描述文件。
