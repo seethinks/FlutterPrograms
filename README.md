@@ -5,7 +5,7 @@
 
 ## 应用截图
 
-图中两个图标是由官方提供的两个 Flutter demo 程序，两个程序完全独立。
+图中没个图标代表一个独立的 Flutter 程序。截图中的两个程序为 Flutter 官方提供的两个 Demo 。
 
 ![Screenshots](https://raw.githubusercontent.com/FlutterPrograms/FlutterPrograms/master/Screenshots/2019-05-01%2022_12_25.gif)
 
@@ -18,7 +18,7 @@
 
 ## 详细介绍
 
-详细介绍参见项目 [wiki](https://github.com/FlutterPrograms/FlutterPrograms/wiki) 
+详细介绍参见项目 [wiki](https://github.com/FlutterPrograms/FlutterPrograms/wiki) 。
 
 
 
