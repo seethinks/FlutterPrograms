@@ -307,6 +307,7 @@
 			buildConfigurationList = 6738864921FAF3C300D3B47A /* Build configuration list for PBXNativeTarget "FlutterProgramsHotUpdate" */;
 			buildPhases = (
 				791500E9283AE95B0830B71F /* [CP] Check Pods Manifest.lock */,
+				674BB20A22799EC800B7A070 /* ShellScript */,
 				6738861921FAF3C100D3B47A /* Sources */,
 				6738861A21FAF3C100D3B47A /* Frameworks */,
 				6738861B21FAF3C100D3B47A /* Resources */,
@@ -362,10 +363,10 @@
 			buildConfigurationList = 678FCB842202A521002C0262 /* Build configuration list for PBXNativeTarget "FlutterPrograms" */;
 			buildPhases = (
 				217365F8600C6B68DF39A14B /* [CP] Check Pods Manifest.lock */,
+				678FCB892202A5B9002C0262 /* ShellScript */,
 				678FCB762202A521002C0262 /* Sources */,
 				678FCB7C2202A521002C0262 /* Frameworks */,
 				678FCB7E2202A521002C0262 /* Resources */,
-				678FCB892202A5B9002C0262 /* ShellScript */,
 				A1D00ACFF79588443F16B2C6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -480,7 +481,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		678FCB892202A5B9002C0262 /* ShellScript */ = {
+		674BB20A22799EC800B7A070 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -496,6 +497,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build\n\"$PROJECT_DIR/Script/replace_flutter_framework.sh\"\n\"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed\n";
+		};
+		678FCB892202A5B9002C0262 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build\n\"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed\n";
 		};
 		791500E9283AE95B0830B71F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -527,7 +545,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-FlutterPrograms/Pods-FlutterPrograms-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-FlutterPrograms/Pods-FlutterPrograms-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/FileMD5Hash/FileMD5Hash.framework",
@@ -564,7 +582,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FlutterPrograms/Pods-FlutterPrograms-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlutterPrograms/Pods-FlutterPrograms-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E71C2618944B73412D43BD42 /* [CP] Embed Pods Frameworks */ = {
@@ -575,7 +593,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-FlutterProgramsHotUpdate/Pods-FlutterProgramsHotUpdate-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-FlutterProgramsHotUpdate/Pods-FlutterProgramsHotUpdate-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/FileMD5Hash/FileMD5Hash.framework",
@@ -612,7 +630,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FlutterProgramsHotUpdate/Pods-FlutterProgramsHotUpdate-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlutterProgramsHotUpdate/Pods-FlutterProgramsHotUpdate-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -818,7 +836,8 @@
 			baseConfigurationReference = 714014A860DC59E6938C1B87 /* Pods-FlutterProgramsHotUpdate.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D42J6S8LXL;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "${SRCROOT}/FlutterPrograms/Supporting Files/PrefixHeader.pch";
@@ -834,7 +853,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.build.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = Build;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -844,8 +863,9 @@
 			baseConfigurationReference = C52F52BA25EEF85982A135F1 /* Pods-FlutterProgramsHotUpdate.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D42J6S8LXL;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "${SRCROOT}/FlutterPrograms/Supporting Files/PrefixHeader.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
