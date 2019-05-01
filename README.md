@@ -20,7 +20,7 @@
 ### 1.3 程序仓库：
 
 ##### 1.3.1 [SpecsURL](https://github.com/FlutterPrograms/SpecsURL)
-`应用`描述文件资源地址仓库。由持续集成构建工具 `Travis CI` 处理仓库 `resource.txt` 文件中的 `Spec URL` 生成 [Specs](https://github.com/FlutterPrograms/Specs) `应用`描述列表数据。
+`应用`描述文件资源地址仓库。由持续集成构建工具 `Travis CI` 处理仓库中 `specs_resource/resource.txt` 文件中的 `Spec URL` 生成 [Specs](https://github.com/FlutterPrograms/Specs) `应用`描述列表数据。
 当需要为主程序添加新的应用，在 [SpecsURL](https://github.com/FlutterPrograms/SpecsURL) 的 `resource.txt` 文件中指定 `Spec` 文件描述地址即可。 `Travis CI` 在仓库提交时，或每`24`小时构建一次，并提交更新 [Specs](https://github.com/FlutterPrograms/Specs) 仓库。
 
 ##### 1.3.2 [Specs](https://github.com/FlutterPrograms/Specs)
