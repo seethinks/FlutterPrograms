@@ -94,20 +94,20 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   FileMD5Hash: 3ed69cc19a21ff4d30ae8833fc104275ad2c7de0
-  Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
-  FlutterPluginRegistrant: 2b71aa5f1e60b54c7d56d39eb0ab3499b7fde8f0
+  Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
+  FlutterPluginRegistrant: 337cbf4bbe3e1529835b92639c85e056f5863723
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   HJMacros: 49759546fd8dd284a58caea4fd61dcc57ec8a4f8
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  middleman: 17a525099ca966f26d46098eddeecf038fb7690f
-  path_provider: 09407919825bfe3c2deae39453b7a5b44f467873
-  share: 222b5dcc8031238af9d7de91149df65bad1aef75
-  shared_preferences: 5a1d487c427ee18fcd3ea1f2a131569481834b53
-  sqflite: d1612813fa7db7c667bed9f1d1b508deffc56999
+  middleman: 196cb3b2e65de3c66b50d27caf258109a498cfc6
+  path_provider: f96fff6166a8867510d2c25fdcc346327cc4b259
+  share: 7d22fe8baedfe93aefd864bf0b73f29711fbb0a3
+  shared_preferences: 1feebfa37bb57264736e16865e7ffae7fc99b523
+  sqflite: ff1d9da63c06588cc8d1faf7256d741f16989d5a
   SSZipArchive: 41455d4b8d2b6ab93990820b50dc697c2554a322
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  url_launcher: 92b89c1029a0373879933c21642958c874539095
+  url_launcher: 0067ddb8f10d36786672aa0722a21717dba3a298
 
-PODFILE CHECKSUM: dc42fb7886e529654e0d05d7cc9370719daadf5a
+PODFILE CHECKSUM: 1af4deba067715404b085880ea58a820635cdce2
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1
