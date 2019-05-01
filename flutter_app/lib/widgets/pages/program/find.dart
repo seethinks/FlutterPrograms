@@ -141,14 +141,12 @@ class _FindState extends State<Find>
   Future<void> downloadProgram(ProgramItemInfo itemInfo) async {
     try {
       await ProgramsManager().downloadProgram(itemInfo.spec,
-          onProgress: (received, total) {
-        if (total != -1) {
-          setState(() {
-            var _itemInfo = _itemsInfo[_itemsInfo.indexOf(itemInfo)];
-            _itemInfo.processValue = (received / total);
-            _itemInfo.showProcess = true;
-          });
-        }
+          onProgress: (received, total, process) {
+        setState(() {
+          var _itemInfo = _itemsInfo[_itemsInfo.indexOf(itemInfo)];
+          _itemInfo.processValue = process;
+          _itemInfo.showProcess = true;
+        });
       });
       if (mounted) {
         _itemsInfo.remove(itemInfo);

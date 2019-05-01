@@ -38,7 +38,7 @@ class _FavoriteState extends State<Favorite>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _emptyWidgetKey.currentState.loading();
     });
-    eventBus.on<EventLocalProgramChanged>().listen((onData){
+    eventBus.on<EventLocalProgramChanged>().listen((onData) {
       _fetchSpecs();
     });
   }
@@ -149,14 +149,12 @@ class _FavoriteState extends State<Favorite>
   Future<void> downloadProgram(ProgramItemInfo itemInfo) async {
     try {
       await ProgramsManager().downloadProgram(itemInfo.spec,
-          onProgress: (received, total) {
-        if (total != -1) {
-          setState(() {
-            var _itemInfo = _itemsInfo[_itemsInfo.indexOf(itemInfo)];
-            _itemInfo.processValue = (received / total);
-            _itemInfo.showProcess = true;
-          });
-        }
+          onProgress: (received, total, process) {
+        setState(() {
+          var _itemInfo = _itemsInfo[_itemsInfo.indexOf(itemInfo)];
+          _itemInfo.processValue = process;
+          _itemInfo.showProcess = true;
+        });
       });
       if (mounted) {
         _itemsInfo.remove(itemInfo);
