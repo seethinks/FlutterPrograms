@@ -7,6 +7,8 @@
 
 图中没个图标代表一个独立的 Flutter 程序。截图中的两个程序为 Flutter 官方提供的两个 Demo 。
 
+> Gif 截图 2.4M ，实际效果，待 Gif 完全加载 。
+
 ![Screenshots](https://raw.githubusercontent.com/FlutterPrograms/FlutterPrograms/master/Screenshots/2019-05-01%2022_12_25.gif)
 
 ## 应用构建
